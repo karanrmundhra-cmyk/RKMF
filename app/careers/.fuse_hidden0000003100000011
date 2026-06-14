@@ -1,0 +1,55 @@
+import type { Metadata } from "next";
+import Reveal from "@/components/Reveal";
+import FormShell from "@/components/FormShell";
+import { SITE } from "@/lib/content";
+
+export const metadata: Metadata = {
+  title: "Careers",
+  description: "Want to work in animal rescue? Share your details and we'll reach out when the right role opens at RKM Foundation.",
+};
+
+export default function CareersPage() {
+  return (
+    <>
+      <section className="bg-snow pb-14 pt-32 sm:pt-40">
+        <div className="container-c max-w-3xl">
+          <Reveal>
+            <p className="eyebrow">Careers</p>
+            <h1 className="h-display mt-3 text-4xl sm:text-5xl lg:text-6xl">Some days it’s paperwork. Some days it’s a rescue.</h1>
+            <p className="mt-5 text-lg leading-relaxed text-ink/70">
+              Working in animal rescue means early mornings, muddy boots, and the occasional
+              heartbreak — alongside the quiet joy of watching a frightened animal trust again. If
+              that sounds like your kind of work, we’d love to hear from you. Write to us at{" "}
+              <a href={`mailto:${SITE.email}`} className="link-secondary">{SITE.email}</a>, or
+              share your details below to explore opportunities aligned with your skills and
+              interests.
+            </p>
+            <p className="mt-4 text-sm text-ink/60">
+              We don’t have open listings at the moment — this is a general interest form. We’ll
+              keep your details on file and reach out when a suitable opportunity comes up.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-white py-24">
+        <div className="container-c max-w-3xl">
+          <Reveal>
+            <FormShell
+              formType="careers"
+              fields={[
+                { name: "name", label: "Full Name", required: true, half: true, placeholder: "Enter your full name" },
+                { name: "email", label: "Email Address", type: "email", required: true, half: true, placeholder: "Enter your email address" },
+                { name: "phone", label: "Phone Number", type: "tel", half: true, placeholder: "Enter your phone number" },
+                { name: "role", label: "Interested Role", half: true, placeholder: "Describe your interests" },
+                { name: "message", label: "Tell us about yourself", textarea: true, placeholder: "Your background, skills, and what draws you to this work" },
+              ]}
+              submitLabel="Submit Details"
+              successMessage="Thank you! We'll reach out if there's a fit."
+            />
+          </Reveal>
+        </div>
+      </section>
+    </>
+  );
+}

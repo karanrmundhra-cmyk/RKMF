@@ -1,0 +1,58 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import Reveal from "@/components/Reveal";
+import CTABanner from "@/components/CTABanner";
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description: "Stories of hope from RKM Foundation — rescues, recoveries, and the people who make them possible.",
+};
+
+export default function BlogPage() {
+  return (
+    <>
+      <section className="bg-snow pb-14 pt-32 sm:pt-40">
+        <div className="container-c max-w-3xl">
+          <Reveal>
+            <p className="eyebrow">Blog</p>
+            <h1 className="h-display mt-3 text-4xl sm:text-5xl">Stories of hope.</h1>
+            <p className="mt-5 text-lg leading-relaxed text-ink/70">
+              Rescues, recoveries, and the quiet acts of kindness behind RKM Foundation.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-white py-20">
+        <div className="container-c max-w-3xl">
+          <Reveal>
+            <Link
+              href="/blog/the-dog-who-started-it-all"
+              className="card group block overflow-hidden p-0 transition hover:-translate-y-0.5"
+            >
+              <div className="bg-gradient-to-br from-copper/20 via-copper/10 to-copper/25 px-7 pb-10 pt-12 sm:px-10">
+                <p className="text-xs font-bold uppercase tracking-widest text-copper-dark">Featured · Founder Story</p>
+                <h2 className="h-display mt-3 text-3xl group-hover:text-copper-dark sm:text-4xl">
+                  The Dog Who Started It All
+                </h2>
+              </div>
+              <div className="px-7 py-7 sm:px-10">
+                <p className="leading-relaxed text-ink/70">
+                  How a pug named Tobler inspired a foundation built on compassion.
+                </p>
+                <span className="link-secondary mt-4 inline-block text-sm font-medium">Read the story →</span>
+              </div>
+            </Link>
+          </Reveal>
+          <Reveal delay={120} className="mt-10">
+            <p className="text-center text-sm text-ink/60">
+              More stories from the field are on their way.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      <CTABanner />
+    </>
+  );
+}

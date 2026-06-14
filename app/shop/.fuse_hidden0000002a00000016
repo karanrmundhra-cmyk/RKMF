@@ -1,0 +1,241 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import Reveal from "@/components/Reveal";
+
+export const metadata: Metadata = {
+  title: "Shop for a Cause",
+  description: "The “Hope” Candle — every candle you buy helps feed, treat, and protect rescued animals in need.",
+};
+
+const BADGES = ["Pet-Friendly", "Vegan", "Cruelty-Free", "No Toxins", "Ethically Sourced", "Made in India"];
+
+const IMPACT = [
+  { title: "Meals", desc: "Feeds one rescued animal for approximately 15 days." },
+  { title: "Vaccinations", desc: "Supports essential vaccinations for one animal in our care." },
+  { title: "Medical & Shelter Support", desc: "Helps provide treatment and safe shelter for rescued animals." },
+];
+
+const REVIEWS = [
+  {
+    name: "Gouri D., Mumbai",
+    img: "/images/shop/gouri.jpg",
+    quote: "My daughter lights it every evening and says a prayer for the animals.",
+    body: "My daughter is only eight, but she already understands the value of helping those who cannot speak for themselves. Lighting the “Hope” Candle has become a meaningful ritual for our family.",
+  },
+  {
+    name: "Amit M., Mumbai",
+    img: "/images/shop/amit.jpg",
+    quote: "This isn't just a candle — it's hope in a jar.",
+    body: "I bought a few as gifts during Diwali. The scent is warm and calming, but what makes it special is knowing the purchase helps feed and treat street animals.",
+  },
+  {
+    name: "Sheetal M., Mumbai",
+    img: "/images/shop/sheetal.jpg",
+    quote: "Finally, a way to give that feels personal.",
+    body: "I have donated to NGOs before, but this felt different. I could actually see the animals my purchase helped.",
+  },
+];
+
+const ANIMALS = [
+  { name: "Panther", status: "Recovering from injury" },
+  { name: "Tuxedo", status: "Receiving daily care" },
+  { name: "Simba", status: "Safe at our shelter" },
+  { name: "Bruno", status: "Healing after surgery" },
+];
+
+function Stars() {
+  return (
+    <div className="flex gap-0.5 text-copper" role="img" aria-label="5 out of 5 stars">
+      {[...Array(5)].map((_, i) => (
+        <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6L12 2z"/></svg>
+      ))}
+    </div>
+  );
+}
+
+export default function ShopPage() {
+  return (
+    <>
+      {/* Hero */}
+      <section className="bg-snow pb-14 pt-32 sm:pt-40">
+        <div className="container-c max-w-2xl text-center">
+          <Reveal>
+            <p className="eyebrow">Shop for a Cause</p>
+            <h1 className="h-display mt-3 text-4xl sm:text-6xl">A candle that fills a bowl.</h1>
+            <p className="mx-auto mt-5 max-w-xl leading-relaxed text-ink/70">
+              Light it at home, and somewhere a rescued animal gets a meal, a vaccine, or a
+              warm corner to sleep. That&apos;s the whole idea.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Product */}
+      <section className="py-20 sm:py-28">
+        <div className="container-c grid items-center gap-12 lg:grid-cols-2">
+          {/* Typographic product card — placeholder until real product photography is added */}
+          <Reveal>
+            <div className="relative flex aspect-[4/5] w-full flex-col items-center justify-center overflow-hidden rounded-2xl bg-ink p-10 text-center">
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(184,115,51,0.22),transparent_65%)]" aria-hidden />
+              <span
+                className="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/80 ring-1 ring-white/15 backdrop-blur"
+                aria-label="Placeholder — a real product photo will appear here"
+              >
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden>
+                  <path d="M3 8.5A1.5 1.5 0 0 1 4.5 7h2L8 5h8l1.5 2h2A1.5 1.5 0 0 1 21 8.5v9A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5v-9Z" strokeLinecap="round" strokeLinejoin="round" />
+                  <circle cx="12" cy="12.5" r="3.2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                Product photo coming soon
+              </span>
+              <div className="relative">
+                <p className="text-xs uppercase tracking-[0.35em] text-copper-light">RKM Foundation</p>
+                <p className="h-display mt-6 text-6xl text-white sm:text-7xl">Hope</p>
+                <div className="mx-auto mt-6 h-px w-16 bg-copper/60" aria-hidden />
+                <p className="mt-6 text-sm uppercase tracking-[0.25em] text-white/70">Apple Cinnamon</p>
+                <p className="mt-2 text-xs text-white/50">Hand-poured soy candle · 50+ hour burn</p>
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={120}>
+            <p className="eyebrow">The &ldquo;Hope&rdquo; Candle</p>
+            <h2 className="h-display mt-3 text-3xl sm:text-4xl">Burns for 50 hours. Helps for far longer.</h2>
+            <p className="mt-4 leading-relaxed text-ink/70">
+              Apple Cinnamon — a comforting blend of crisp apple and gentle cinnamon spice that
+              fills your space with warmth and calm. Handcrafted using 100% natural soy wax and a
+              clean cotton wick, the candle burns slowly and evenly for over 50 hours.
+            </p>
+            <p className="mt-4 text-sm leading-relaxed text-ink/60">
+              Small-batch production keeps quality high while directing more funds toward animal care.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {BADGES.map((b) => (
+                <span key={b} className="rounded-full bg-copper/10 px-3 py-1 text-xs font-medium text-copper-dark">{b}</span>
+              ))}
+            </div>
+            <div className="mt-7 flex items-baseline gap-3">
+              <span className="h-display text-4xl">₹1,999</span>
+              <span className="text-sm text-ink/55">Inclusive of shipping &amp; taxes</span>
+            </div>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <a href="#footer-email" className="btn-copper">Launching Soon — Notify Me</a>
+              <Link href="/donate-now" className="btn-light">Donate Instead</Link>
+            </div>
+            <p className="mt-4 text-sm text-ink/60">
+              Online checkout opens soon. Want one earlier?{" "}
+              <a href="https://wa.me/919920780005" target="_blank" rel="noopener noreferrer" className="link-secondary">WhatsApp us</a>.
+            </p>
+            <p className="mt-4 text-xs text-ink/60">
+              Ships across India (5–7 days) · Secure prepaid checkout
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Candle in action */}
+      <section className="bg-snow py-20 sm:py-28">
+        <div className="container-c max-w-4xl">
+          <Reveal>
+            <p className="eyebrow text-center">Your Candle in Action</p>
+            <h2 className="h-display mt-3 text-center text-3xl sm:text-4xl">Here&apos;s how your purchase helps</h2>
+          </Reveal>
+          <div className="mt-12 grid gap-5 sm:grid-cols-3">
+            {IMPACT.map((it, i) => (
+              <Reveal key={it.title} delay={i * 80}>
+                <div className="card h-full p-6 text-center">
+                  <h3 className="font-semibold">{it.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink/70">{it.desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Gift */}
+      <section className="py-20 sm:py-28">
+        <div className="container-c max-w-2xl text-center">
+          <Reveal>
+            <p className="eyebrow">Give a Gift That Gives Back</p>
+            <h2 className="h-display mt-3 text-3xl sm:text-4xl">Know someone who loves animals?</h2>
+            <p className="mt-4 leading-relaxed text-ink/70">
+              Send them this candle with a personalised message. We&apos;ll also send them updates
+              showing how their gift helped rescue, feed, and heal animals in need.
+            </p>
+            <div className="mt-7">
+              <a href="https://wa.me/919920780005" target="_blank" rel="noopener noreferrer" className="btn-dark">Gift This Candle — Keep Hope Burning</a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Reviews */}
+      <section className="bg-snow py-20 sm:py-28">
+        <div className="container-c">
+          <Reveal>
+            <p className="eyebrow text-center">From People Who Lit One</p>
+            <h2 className="h-display mt-3 text-center text-3xl sm:text-4xl">A candle on the table, an animal fed.</h2>
+          </Reveal>
+          <div className="mt-12 grid gap-5 lg:grid-cols-3">
+            {REVIEWS.map((r, i) => (
+              <Reveal key={r.name} delay={i * 80}>
+                <div className="card flex h-full flex-col p-6">
+                  <Stars />
+                  <p className="mt-4 font-semibold leading-snug">&ldquo;{r.quote}&rdquo;</p>
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-ink/70">{r.body}</p>
+                  <div className="mt-5 flex items-center gap-3">
+                    <img src={r.img} alt={r.name} className="h-10 w-10 rounded-full object-cover" loading="lazy" />
+                    <span className="text-sm font-medium">{r.name}</span>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Animals */}
+      <section className="py-20 sm:py-28">
+        <div className="container-c max-w-4xl">
+          <Reveal>
+            <p className="eyebrow text-center">Meet the Animals You Help</p>
+            <h2 className="h-display mt-3 text-center text-3xl sm:text-4xl">Panther, Simba, Bruno — and counting.</h2>
+            <p className="mx-auto mt-4 max-w-xl text-center leading-relaxed text-ink/70">
+              These are just a few of the animals now receiving care because of supporters like you.
+            </p>
+          </Reveal>
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {ANIMALS.map((a, i) => (
+              <Reveal key={a.name} delay={i * 80}>
+                <div className="card h-full p-6 text-center">
+                  <div className="mx-auto grid h-14 w-14 place-items-center rounded-full bg-copper/15 text-xl font-bold text-copper-dark">
+                    {a.name[0]}
+                  </div>
+                  <h3 className="mt-4 font-semibold">{a.name}</h3>
+                  <p className="mt-1 text-sm text-ink/60">{a.status}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Tax note + contact */}
+      <section className="bg-snow py-16">
+        <div className="container-c max-w-2xl text-center">
+          <p className="text-sm leading-relaxed text-ink/60">
+            <strong className="text-ink/80">Note on tax benefits:</strong> Shop purchases support
+            the work of RKM Foundation but are treated as product purchases and do not qualify for
+            80G tax benefits.
+          </p>
+          <p className="mt-6 text-sm text-ink/70">
+            Have questions?{" "}
+            <a href="mailto:info@rkm.support" className="link-secondary">info@rkm.support</a>
+            {" · "}
+            <a href="https://wa.me/919920780005" target="_blank" rel="noopener noreferrer" className="link-secondary">WhatsApp</a>
+          </p>
+        </div>
+      </section>
+    </>
+  );
+}

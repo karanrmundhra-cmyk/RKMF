@@ -1,0 +1,69 @@
+import type { Metadata } from "next";
+import Reveal from "@/components/Reveal";
+import FormShell from "@/components/FormShell";
+import { SITE } from "@/lib/content";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description: "Get in touch with RKM Foundation — by phone, WhatsApp, email, or a quick message.",
+};
+
+export default function ContactPage() {
+  return (
+    <>
+      <section className="bg-snow pb-14 pt-32 sm:pt-40">
+        <div className="container-c max-w-3xl">
+          <Reveal>
+            <p className="eyebrow">Contact</p>
+            <h1 className="h-display mt-3 text-4xl sm:text-5xl lg:text-6xl">Found an animal in trouble? Start here.</h1>
+            <p className="mt-5 text-lg leading-relaxed text-ink/70">
+              An injured street dog, a question about donating, a partnership idea, or just hello
+              — reach out whichever way is easiest for you.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="bg-white py-24">
+        <div className="container-c grid max-w-5xl gap-12 lg:grid-cols-5">
+          <Reveal className="lg:col-span-2">
+            <div className="space-y-6">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-wide text-ink/60">Hours</p>
+                <p className="mt-1 text-sm leading-relaxed text-ink/80">{SITE.hours}</p>
+              </div>
+              <div>
+                <p className="text-xs font-bold uppercase tracking-wide text-ink/60">Phone / WhatsApp</p>
+                <a href={SITE.whatsapp} target="_blank" rel="noopener noreferrer" className="link-secondary mt-1 inline-block text-sm">
+                  {SITE.phone}
+                </a>
+              </div>
+              <div>
+                <p className="text-xs font-bold uppercase tracking-wide text-ink/60">Email</p>
+                <a href={`mailto:${SITE.email}`} className="link-secondary mt-1 inline-block text-sm">{SITE.email}</a>
+              </div>
+              <div>
+                <p className="text-xs font-bold uppercase tracking-wide text-ink/60">Address</p>
+                <a href={SITE.maps} target="_blank" rel="noopener noreferrer" className="link-secondary mt-1 inline-block text-sm leading-relaxed">
+                  {SITE.address}
+                </a>
+              </div>
+            </div>
+          </Reveal>
+          <Reveal delay={120} className="lg:col-span-3">
+            <FormShell
+              formType="contact"
+              fields={[
+                { name: "name", label: "Full Name", required: true, half: true, placeholder: "Enter your full name" },
+                { name: "email", label: "Email Address", type: "email", required: true, half: true, placeholder: "Enter your email address" },
+                { name: "message", label: "Message", textarea: true, required: true, placeholder: "How can we help?" },
+              ]}
+              submitLabel="Send Message"
+              successMessage="Thank you for reaching out. Our team will contact you shortly."
+            />
+          </Reveal>
+        </div>
+      </section>
+    </>
+  );
+}

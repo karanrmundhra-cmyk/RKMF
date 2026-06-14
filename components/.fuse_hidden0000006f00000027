@@ -1,0 +1,23 @@
+import Link from "next/link";
+import Reveal from "./Reveal";
+
+export default function CTABanner({
+  title = "Somewhere out there, an animal is waiting.",
+  lead = "It doesn't know your name. It just needs someone to show up. Today, that can be you.",
+}: { title?: string; lead?: string }) {
+  return (
+    <section className="bg-ink py-24 text-white sm:py-28">
+      <div className="container-c max-w-3xl text-center">
+        <Reveal>
+          <h2 className="h-display text-3xl sm:text-4xl lg:text-5xl">{title}</h2>
+          <p className="mx-auto mt-4 max-w-xl text-white/70">{lead}</p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+            <Link href="/donate-now#donation" className="btn-copper">Donate Now</Link>
+            <Link href="/fundraiser" className="btn bg-white/10 text-white ring-1 ring-white/25 hover:bg-white/20">Start a Fundraiser</Link>
+            <Link href="/other-ways-to-give" className="btn bg-white/10 text-white ring-1 ring-white/25 hover:bg-white/20">Become a Volunteer</Link>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}

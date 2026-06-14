@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-white text-ink antialiased; }
+  ::selection { @apply bg-copper/30; }
+  h1, h2 { text-wrap: balance; }
+  p { text-wrap: pretty; }
+}
+
+@layer components {
+  .container-c { @apply mx-auto w-full max-w-content px-5 sm:px-8; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5 text-sm font-semibold transition-all duration-200 ease-out hover:scale-[1.02] hover:-translate-y-px active:scale-[0.98] active:translate-y-0 motion-reduce:transform-none motion-reduce:transition-none focus:outline-none focus-visible:ring-2 focus-visible:ring-copper; }
+  .btn-dark { @apply btn bg-ink text-white hover:bg-copper-dark; }
+  .btn-light { @apply btn bg-white text-ink ring-1 ring-ink/15 hover:ring-copper hover:text-copper-dark; }
+  .btn-copper { @apply btn bg-copper-dark text-white hover:bg-ink; }
+  .link-secondary { @apply font-semibold underline decoration-copper decoration-2 underline-offset-4 hover:text-copper-dark transition-colors; }
+  .eyebrow { @apply text-xs font-semibold uppercase tracking-[0.2em] text-copper-dark; }
+  .h-display { @apply font-semibold tracking-tight leading-[1.1]; }
+
+  /* ============================================================
+     V3 EDITORIAL DESIGN SYSTEM (presentation layer)
+     Light identity kept; structural DNA from award editorial sites:
+     dramatic fluid type scale, indexed labels, generous rhythm.
+     ============================================================ */
+
+  /* Fluid display scale — hierarchy by scale, not weight/colour. */
+  .display-1 { @apply font-semibold tracking-[-0.02em]; font-size: clamp(2.75rem, 1.6rem + 5.6vw, 6.5rem); line-height: 0.98; }
+  .display-2 { @apply font-semibold tracking-[-0.02em]; font-size: clamp(2.1rem, 1.3rem + 3.6vw, 4.25rem); line-height: 1.02; }
+  .display-3 { @apply font-semibold tracking-[-0.015em]; font-size: clamp(1.6rem, 1.2rem + 1.8vw, 2.6rem); line-height: 1.08; }
+  /* Oversized editorial word (the Agentura "BRANDING" beat), copper-tinted. */
+  .editorial-word { @apply font-semibold tracking-[-0.02em] leading-[0.9]; font-size: clamp(2.5rem, 1.2rem + 6vw, 6rem); }
+
+  /* Indexed eyebrow label — small caps, wide tracking, leading index/rule. */
+  .eyebrow-index { @apply inline-flex items-center gap-3 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-copper-dark; }
+  .eyebrow-index::before { content: ""; @apply h-px w-8 bg-copper/60; }
+  .lead-measure { @apply max-w-[34ch] text-pretty; }
+
+  /* Editorial section rhythm — generous but not cavernous (clarity over drama). */
+  .section-y { @apply py-20 sm:py-28 lg:py-32; }
+  .section-y-lg { @apply py-24 sm:py-32 lg:py-40; }
+
+  /* Editorial image frame — consistent quiet frame + hover/parallax host. */
+  .figure-frame { @apply relative overflow-hidden rounded-[1.25rem] bg-[#f1ede7] ring-1 ring-ink/[0.08]; }
+  .figure-frame img { @apply h-full w-full object-cover; }
+
+  /* Art-directed photography placeholder — same visual language as real figures
+     (quiet solid frame, tonal panel), not an "upload here" dashed slot. */
+  .placeholder-figure { @apply relative overflow-hidden rounded-[1.25rem] bg-gradient-to-br from-[#f3efe9] to-[#e9e0d4] ring-1 ring-ink/[0.08]; }
+  .card {
+    @apply rounded-2xl bg-white ring-1 ring-ink/[0.08] hover:ring-copper/40 hover:-translate-y-[3px] hover:shadow-[0_1px_2px_rgba(11,11,11,0.06),0_12px_32px_-12px_rgba(11,11,11,0.18)];
+    transition: transform 250ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .card-static { @apply rounded-2xl bg-white ring-1 ring-ink/[0.08]; }
+  .input-c { @apply w-full rounded-xl border border-ink/15 bg-white px-4 py-3 text-sm placeholder:text-ink/60 focus:border-copper focus:outline-none focus:ring-1 focus:ring-copper; }
+  .label-c { @apply mb-1.5 block text-sm font-medium text-ink/80; }
+
+  /* Image hover zoom wrapper (blur-up tint placeholder via bg) */
+  .img-hover { @apply overflow-hidden rounded-2xl bg-[#f0ede8]; }
+  .img-hover img { @apply h-full w-full transition-transform duration-500 ease-out motion-reduce:transition-none; }
+  .img-hover:hover img { transform: scale(1.04); }
+
+  /* Drawer menu link: copper underline grows on hover */
+  .menu-link { @apply relative; }
+  .menu-link::after {
+    content: "";
+    @apply absolute -bottom-0.5 left-0 h-0.5 w-full origin-left scale-x-0 bg-copper transition-transform duration-300 ease-out motion-reduce:transition-none;
+  }
+  .menu-link:hover::after, .menu-link:focus-visible::after { @apply scale-x-100; }
+}
+
+/* Impact slider (donation amount range input) — copper fill, accessible thumb */
+.impact-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 9999px;
+  background: linear-gradient(to right, #93502b var(--pct, 50%), rgba(11, 11, 11, 0.12) var(--pct, 50%));
+  cursor: pointer;
+}
+.impact-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 22px;
+  width: 22px;
+  border-radius: 9999px;
+  background: #93502b;
+  border: 3px solid #fff;
+  box-shadow: 0 1px 5px rgba(11, 11, 11, 0.25);
+  cursor: pointer;
+}
+.impact-range::-moz-range-thumb {
+  height: 22px;
+  width: 22px;
+  border-radius: 9999px;
+  background: #93502b;
+  border: 3px solid #fff;
+  box-shadow: 0 1px 5px rgba(11, 11, 11, 0.25);
+  cursor: pointer;
+}
+.impact-range:focus-visible { outline: none; }
+.impact-range:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 4px rgba(197, 138, 74, 0.45); }
+.impact-range:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 4px rgba(197, 138, 74, 0.45); }
+
+/* Hero image: slow settle from 1.04 to 1 */
+@keyframes hero-settle {
+  from { transform: scale(1.04); }
+  to { transform: scale(1); }
+}
+.hero-zoom { animation: hero-settle 8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero-zoom { animation: none; }
+  .card, .card:hover { transition: none; transform: none; }
+  .img-hover:hover img { transform: none; }
+  .menu-link:hover::after, .menu-link:focus-visible::after { transform: none; }
+}
+
+/* Prototype hero entrance — CSS-only, guaranteed to paint, reduced-motion safe */
+@keyframes protoRise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+.proto-rise { animation: protoRise 0.7s cubic-bezier(0.16,1,0.3,1) both; }
+@media (prefers-reduced-motion: reduce) { .proto-rise { animation: none; } }
