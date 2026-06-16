@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RKMF — Visual Transformation Preview · Batch 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ww:#FBF9F5;--gold:#B89245;--dgold:#8F6A2A;--char:#1F1F1F;--grey:#F3F3F3;--line:#E7E0D2}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,system-ui,sans-serif;background:#dedede;color:var(--char);line-height:1.6}
+.head{background:var(--char);color:#fff;padding:22px 28px;text-align:center}
+.head h1{font-family:Inter,sans-serif;font-weight:600;font-size:24px}
+.head p{color:#bdbdbd;font-size:13px;margin-top:4px}
+.sec{max-width:1180px;margin:0 auto;padding:30px 24px}
+.lbl{font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--dgold);margin-bottom:14px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:820px){.cols{grid-template-columns:1fr}}
+.tag{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:6px 12px;border-radius:100px;display:inline-block;margin-bottom:12px}
+.tag.b{background:#e3e3e3;color:#555}.tag.a{background:#efe3c5;color:var(--dgold)}
+
+/* shared hero */
+.hero{position:relative;min-height:420px;display:flex;align-items:flex-end;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero .in{position:relative;z-index:2;padding:28px}
+.eb{font-size:10px;letter-spacing:.24em;text-transform:uppercase;font-weight:600}
+.cta{display:inline-block;padding:11px 20px;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none}
+
+/* BEFORE hero */
+.bhero{border-radius:8px;overflow:hidden}
+.bhero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,11,.5),rgba(11,11,11,.15) 35%,rgba(11,11,11,.85))}
+.bhero .eb{color:#e0b685}
+.bhero h2{font-family:Inter;font-weight:700;color:#fff;font-size:32px;line-height:1.05;letter-spacing:-.02em;margin:8px 0 10px;position:relative;z-index:2}
+.bhero p{color:#eee;font-size:14px;margin-bottom:14px;position:relative;z-index:2;max-width:42ch}
+.bhero .cta{background:#93502b;color:#fff}
+
+/* AFTER hero */
+.ahero{border-radius:18px;overflow:hidden;box-shadow:0 24px 50px -28px rgba(60,45,20,.4)}
+.ahero img{transform:scale(1.06);animation:z 9s ease-out forwards}
+@keyframes z{to{transform:scale(1)}}
+.ahero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(31,31,31,.22),transparent 42%,rgba(31,31,31,.72))}
+.ahero .eb{color:#ecd9a8}
+.ahero h2{font-family:Inter,sans-serif;font-weight:700;color:#fff;font-size:34px;line-height:1.05;letter-spacing:-.02em;margin:10px 0 12px;position:relative;z-index:2}
+.ahero p{color:#f3efe7;font-size:14px;margin-bottom:16px;position:relative;z-index:2;max-width:42ch}
+.ahero .cta{background:var(--dgold);color:#fff}
+.ahero .chip{position:absolute;left:16px;bottom:16px;z-index:3;background:rgba(251,249,245,.93);border-radius:12px;padding:9px 13px;font-size:12px;color:var(--char)}
+.ahero .chip b{color:var(--dgold)}
+
+/* swatches */
+.sw{display:flex;gap:10px;flex-wrap:wrap}
+.chipc{border-radius:12px;overflow:hidden;border:1px solid var(--line);width:128px}
+.chipc .c{height:64px}.chipc .t{padding:8px 10px;font-size:11px;background:#fff}
+.chipc .t b{display:block;font-size:12px}
+
+/* type specimen */
+.spec{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px}
+.spec .before-t{font-family:Inter;font-weight:700;font-size:34px;letter-spacing:-.02em;color:var(--char)}
+.spec .after-t{font-family:Fraunces,serif;font-weight:500;font-size:40px;letter-spacing:-.01em;color:var(--char)}
+.spec small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#999;display:block;margin-bottom:8px}
+
+/* image treatment */
+.imgb{aspect-ratio:4/3;border-radius:6px;overflow:hidden;position:relative}
+.imgb::after{content:"";position:absolute;inset:0;background:rgba(11,11,11,.35)}
+.imga{aspect-ratio:4/3;border-radius:16px;overflow:hidden;position:relative;box-shadow:0 16px 36px -22px rgba(60,45,20,.4)}
+.imga img{transition:transform .8s ease}.imga:hover img{transform:scale(1.06)}
+.imga::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(31,31,31,.4))}
+.imgb img,.imga img{width:100%;height:100%;object-fit:cover}
+
+/* motion demo */
+.motion{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px}
+.rev{opacity:0;transform:translateY(20px);transition:.9s cubic-bezier(.16,1,.3,1)}
+.rev.in{opacity:1;transform:none}
+.crow{display:flex;gap:30px;flex-wrap:wrap;margin-top:14px}
+.cnum{font-family:Inter,sans-serif;font-weight:600;font-size:44px;color:var(--dgold);line-height:1}
+.clab{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#888}
+.note{font-size:12px;color:#888;margin-top:8px}
+</style>
+</head>
+<body>
+<div class="head"><h1>RKM Foundation — Visual Transformation</h1><p>Batch 1 preview · exact target palette · real homepage content · NOT deployed</p></div>
+
+<div class="sec">
+  <div class="lbl">Change 1 + 2 — Hero · Colour (side by side) · Typography KEPT unchanged</div>
+  <div class="cols">
+    <div><span class="tag b">BEFORE · current production</span>
+      <div class="hero bhero"><img src="https://rkmfoundation.com/images/site/dog.jpg" alt="">
+        <div class="in"><div class="eb">Animal Welfare · India</div><h2>They can't ask for help. You can give it.</h2>
+        <p>Every day we rescue, feed, heal, and shelter animals on India's streets.</p><a class="cta" href="#">Donate Now</a></div></div>
+    </div>
+    <div><span class="tag a">AFTER · warm white · gold · Inter unchanged</span>
+      <div class="hero ahero"><img src="https://rkmfoundation.com/images/site/dog.jpg" alt="">
+        <div class="in"><div class="eb">Animal Welfare · India</div><h2>They can't ask for help. You can give it.</h2>
+        <p>Every day we rescue, feed, heal, and shelter animals on India's streets.</p><a class="cta" href="#">Donate Now</a></div>
+        <div class="chip"><b>1,260+</b> animals rescued</div></div>
+    </div>
+  </div>
+  <p class="note">Same words, same image, same CTA, same Inter font. Difference = lighter bottom-weighted scrim (animal stays warm, not murky), gold accent, rounded editorial frame, slow zoom-in.</p>
+</div>
+
+<div class="sec" style="background:var(--ww);border-radius:16px">
+  <div class="lbl">Change 2 — Colour system</div>
+  <div class="cols">
+    <div><span class="tag b">BEFORE</span><div class="sw">
+      <div class="chipc"><div class="c" style="background:#FAFAFA"></div><div class="t"><b>Cool white</b>#FAFAFA</div></div>
+      <div class="chipc"><div class="c" style="background:#c58a4a"></div><div class="t"><b>Copper</b>#c58a4a</div></div>
+      <div class="chipc"><div class="c" style="background:#93502b"></div><div class="t"><b>Copper dark</b>#93502b</div></div>
+      <div class="chipc"><div class="c" style="background:#0b0b0b"></div><div class="t" style="color:#fff;background:#222"><b>Black</b>#0b0b0b</div></div>
+    </div></div>
+    <div><span class="tag a">AFTER</span><div class="sw">
+      <div class="chipc"><div class="c" style="background:#FBF9F5"></div><div class="t"><b>Warm white</b>#FBF9F5</div></div>
+      <div class="chipc"><div class="c" style="background:#B89245"></div><div class="t"><b>Gold</b>#B89245</div></div>
+      <div class="chipc"><div class="c" style="background:#8F6A2A"></div><div class="t"><b>Dark gold</b>#8F6A2A</div></div>
+      <div class="chipc"><div class="c" style="background:#1F1F1F"></div><div class="t" style="color:#fff;background:#2a2a2a"><b>Charcoal</b>#1F1F1F</div></div>
+      <div class="chipc"><div class="c" style="background:#F3F3F3"></div><div class="t"><b>Light grey</b>#F3F3F3</div></div>
+    </div></div>
+  </div>
+  <p class="note">Ratio target 65% warm white · 20% photography · 10% charcoal · 5% gold. No copper, no orange, no dark-dominant sections.</p>
+</div>
+
+<div class="sec">
+  <div class="lbl">Change 3 — Typography · KEPT UNCHANGED (founder decision)</div>
+  <div class="spec">
+    <small>Inter, bold sans — unchanged across the entire website</small>
+    <div class="before-t">Four ways we show up for animals.</div>
+    <p class="note">Typography approved as-is. No serif, no font changes anywhere. ✓</p>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="lbl">Change 4 — Homepage image presentation</div>
+  <div class="cols">
+    <div><span class="tag b">BEFORE · flat, heavy dark overlay, square</span>
+      <div class="imgb"><img src="https://rkmfoundation.com/images/site/feed.jpg" alt=""></div></div>
+    <div><span class="tag a">AFTER · larger, rounded, light scrim, hover-zoom</span>
+      <div class="imga"><img src="https://rkmfoundation.com/images/site/feed.jpg" alt=""></div></div>
+  </div>
+  <p class="note">Hover the right image to feel the zoom. Photography becomes the emotional anchor — warm grade, soft radius, light scrim only.</p>
+</div>
+
+<div class="sec">
+  <div class="lbl">Change 5 — Motion system (scroll down slowly)</div>
+  <div class="motion">
+    <div class="rev"><small style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#999">Fade-up reveal + animated counters (demo)</small>
+    <div class="crow">
+      <div><div class="cnum" data-to="48200">0</div><div class="clab">Meals served</div></div>
+      <div><div class="cnum" data-to="1260">0</div><div class="clab">Rescues</div></div>
+      <div><div class="cnum" data-to="430">0</div><div class="clab">Surgeries funded</div></div>
+    </div>
+    <p class="note">Plus: hero slow-zoom, smooth scrolling, hover lifts. All transform/opacity (60fps, no layout shift), reduced-motion safe.</p></div>
+  </div>
+</div>
+
+<div style="text-align:center;padding:24px;color:#777;font-size:12px">End of Batch 1 preview · awaiting APPROVE / WAIT / MODIFY</div>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');if(e.target.querySelector)e.target.querySelectorAll('.cnum').forEach(cnt);io.unobserve(e.target);}}),{threshold:.3});
+document.querySelectorAll('.rev').forEach(el=>io.observe(el));
+function cnt(el){const to=+el.dataset.to,d=1600;let s;function f(t){s=s||t;const p=Math.min((t-s)/d,1),e=1-Math.pow(1-p,3);el.textContent=Math.floor(e*to).toLocaleString('en-IN')+(p>=1?'+':'');if(p<1)requestAnimationFrame(f);}requestAnimationFrame(f);}
+</script>
+</body>
+</html>

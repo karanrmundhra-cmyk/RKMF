@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RKM Foundation — V2 Warm Editorial Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --canvas:#FBF9F5; --ivory:#F4EFE5; --stone:#EBE4D6; --sand:#E0D8C8;
+  --line:#E5DDCD; --warmgrey:#8C8478; --slate:#6B6459;
+  --ink:#211F1B; --charcoal:#33302A; --cocoa:#2A2723;
+  --gold:#B68A36; --gold-deep:#9A7228; --gold-soft:#E7D6AC; --gold-tint:#F3E9D2;
+  --serif:"Fraunces",Georgia,serif; --sans:"Inter",system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--canvas);color:var(--charcoal);font-weight:400;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+.eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.06;letter-spacing:-.012em;color:var(--ink)}
+.display{font-size:clamp(42px,6.4vw,86px);font-weight:500}
+.h2{font-size:clamp(30px,4vw,52px)}
+.lead{font-size:clamp(17px,1.4vw,20px);color:var(--slate);font-weight:400;max-width:60ch}
+.btn{display:inline-flex;align-items:center;gap:.6em;font-size:13px;letter-spacing:.06em;font-weight:500;padding:15px 28px;border-radius:100px;transition:.35s cubic-bezier(.2,.7,.2,1)}
+.btn-gold{background:var(--gold);color:#fff;box-shadow:0 8px 24px rgba(182,138,54,.22)}
+.btn-gold:hover{background:var(--gold-deep);transform:translateY(-2px)}
+.btn-ghost{border:1px solid var(--sand);color:var(--ink);background:rgba(255,255,255,.5)}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold-deep)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 1s cubic-bezier(.16,1,.3,1),transform 1s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+.pad{padding:clamp(76px,11vh,140px) 0}
+.kicker{display:flex;align-items:center;gap:13px;margin-bottom:20px}
+.kicker::before{content:"";width:30px;height:1px;background:var(--gold)}
+.center{text-align:center}.center .kicker{justify-content:center}
+
+/* NAV */
+nav{position:fixed;inset:0 0 auto 0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:22px 32px;transition:.4s}
+nav.solid{background:rgba(251,249,245,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);padding:14px 32px}
+.brand{font-family:var(--serif);font-size:23px;color:var(--ink);font-weight:600}
+.brand b{color:var(--gold)}
+.navlinks{display:flex;align-items:center;gap:30px;font-size:14px;color:var(--charcoal)}
+.navlinks a:not(.cta):hover{color:var(--gold-deep)}
+.navlinks a.cta{background:var(--gold);color:#fff;padding:11px 22px;border-radius:100px;font-size:13px}
+@media(max-width:860px){.navlinks a:not(.cta){display:none}}
+
+/* HERO — light editorial split */
+.hero{padding:140px 0 0}
+.hero .grid{display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center}
+.hero .copy .display{margin:.28em 0 .42em;max-width:13ch}
+.hero .copy .lead{margin-bottom:30px}
+.hero .actions{display:flex;gap:13px;flex-wrap:wrap}
+.hero .art{position:relative;aspect-ratio:5/6;border-radius:20px;overflow:hidden;box-shadow:0 30px 70px -30px rgba(60,45,20,.32)}
+.hero .art img{transform:scale(1.06);animation:sz 12s ease-out forwards}
+@keyframes sz{to{transform:scale(1)}}
+.hero .chip{position:absolute;left:18px;bottom:18px;background:rgba(251,249,245,.92);backdrop-filter:blur(6px);border-radius:14px;padding:12px 16px;font-size:13px;color:var(--ink);box-shadow:0 10px 30px -12px rgba(0,0,0,.25)}
+.hero .chip b{color:var(--gold-deep)}
+@media(max-width:860px){.hero .grid{grid-template-columns:1fr;gap:34px}.hero{padding:120px 0 0}}
+
+/* TRUST */
+.trust{margin-top:clamp(60px,9vh,120px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--ivory)}
+.trust .wrap{display:flex;flex-wrap:wrap;gap:10px 50px;justify-content:center;padding:22px 32px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--warmgrey)}
+.trust b{color:var(--gold-deep);font-weight:600;margin-right:.5em}
+
+/* STORY */
+.story{display:grid;grid-template-columns:1fr 1.05fr;gap:64px;align-items:center}
+.story .img{aspect-ratio:4/5;border-radius:18px;overflow:hidden}
+.story .img img{transition:transform 1.4s ease}.story .img:hover img{transform:scale(1.05)}
+.pullquote{font-family:var(--serif);font-size:clamp(22px,2.3vw,30px);line-height:1.32;color:var(--ink);border-left:2px solid var(--gold);padding-left:22px;margin:26px 0}
+.pullquote cite{display:block;font-family:var(--sans);font-style:normal;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--warmgrey);margin-top:14px}
+@media(max-width:860px){.story{grid-template-columns:1fr;gap:32px}}
+
+/* ANIMALS */
+.animals{background:var(--ivory)}
+.arow{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:46px}
+.acard{background:var(--canvas);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:.5s}
+.acard:hover{transform:translateY(-6px);box-shadow:0 24px 50px -28px rgba(60,45,20,.3)}
+.acard .ph{aspect-ratio:3/4;position:relative;overflow:hidden}
+.acard .ph img{transition:transform 1s ease}
+.acard:hover .ph img{transform:scale(1.06)}
+.acard .tag{position:absolute;top:12px;left:12px;z-index:2;font-size:10px;letter-spacing:.14em;text-transform:uppercase;background:rgba(251,249,245,.92);color:var(--gold-deep);padding:5px 10px;border-radius:100px;font-weight:600}
+.acard .body{padding:16px 17px 18px}
+.acard .body h3{font-size:24px}
+.acard .body small{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--warmgrey)}
+.acard .body p{font-size:13.5px;color:var(--slate);min-height:56px;margin-top:8px}
+.prog{height:5px;background:var(--stone);border-radius:4px;margin:12px 0 9px;overflow:hidden}
+.prog i{display:block;height:100%;background:linear-gradient(90deg,var(--gold-deep),var(--gold))}
+.acard .meta{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--warmgrey)}
+.acard .meta b{color:var(--gold-deep);font-weight:600}
+@media(max-width:980px){.arow{grid-template-columns:repeat(2,1fr)}}
+
+/* BEFORE/AFTER */
+.slider{position:relative;aspect-ratio:16/9;max-width:1000px;margin:44px auto 0;overflow:hidden;border-radius:18px;border:1px solid var(--line);user-select:none;cursor:ew-resize}
+.slider img{position:absolute;inset:0;pointer-events:none}
+.slider .after{clip-path:inset(0 0 0 50%)}
+.slider .lab{position:absolute;top:16px;z-index:4;font-size:11px;letter-spacing:.16em;text-transform:uppercase;background:rgba(251,249,245,.92);color:var(--ink);padding:6px 12px;border-radius:100px}
+.slider .lab.l{left:16px}.slider .lab.r{right:16px;background:var(--gold);color:#fff}
+.handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;z-index:5}
+.handle::after{content:"⟺";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:46px;height:46px;border-radius:50%;background:var(--gold);color:#fff;display:grid;place-items:center;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+
+/* COUNTERS — one warm dark band */
+.counters{background:var(--cocoa);color:var(--canvas)}
+.counters .eyebrow{color:var(--gold-soft)}
+.counters h2{color:#fff}
+.crow{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;text-align:center;margin-top:8px}
+.cnum{font-family:var(--serif);font-size:clamp(44px,5.6vw,76px);color:var(--gold-soft);line-height:1}
+.clab{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#cdc6b8;margin-top:10px}
+@media(max-width:820px){.crow{grid-template-columns:repeat(2,1fr);gap:42px 20px}}
+
+/* SPONSOR */
+.srow{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+.scard{border:1px solid var(--line);border-radius:16px;padding:32px 28px;background:var(--canvas);transition:.4s}
+.scard.feat{background:var(--gold-tint);border-color:var(--gold-soft)}
+.scard:hover{transform:translateY(-5px);box-shadow:0 22px 46px -28px rgba(60,45,20,.32)}
+.scard .amt{font-family:var(--serif);font-size:40px;color:var(--ink)}.scard .amt span{font-size:15px;color:var(--warmgrey)}
+.scard h3{font-size:21px;margin:4px 0 11px}
+.scard p{font-size:14px;color:var(--slate);min-height:64px}
+.scard .pick{margin-top:16px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-deep);border-top:1px solid var(--line);padding-top:15px;display:flex;justify-content:space-between;font-weight:600}
+@media(max-width:820px){.srow{grid-template-columns:1fr}}
+
+/* IMPACT BLOCKS */
+.impact{background:var(--ivory)}
+.irow{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:42px}
+.iblock{background:var(--canvas);border:1px solid var(--line);border-radius:16px;padding:30px 26px}
+.iblock .amt{font-family:var(--serif);font-size:34px;color:var(--gold-deep)}
+.iblock h3{font-family:var(--sans);font-weight:600;font-size:18px;color:var(--ink);letter-spacing:0;margin:8px 0 7px}
+.iblock p{font-size:14px;color:var(--slate)}
+@media(max-width:820px){.irow{grid-template-columns:1fr}}
+
+/* WAYS / FAITH */
+.faith .frow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:42px}
+.fcard{background:var(--canvas);border:1px solid var(--line);border-radius:14px;padding:22px 20px;transition:.35s}
+.fcard:hover{border-color:var(--gold-soft);background:var(--gold-tint)}
+.fcard .t{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
+.fcard h3{font-size:19px;margin:5px 0 8px}
+.fcard p{font-size:13px;color:var(--slate)}
+@media(max-width:860px){.faith .frow{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.faith .frow{grid-template-columns:1fr}}
+
+/* TESTIMONIALS */
+.tst{background:var(--stone)}
+.trow{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}
+.tcard{background:var(--canvas);border:1px solid var(--line);border-radius:16px;padding:28px 26px}
+.tcard q{font-family:var(--serif);font-size:19px;line-height:1.45;color:var(--ink);display:block}
+.tcard .who{display:flex;align-items:center;gap:12px;margin-top:20px}
+.tcard .av{width:42px;height:42px;border-radius:50%;background:var(--gold-tint);color:var(--gold-deep);display:grid;place-items:center;font-weight:600;font-size:15px;font-family:var(--serif)}
+.tcard .who b{display:block;font-family:var(--sans);font-size:13px;color:var(--ink);font-weight:600}
+.tcard .who span{font-size:12px;color:var(--warmgrey);letter-spacing:.04em}
+@media(max-width:860px){.trow{grid-template-columns:1fr}}
+
+/* CSR */
+.csr .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.csr .pic{aspect-ratio:5/4;border-radius:18px;overflow:hidden;border:1px solid var(--line)}
+.csr .badges{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0 26px}
+.csr .badges span{border:1px solid var(--sand);color:var(--slate);font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:8px 13px;border-radius:100px}
+@media(max-width:860px){.csr .wrap{grid-template-columns:1fr;gap:30px}}
+
+/* DONATE BAND */
+.band{background:linear-gradient(120deg,var(--gold-tint),var(--ivory));text-align:center;border-top:1px solid var(--line)}
+.band .actions{display:flex;gap:13px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+
+/* FOOTER */
+footer{background:var(--cocoa);color:#cabfae;padding:64px 0 32px;font-size:14px}
+footer .sub{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;border-bottom:1px solid #423d35;padding-bottom:40px;margin-bottom:40px}
+footer .sub h3{color:#fff;font-size:clamp(24px,3vw,34px)}
+footer .form{display:flex;gap:10px}
+footer .form input{flex:1;background:#39342c;border:1px solid #4a443a;border-radius:100px;padding:13px 18px;color:#fff;font-family:inherit}
+footer .form button{background:var(--gold);color:#fff;border:0;border-radius:100px;padding:13px 24px;font-weight:600;cursor:pointer}
+footer .grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px}
+footer .brand{font-size:22px;color:#fff;margin-bottom:12px}
+footer h4{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#9b9384;margin-bottom:14px}
+footer a{color:#cabfae;display:block;padding:4px 0}footer a:hover{color:var(--gold-soft)}
+footer .regs{margin-top:32px;border-top:1px solid #423d35;padding-top:18px;font-size:11px;color:#7d766a;display:flex;flex-wrap:wrap;gap:6px 18px}
+@media(max-width:860px){footer .sub,footer .grid{grid-template-columns:1fr;gap:24px}}
+
+.mdon{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;background:rgba(251,249,245,.96);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:11px 16px}
+.mdon a{display:block;text-align:center;background:var(--gold);color:#fff;padding:14px;border-radius:100px;font-size:14px;font-weight:600}
+@media(max-width:860px){.mdon{display:block}body{padding-bottom:62px}}
+.note{background:var(--gold-tint);color:var(--gold-deep);text-align:center;font-size:11.5px;letter-spacing:.04em;padding:7px 16px;font-weight:500;border-bottom:1px solid var(--gold-soft)}
+</style>
+</head>
+<body>
+<div class="note">V2 PROTOTYPE — warm-light editorial concept · real rescue photography from rkmfoundation.com · animal names &amp; figures illustrative · testimonials are RKM's own</div>
+
+<nav id="nav">
+  <div class="brand">RKM<b>·</b>Foundation</div>
+  <div class="navlinks">
+    <a href="#story">Our Story</a><a href="#animals">The Animals</a><a href="#impact">Impact</a><a href="#csr">CSR</a>
+    <a href="#donate" class="cta">Donate</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero"><div class="wrap grid">
+  <div class="copy">
+    <div class="eyebrow reveal">Animal Welfare · India · Since 2014</div>
+    <h1 class="display reveal">They can't ask. So we answer.</h1>
+    <p class="lead reveal">Every day we reach an animal hurting on India's streets — feed it, heal it, and give it somewhere safe. Then we send you the face your kindness saved.</p>
+    <div class="actions reveal">
+      <a href="#donate" class="btn btn-gold">Save a life today</a>
+      <a href="#animals" class="btn btn-ghost">Meet the rescued</a>
+    </div>
+  </div>
+  <div class="art reveal">
+    <img src="https://rkmfoundation.com/images/site/dog.jpg" alt="A rescued dog in RKM Foundation's care">
+    <div class="chip"><b>1,260+</b> animals rescued &amp; counting</div>
+  </div>
+</div>
+<div class="trust"><div class="wrap">
+  <div><b>12A</b>Registered</div><div><b>80G</b>Tax Deductible</div><div><b>CSR-1</b>Eligible</div><div><b>DARPAN</b>Verified</div>
+</div></div>
+</header>
+
+<!-- STORY -->
+<section class="pad" id="story"><div class="wrap story">
+  <div class="img reveal"><img src="https://rkmfoundation.com/images/site/care.jpg" alt="Tobler, the dog who started it all"></div>
+  <div class="reveal">
+    <div class="kicker"><span class="eyebrow">How it began</span></div>
+    <h2 class="h2">It started with one dog named Tobler.</h2>
+    <p class="lead" style="margin-top:18px">On long nights at the vet, we watched strangers carry in animals that weren't theirs — found hurt on the road, too expensive to save. We couldn't unsee it.</p>
+    <blockquote class="pullquote">"People just couldn't walk past an animal that was hurting. The least we could do was help with the part they couldn't."
+      <cite>— The Mundhra Family, Founders</cite></blockquote>
+    <a href="#animals" class="btn btn-ghost">Read Tobler's story</a>
+  </div>
+</div></section>
+
+<!-- MEET THE ANIMALS -->
+<section class="pad animals" id="animals"><div class="wrap">
+  <div class="center reveal" style="max-width:660px;margin:0 auto">
+    <div class="kicker"><span class="eyebrow">Meet the rescued</span></div>
+    <h2 class="h2">Every one of them has a name.</h2>
+    <p class="lead" style="margin:16px auto 0">Not statistics. Individuals — with a face, a story, and a second chance you can be part of.</p>
+  </div>
+  <div class="arow">
+    <article class="acard reveal"><div class="ph"><img src="https://rkmfoundation.com/images/site/dog.jpg" alt="Tobler"><span class="tag">Resident</span></div>
+      <div class="body"><small>Rescued 2014 · The first</small><h3>Tobler</h3><p>The pug whose illness sparked it all — now the quiet heart of everything we do.</p>
+        <div class="prog"><i style="width:100%"></i></div><div class="meta"><span>Care funded</span><b>Forever home</b></div></div></article>
+    <article class="acard reveal"><div class="ph"><img src="https://rkmfoundation.com/images/site/street.jpg" alt="Sheru"><span class="tag">In care</span></div>
+      <div class="body"><small>Rescued Apr 2026 · Road injury</small><h3>Sheru</h3><p>Found limping near Majiwada. Surgery done; learning to trust again, one meal at a time.</p>
+        <div class="prog"><i style="width:72%"></i></div><div class="meta"><span>Recovery 72%</span><b>Sponsor →</b></div></div></article>
+    <article class="acard reveal"><div class="ph"><img src="https://rkmfoundation.com/images/site/feed.jpg" alt="Luna"><span class="tag">In care</span></div>
+      <div class="body"><small>Rescued May 2026 · Malnourished</small><h3>Luna</h3><p>Came to us frightened and thin. Today she's first in line at every feeding round.</p>
+        <div class="prog"><i style="width:88%"></i></div><div class="meta"><span>Recovery 88%</span><b>Sponsor →</b></div></div></article>
+    <article class="acard reveal"><div class="ph"><img src="https://rkmfoundation.com/images/site/rest.jpg" alt="Gauri"><span class="tag">Sheltered</span></div>
+      <div class="body"><small>Rescued Feb 2026 · Senior</small><h3>Gauri</h3><p>An old soul who just needed somewhere safe and quiet to rest. She found it here.</p>
+        <div class="prog"><i style="width:100%"></i></div><div class="meta"><span>Settled in</span><b>Sponsor →</b></div></div></article>
+  </div>
+</div></section>
+
+<!-- BEFORE/AFTER -->
+<section class="pad"><div class="wrap">
+  <div class="reveal" style="max-width:620px">
+    <div class="kicker"><span class="eyebrow">The transformation</span></div>
+    <h2 class="h2">Drag to see what your kindness does.</h2>
+    <p class="lead" style="margin-top:14px">The same animal — the day we found them, and the day they were whole again.</p>
+  </div>
+  <div class="slider" id="slider">
+    <img class="before" src="https://rkmfoundation.com/images/site/heal.jpg" alt="Before treatment">
+    <img class="after" id="afterImg" src="https://rkmfoundation.com/images/site/rest.jpg" alt="After recovery">
+    <div class="lab l">When we found him</div><div class="lab r">Six weeks later</div><div class="handle" id="handle"></div>
+  </div>
+</div></section>
+
+<!-- COUNTERS -->
+<section class="pad counters" id="impact"><div class="wrap">
+  <div class="center reveal" style="margin-bottom:44px"><div class="kicker"><span class="eyebrow">Since 2014</span></div><h2 class="h2">Care you can count.</h2></div>
+  <div class="crow">
+    <div class="reveal"><div class="cnum" data-to="48200">0</div><div class="clab">Meals served</div></div>
+    <div class="reveal"><div class="cnum" data-to="1260">0</div><div class="clab">Rescues</div></div>
+    <div class="reveal"><div class="cnum" data-to="430">0</div><div class="clab">Surgeries funded</div></div>
+    <div class="reveal"><div class="cnum" data-to="30">0</div><div class="clab">Sheltered today</div></div>
+  </div>
+  <p class="center reveal" style="color:#9b9384;font-size:12px;letter-spacing:.08em;margin-top:38px">Illustrative — replace with audited figures at launch.</p>
+</div></section>
+
+<!-- SPONSOR -->
+<section class="pad"><div class="wrap">
+  <div class="reveal" style="max-width:640px"><div class="kicker"><span class="eyebrow">Sponsor an animal</span></div>
+    <h2 class="h2">Stand beside one life, every month.</h2>
+    <p class="lead" style="margin-top:14px">Choose an animal. Cover their care. Receive their photos and progress — the most personal way to give.</p></div>
+  <div class="srow">
+    <div class="scard reveal"><div class="amt">₹1,000<span>/mo</span></div><h3>Feed</h3><p>A month of warm, daily meals for a rescued animal getting back on its feet.</p><div class="pick"><span>Choose an animal</span><span>→</span></div></div>
+    <div class="scard feat reveal"><div class="amt">₹2,500<span>/mo</span></div><h3>Heal</h3><p>Meals plus ongoing medical care — dressings, medicines, vet visits until they're whole.</p><div class="pick"><span>Most chosen</span><span>→</span></div></div>
+    <div class="scard reveal"><div class="amt">₹5,000<span>/mo</span></div><h3>Shelter</h3><p>Full care for a resident — food, medicine, and a safe place to belong, every day.</p><div class="pick"><span>Choose an animal</span><span>→</span></div></div>
+  </div>
+</div></section>
+
+<!-- IMPACT BLOCKS -->
+<section class="pad impact" id="donate"><div class="wrap">
+  <div class="center reveal" style="max-width:640px;margin:0 auto"><div class="kicker"><span class="eyebrow">Your gift, made real</span></div>
+    <h2 class="h2">Your ₹1,000 did this.</h2>
+    <p class="lead" style="margin:14px auto 0">No vague promises. Exactly what your kindness buys — and we'll send the photo to prove it.</p></div>
+  <div class="irow reveal">
+    <div class="iblock"><div class="amt">₹1,000</div><h3>14 days of meals</h3><p>Two weeks of warm food for a rescued animal regaining its strength.</p></div>
+    <div class="iblock"><div class="amt">₹2,500</div><h3>A wound, treated</h3><p>Dressings, antibiotics and vet care that turn an infection into a recovery.</p></div>
+    <div class="iblock"><div class="amt">₹10,000</div><h3>A life-saving surgery</h3><p>The operation that is the whole difference between goodbye and a second chance.</p></div>
+  </div>
+  <div class="center reveal" style="margin-top:42px">
+    <a href="#" class="btn btn-gold">Give now — choose any amount</a>
+    <p style="font-size:12px;color:var(--warmgrey);margin-top:16px">256-bit secure · Razorpay · instant 80G receipt by email</p></div>
+</div></section>
+
+<!-- WAYS TO GIVE / FAITH -->
+<section class="pad faith"><div class="wrap">
+  <div class="reveal" style="max-width:660px"><div class="kicker"><span class="eyebrow">Give your way</span></div>
+    <h2 class="h2">Every tradition of giving, honoured.</h2>
+    <p class="lead" style="margin-top:14px">Whether your giving is inspired by faith, gratitude, or simply kindness — there's a meaningful way to help here, with full transparency.</p></div>
+  <div class="frow">
+    <div class="fcard reveal"><div class="t">Hindu</div><h3>Dāna &amp; Seva</h3><p>Giving that uplifts others and carries forward the spirit of seva.</p></div>
+    <div class="fcard reveal"><div class="t">Muslim</div><h3>Zakat &amp; Sadaqah</h3><p>Fulfil your obligation with complete transparency on where it goes.</p></div>
+    <div class="fcard reveal"><div class="t">Jain</div><h3>Ahimsa in action</h3><p>Compassion for every living being — food, medicine, protection.</p></div>
+    <div class="fcard reveal"><div class="t">Everyone</div><h3>Simple kindness</h3><p>If compassion is your only reason, you're exactly in the right place.</p></div>
+  </div>
+</div></section>
+
+<!-- TESTIMONIALS -->
+<section class="pad tst"><div class="wrap">
+  <div class="center reveal" style="max-width:560px;margin:0 auto"><div class="kicker"><span class="eyebrow">Voices of hope</span></div>
+    <h2 class="h2">Trusted by people like you.</h2></div>
+  <div class="trow">
+    <div class="tcard reveal"><q>“Monthly giving finally made sense to me. Focusing on animal welfare means I can clearly see where my support goes.”</q>
+      <div class="who"><div class="av">RD</div><div><b>Raghav Daga</b><span>Kolkata</span></div></div></div>
+    <div class="tcard reveal"><q>“As a working mother, I wanted to give back without feeling overwhelmed. The monthly plan made it easy, and visiting the field made it personal.”</q>
+      <div class="who"><div class="av">SD</div><div><b>Shweta Desai</b><span>Mumbai</span></div></div></div>
+    <div class="tcard reveal"><q>“I was invited to feed the animals myself. When I couldn't attend later, they included me on a video call — it genuinely felt like being there.”</q>
+      <div class="who"><div class="av">AM</div><div><b>Aditya Mohatta</b><span>Thane</span></div></div></div>
+  </div>
+</div></section>
+
+<!-- CSR -->
+<section class="pad csr" id="csr"><div class="wrap">
+  <div class="reveal"><div class="kicker"><span class="eyebrow">For corporates</span></div>
+    <h2 class="h2">CSR that ends up where you can see it.</h2>
+    <p class="lead" style="margin-top:14px">A CSR-1 registered implementation partner. Schedule VII–aligned animal-welfare programmes your team can visit, audit, and report on — with utilisation certificates.</p>
+    <div class="badges"><span>Schedule VII (iv)</span><span>Utilisation certificates</span><span>Site visits</span><span>Audit-ready</span></div>
+    <a href="#" class="btn btn-gold">Request a partnership</a></div>
+  <div class="pic reveal"><img src="https://rkmfoundation.com/images/pillars/my-animals.jpg" alt="CSR animal welfare programme"></div>
+</div></section>
+
+<!-- DONATE BAND -->
+<section class="pad band"><div class="wrap reveal">
+  <div class="eyebrow" style="margin-bottom:16px">Somewhere out there, an animal is waiting</div>
+  <h2 class="h2" style="max-width:18ch;margin:0 auto">It just needs someone to show up. Today, that's you.</h2>
+  <div class="actions"><a href="#" class="btn btn-gold">Donate now</a><a href="#" class="btn btn-ghost">Sponsor an animal</a></div>
+</div></section>
+
+<!-- FOOTER -->
+<footer><div class="wrap">
+  <div class="sub">
+    <div><h3>Subscribe to Hope</h3><p style="margin-top:8px;max-width:46ch">Real photos and short stories from the field — the rescues, the recoveries, the homecomings. No spam, ever.</p></div>
+    <form class="form" onsubmit="return false"><input type="email" placeholder="Enter your email address"><button>Subscribe</button></form>
+  </div>
+  <div class="grid">
+    <div><div class="brand">RKM<b style="color:var(--gold)">·</b>Foundation</div>
+      <p style="max-width:38ch">A family-run charitable trust in India that rescues, feeds, heals and shelters animals living on the street. Every gift is 80G tax-deductible and CSR-eligible.</p></div>
+    <div><h4>Explore</h4><a href="#story">Our Story</a><a href="#animals">The Animals</a><a href="#impact">Impact</a><a href="#csr">CSR Partnerships</a></div>
+    <div><h4>Get in touch</h4><a href="#">info@rkm.support</a><a href="#">+91 99207 80005</a><a href="#">Thane West, Maharashtra</a></div>
+  </div>
+  <div class="regs"><span>Reg. E-30560</span><span>PAN AACTR4271L</span><span>12A 47522</span><span>80G CITE80G9792014-152016-17</span><span>CSR00089305</span><span>DARPAN MH/2024/0457296</span></div>
+</div></footer>
+
+<div class="mdon"><a href="#donate">Donate — feed a rescued animal</a></div>
+
+<script>
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>nav.classList.toggle('solid',scrollY>40),{passive:true});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.16});
+document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%4*70)+'ms';io.observe(el);});
+const cio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){count(e.target);cio.unobserve(e.target);}}),{threshold:.5});
+document.querySelectorAll('.cnum').forEach(n=>cio.observe(n));
+function count(el){const to=+el.dataset.to,d=1700;let st;function f(t){st=st||t;const p=Math.min((t-st)/d,1),e=1-Math.pow(1-p,3);el.textContent=Math.floor(e*to).toLocaleString('en-IN')+(p>=1&&to>1000?'+':'');if(p<1)requestAnimationFrame(f);}requestAnimationFrame(f);}
+(function(){const s=document.getElementById('slider'),h=document.getElementById('handle'),a=document.getElementById('afterImg');let d=false;
+function set(x){const r=s.getBoundingClientRect();let p=Math.max(.04,Math.min(.96,(x-r.left)/r.width));a.style.clipPath=`inset(0 0 0 ${p*100}%)`;h.style.left=p*100+'%';}
+s.addEventListener('mousedown',e=>{d=true;set(e.clientX);});addEventListener('mousemove',e=>d&&set(e.clientX));addEventListener('mouseup',()=>d=false);
+s.addEventListener('touchstart',e=>set(e.touches[0].clientX),{passive:true});s.addEventListener('touchmove',e=>set(e.touches[0].clientX),{passive:true});})();
+</script>
+</body>
+</html>

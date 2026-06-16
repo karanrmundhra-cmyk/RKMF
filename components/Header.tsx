@@ -7,6 +7,17 @@ import { DRAWER_LINKS, SITE } from "@/lib/content";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
+const FONT_HI = { fontFamily: '"Noto Sans Devanagari", Inter, system-ui, sans-serif' };
+const HI_DRAWER = [
+  { n: "01", label: "होम", href: "/hi" },
+  { n: "02", label: "हमारे बारे में", href: "/hi/about" },
+  { n: "03", label: "दान करें", href: "/hi/donate-now" },
+  { n: "04", label: "फंडरेज़र शुरू करें", href: "/hi/fundraiser" },
+  { n: "05", label: "एक उद्देश्य के लिए शॉप", href: "/shop" },
+  { n: "06", label: "CSR और कॉर्पोरेट साझेदारी", href: "/hi/csr" },
+  { n: "07", label: "मीडिया", href: "/hi/media" },
+];
+
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -17,7 +28,7 @@ export default function Header() {
   const onDark = (pathname === "/" || pathname === "/hi") && !scrolled; // dark hero surface
   const isHi = pathname.startsWith("/hi");
   // Pages that have a Hindi (/hi/...) version. Extend as more pages are translated.
-  const HI_PAGES = new Set(["/", "/about", "/csr", "/contact", "/donate-now", "/careers", "/other-ways-to-give", "/partner-with-us", "/fundraiser", "/fundraiser/create", "/faqs", "/media", "/blog", "/blog/the-dog-who-started-it-all"]);
+  const HI_PAGES = new Set(["/", "/about", "/csr", "/contact", "/donate-now", "/careers", "/other-ways-to-give", "/partner-with-us", "/fundraiser", "/fundraiser/create", "/faqs", "/media", "/blog", "/blog/the-dog-who-started-it-all", "/shop", "/legal", "/legal/terms-and-conditions", "/legal/privacy-policy", "/legal/website-disclaimer-cookie-policy", "/legal/donation-refund-policy", "/legal/shop-refund-policy", "/legal/80g-tax-disclaimer", "/newsletter-confirmed", "/unsubscribe"]);
   const basePath = isHi ? pathname.replace(/^\/hi/, "") || "/" : pathname;
   const enHref = basePath;
   const hiHref = HI_PAGES.has(basePath) ? (basePath === "/" ? "/hi" : `/hi${basePath}`) : "/hi";
@@ -65,9 +76,9 @@ export default function Header() {
   return (
     <>
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-ink focus:px-5 focus:py-2.5 focus:text-sm focus:text-white">
-        Skip to content
+        {isHi ? "मुख्य सामग्री पर जाएँ" : "Skip to content"}
       </a>
-      <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/90 backdrop-blur-md shadow-[0_1px_0_rgba(0,0,0,0.06)]" : "bg-transparent"}`}>
+      <header style={isHi ? FONT_HI : undefined} className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/90 backdrop-blur-md shadow-[0_1px_0_rgba(0,0,0,0.06)]" : "bg-transparent"}`}>
         <div className="container-c flex h-16 items-center justify-between sm:h-[72px]">
           <Link href="/" className={`flex items-center gap-2.5 ${tone}`} aria-label="RKM Foundation — Home">
             <img src="/logo-128.png" alt="" width={36} height={36} className={`h-9 w-9 ${onDark ? "rounded-full bg-white/90 p-0.5" : ""}`} />
@@ -78,13 +89,13 @@ export default function Header() {
               <Link href={enHref} aria-label="English" className={`px-2.5 py-1.5 transition-colors ${!isHi ? "bg-copper-dark text-white" : tone}`}>EN</Link>
               <Link href={hiHref} aria-label="हिंदी" className={`px-2.5 py-1.5 transition-colors ${isHi ? "bg-copper-dark text-white" : tone}`}>हिंदी</Link>
             </div>
-            <Link href="/about" className={`hidden text-sm font-medium transition-colors sm:block ${tone} ${onDark ? "hover:text-copper-light" : "hover:text-copper-dark"} ${pathname === "/about" ? "text-copper-dark underline decoration-copper decoration-2 underline-offset-8" : ""}`}>
-              About
+            <Link href={isHi ? "/hi/about" : "/about"} className={`hidden text-sm font-medium transition-colors sm:block ${tone} ${onDark ? "hover:text-copper-light" : "hover:text-copper-dark"} ${basePath === "/about" ? "text-copper-dark underline decoration-copper decoration-2 underline-offset-8" : ""}`}>
+              {isHi ? "हमारे बारे में" : "About"}
             </Link>
-            <Link href="/donate-now" className="btn-copper !px-5 !py-2.5 text-sm">Donate Now</Link>
+            <Link href={isHi ? "/hi/donate-now" : "/donate-now"} className="btn-copper !px-5 !py-2.5 text-sm">{isHi ? "अभी दान करें" : "Donate Now"}</Link>
             <button ref={triggerRef} onClick={() => setOpen(true)} aria-label="Open menu" aria-expanded={open} aria-controls="nav-drawer"
               className={`flex h-10 items-center gap-1.5 rounded-full px-3.5 ring-1 transition-colors ${tone} ${ring}`}>
-              <span className="hidden text-xs font-semibold uppercase tracking-wider sm:block">Menu</span>
+              <span className="hidden text-xs font-semibold uppercase tracking-wider sm:block">{isHi ? "मेन्यू" : "Menu"}</span>
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden>
                 <path d="M8 1v14M1 8h14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
               </svg>
@@ -109,13 +120,14 @@ export default function Header() {
             <motion.div
               ref={drawerRef} id="nav-drawer" role="dialog" aria-modal="true" aria-label="Site navigation"
               className="absolute inset-y-0 right-0 flex w-full max-w-xl flex-col bg-snow"
+              style={isHi ? FONT_HI : undefined}
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={reduce ? { duration: 0 } : { type: "spring", stiffness: 300, damping: 32 }}
             >
               <div className="flex h-16 items-center justify-between px-6 sm:h-[72px] sm:px-10">
-                <span className="eyebrow">Menu</span>
+                <span className="eyebrow">{isHi ? "मेन्यू" : "Menu"}</span>
                 <button onClick={() => setOpen(false)} aria-label="Close menu"
                   className="grid h-10 w-10 place-items-center rounded-full ring-1 ring-ink/10 hover:ring-copper">
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
@@ -125,7 +137,7 @@ export default function Header() {
               </div>
               <nav className="flex-1 overflow-y-auto px-6 py-6 sm:px-10">
                 <motion.ul className="space-y-1" variants={listVariants} initial="hidden" animate="show">
-                  {DRAWER_LINKS.map((l) => (
+                  {(isHi ? HI_DRAWER : DRAWER_LINKS).map((l) => (
                     <motion.li key={l.href} variants={itemVariants}>
                       <Link href={l.href}
                         className={`group flex items-baseline gap-4 rounded-xl px-3 py-3 text-2xl font-semibold tracking-tight transition-colors hover:text-copper-dark sm:text-3xl ${pathname === l.href ? "text-copper-dark" : ""}`}

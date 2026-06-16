@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RKMF — Visual Transformation Preview · Batch 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ww:#FBF9F5;--gold:#B89245;--dgold:#8F6A2A;--char:#1F1F1F;--grey:#F3F3F3;--line:#E7E0D2}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,system-ui,sans-serif;background:#dcdcdc;color:var(--char);line-height:1.6}
+.head{background:var(--char);color:#fff;padding:22px 28px;text-align:center}
+.head h1{font-weight:600;font-size:24px}.head p{color:#bdbdbd;font-size:13px;margin-top:4px}
+.sec{max-width:1180px;margin:0 auto;padding:30px 24px}
+.lbl{font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--dgold);margin-bottom:14px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}@media(max-width:820px){.cols{grid-template-columns:1fr}}
+.tag{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:6px 12px;border-radius:100px;display:inline-block;margin-bottom:12px}
+.tag.b{background:#e3e3e3;color:#555}.tag.a{background:#efe3c5;color:var(--dgold)}
+.note{font-size:12px;color:#888;margin-top:10px}
+.eb{display:inline-flex;align-items:center;gap:11px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--dgold)}
+.eb::before{content:"";width:26px;height:1px;background:var(--gold)}
+
+/* C-W1 rhythm/banding */
+.band{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.b1{background:var(--ww);padding:46px 30px}.b2{background:var(--grey);padding:46px 30px}
+.band h3{font-weight:700;font-size:24px;letter-spacing:-.01em;margin:10px 0 8px}
+.band p{color:#6b6459;max-width:52ch}
+
+/* C-I2 image */
+.imgb{aspect-ratio:4/3;border-radius:6px;overflow:hidden;position:relative}
+.imgb::after{content:"";position:absolute;inset:0;background:rgba(11,11,11,.4)}
+.imga{aspect-ratio:4/3;border-radius:16px;overflow:hidden;position:relative;box-shadow:0 16px 36px -22px rgba(60,45,20,.4)}
+.imga img{transition:transform .8s ease}.imga:hover img{transform:scale(1.06)}
+.imga::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 58%,rgba(31,31,31,.42))}
+.imgb img,.imga img{width:100%;height:100%;object-fit:cover}
+.cap{position:absolute;left:14px;bottom:12px;z-index:2;color:#fff}
+.cap small{font-size:10px;letter-spacing:.16em;text-transform:uppercase;opacity:.85}.cap b{display:block;font-size:18px}
+
+/* C-D1 donation */
+.don{background:var(--ww);border:1px solid var(--line);border-radius:16px;padding:30px}
+.don.before{background:#fff}
+.don .amt-b{font-size:30px;font-weight:700}
+.don .out-b{color:#555;font-size:14px;margin-top:4px}
+.don .cta-b{margin-top:16px;display:inline-block;background:#93502b;color:#fff;padding:11px 20px;border-radius:100px;font-size:13px;font-weight:600}
+.don .amt-a{font-size:46px;font-weight:700;color:var(--dgold);line-height:1}
+.don .out-a{font-size:16px;margin-top:8px;max-width:34ch}
+.don .cta-a{margin-top:18px;display:inline-block;background:var(--dgold);color:#fff;padding:13px 24px;border-radius:100px;font-size:14px;font-weight:600}
+.don .sec-line{font-size:11px;color:#999;margin-top:10px}
+
+/* C-TR1 trust chips */
+.trow{display:flex;flex-wrap:wrap;gap:10px}
+.tbtn-b{background:#fff;border:1px solid #ddd;border-radius:8px;padding:12px 16px;font-size:13px;color:#444}
+.chip{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:#fff;transition:.3s;min-width:150px}
+.chip:hover{border-color:var(--gold);box-shadow:0 10px 24px -16px rgba(60,45,20,.4)}
+.chip .k{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--dgold);font-weight:600}
+.chip .v{font-size:14px;font-weight:600;margin-top:3px}.chip .d{font-size:11px;color:#999;margin-top:6px}
+</style>
+</head>
+<body>
+<div class="head"><h1>RKM Foundation — Visual Transformation · Batch 2</h1><p>Inter kept · motion kept · exact palette · real content · NOT deployed</p></div>
+
+<div class="sec">
+  <div class="lbl">C-W1 — Whitespace &amp; layout rhythm (warm-white / light-grey banding, more air, indexed eyebrows)</div>
+  <div class="band">
+    <div class="b1"><span class="eb">01 — What we do</span><h3>Four ways we show up for animals.</h3><p>Generous vertical air and alternating warm-white / light-grey bands give the page an editorial cadence — one idea per screen.</p></div>
+    <div class="b2"><span class="eb">02 — How it started</span><h3>It started with one dog named Tobler.</h3><p>The light-grey band (#F3F3F3) separates sections without any dark blocks — calm, premium, never heavy.</p></div>
+  </div>
+  <p class="note">Same copy and structure. Only rhythm, banding (warm white ↔ light grey), and indexed eyebrow labels change.</p>
+</div>
+
+<div class="sec">
+  <div class="lbl">C-I2 — Section image presentation (larger, rounded, light scrim, hover-zoom)</div>
+  <div class="cols">
+    <div><span class="tag b">BEFORE · small, heavy dark overlay, square</span><div class="imgb"><img src="https://rkmfoundation.com/images/site/feed.jpg" alt=""></div></div>
+    <div><span class="tag a">AFTER · larger, rounded, light scrim, hover-zoom</span><div class="imga"><img src="https://rkmfoundation.com/images/site/feed.jpg" alt=""><div class="cap"><small>Every single day</small><b>Feed</b></div></div></div>
+  </div>
+  <p class="note">Hover the right image. Photography becomes the emotional anchor; captions sit on a light bottom scrim, not a heavy overlay.</p>
+</div>
+
+<div class="sec">
+  <div class="lbl">C-D1 — Donation section presentation (bolder outcome, gold hierarchy)</div>
+  <div class="cols">
+    <div><span class="tag b">BEFORE</span><div class="don before"><div class="amt-b">₹5,000</div><div class="out-b">A month of food &amp; care for 2–3 animals</div><a class="cta-b" href="#">Give ₹5,000</a></div></div>
+    <div><span class="tag a">AFTER</span><div class="don"><span class="eb">Your gift, made real</span><div class="amt-a" style="margin-top:10px">₹5,000</div><div class="out-a">A full month of food &amp; care for 2–3 animals — and we'll send the photo to prove it.</div><a class="cta-a" href="#">Give ₹5,000</a><div class="sec-line">256-bit secure · instant 80G receipt</div></div></div>
+  </div>
+  <p class="note">Same amounts, same slider behaviour/motion. Stronger outcome typography, gold accent, trust line at the button.</p>
+</div>
+
+<div class="sec">
+  <div class="lbl">C-TR1 — Trust presentation (certificate chips)</div>
+  <div class="cols">
+    <div><span class="tag b">BEFORE · plain download buttons</span><div class="trow">
+      <span class="tbtn-b">12A Registered</span><span class="tbtn-b">80G Tax Benefits</span><span class="tbtn-b">CSR Eligible</span><span class="tbtn-b">DARPAN</span></div></div>
+    <div><span class="tag a">AFTER · elegant chip-cards (reg no. + label + download on hover)</span><div class="trow">
+      <div class="chip"><div class="k">12A</div><div class="v">Reg. 47522</div><div class="d">Download PDF →</div></div>
+      <div class="chip"><div class="k">80G</div><div class="v">Tax deductible</div><div class="d">Download PDF →</div></div>
+      <div class="chip"><div class="k">CSR-1</div><div class="v">CSR00089305</div><div class="d">Download PDF →</div></div>
+      <div class="chip"><div class="k">DARPAN</div><div class="v">MH/2024/0457296</div><div class="d">Download PDF →</div></div>
+    </div></div>
+  </div>
+  <p class="note">Same certificates, same links. Presented as premium chip-cards so credibility feels intentional, not a footer afterthought.</p>
+</div>
+
+<div class="sec">
+  <div class="lbl">C-SP1 — Section hierarchy (indexed eyebrows + gold hairline rules)</div>
+  <div class="band b1">
+    <span class="eb">03 — Why trust RKM</span>
+    <h3 style="margin-top:10px">Give with confidence. See the change you create.</h3>
+    <p>A thin gold rule + numbered eyebrow gives every section a consistent editorial signature — hierarchy by rhythm, not by new fonts or colours.</p>
+  </div>
+</div>
+
+<div style="text-align:center;padding:24px;color:#777;font-size:12px">End of Batch 2 preview · awaiting APPROVE / WAIT / MODIFY</div>
+</body>
+</html>

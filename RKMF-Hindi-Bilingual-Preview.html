@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RKM Foundation — Hindi / English Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--white:#fff;--grey:#F4F4F4;--black:#0E0E0E;--ink:#161616;--gold:#B89245;--dgold:#8F6A2A;--line:#ECECEC;--mut:#6A6A6A}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,system-ui,sans-serif;background:var(--white);color:var(--ink);line-height:1.62}
+html[lang="hi"] body,html[lang="hi"] .swap{font-family:"Noto Sans Devanagari",Inter,sans-serif}
+img{display:block;width:100%;height:100%;object-fit:cover}a{color:inherit;text-decoration:none}
+.wrap{max-width:1140px;margin:0 auto;padding:0 26px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--dgold)}
+.eyebrow::before{content:"";width:24px;height:1px;background:var(--gold)}
+h1,h2,h3{font-weight:800;letter-spacing:-.02em;line-height:1.12;color:var(--black)}
+html[lang="hi"] h1,html[lang="hi"] h2,html[lang="hi"] h3{letter-spacing:0;line-height:1.28;font-weight:700}
+.d1{font-size:clamp(34px,4.8vw,60px)}.d2{font-size:clamp(26px,3.4vw,42px)}.d3{font-size:clamp(19px,2vw,25px)}
+.lead{font-size:clamp(16px,1.3vw,19px);color:var(--mut);max-width:60ch}
+.btn{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;padding:13px 24px;border-radius:100px;transition:.3s}
+.btn-gold{background:var(--dgold);color:#fff}.btn-gold:hover{background:var(--gold)}
+.btn-dark{background:var(--black);color:#fff}.btn-dark:hover{background:var(--dgold)}
+.btn-ghost{border:1px solid rgba(255,255,255,.5);color:#fff}.btn-ghost:hover{border-color:var(--gold)}
+.btn-line{border:1px solid #ddd;color:var(--black)}.btn-line:hover{border-color:var(--gold);color:var(--dgold)}
+.sec{padding:clamp(56px,8vh,104px) 0}.grey{background:var(--grey)}
+nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px 26px;background:rgba(255,255,255,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.brand{font-weight:800;font-size:19px;color:var(--black)}.brand b{color:var(--gold)}
+.nr{display:flex;align-items:center;gap:18px;font-size:14px;font-weight:500}
+.toggle{display:inline-flex;border:1px solid #ddd;border-radius:100px;overflow:hidden;font-size:13px;font-weight:600}
+.toggle button{border:0;background:#fff;padding:8px 14px;cursor:pointer;color:var(--mut);font-family:inherit}
+.toggle button.on{background:var(--dgold);color:#fff}
+.cta{background:var(--dgold);color:#fff;padding:9px 18px;border-radius:100px;font-size:13px}
+.hero{position:relative;min-height:74vh;display:flex;align-items:flex-end;overflow:hidden}
+.hero img.bg{position:absolute;inset:0}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,14,14,.28),transparent 40%,rgba(14,14,14,.74))}
+.hero .in{position:relative;z-index:2;padding:0 26px 6vh;max-width:1140px;margin:0 auto;width:100%}
+.hero .d1{color:#fff;max-width:16ch;margin:.28em 0 .42em}.hero .d1 .g{color:var(--gold)}
+.hero .sub{color:#eee;max-width:48ch}.hero .acts{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.hero .tl{margin-top:22px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.72)}
+.wwd{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:42px}
+.wcard{border-radius:16px;overflow:hidden;position:relative;aspect-ratio:3/4}
+.wcard img{transition:transform .9s}.wcard:hover img{transform:scale(1.06)}
+.wcard::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(14,14,14,.78))}
+.wcard .t{position:absolute;left:15px;right:15px;bottom:14px;z-index:2;color:#fff}
+.wcard .t .n{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#ecd9a8;font-weight:700}
+.wcard .t h3{color:#fff;font-size:20px;margin:3px 0 5px}.wcard .t p{font-size:12.5px;color:rgba(255,255,255,.86)}
+@media(max-width:900px){.wwd{grid-template-columns:repeat(2,1fr)}}
+.story{display:grid;grid-template-columns:1fr 1.05fr;gap:50px;align-items:center}
+.story .pic{aspect-ratio:4/5;border-radius:16px;overflow:hidden}
+.pq{font-size:clamp(18px,1.9vw,25px);font-weight:600;border-left:3px solid var(--gold);padding-left:18px;margin:22px 0;line-height:1.4;color:var(--black)}
+.pq cite{display:block;font-style:normal;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin-top:12px;font-weight:700}
+@media(max-width:860px){.story{grid-template-columns:1fr;gap:26px}}
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:38px}
+.wb .n{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--dgold);font-weight:700}.wb h3{font-size:19px;margin:8px 0 7px}.wb p{font-size:14px;color:var(--mut)}
+@media(max-width:820px){.why{grid-template-columns:1fr;gap:16px}}
+.certs{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.cert{border:1px solid #ddd;border-radius:100px;padding:11px 18px;font-size:14px;font-weight:600;background:#fff;transition:.3s}.cert:hover{border-color:var(--gold);color:var(--dgold)}
+.gift{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:38px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#fff}
+.gblock{padding:28px 26px;border-right:1px solid var(--line)}.gblock:last-child{border-right:0}
+.gblock .amt{font-size:34px;font-weight:800;color:var(--dgold)}.gblock p{font-size:14px;color:var(--mut);margin:10px 0 16px;min-height:62px}
+@media(max-width:820px){.gift{grid-template-columns:1fr}.gblock{border-right:0;border-bottom:1px solid var(--line)}}
+.final{background:var(--grey);text-align:center}.final .acts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+.band{background:var(--black);color:#fff;text-align:center}.band .eyebrow{justify-content:center;color:#ecd9a8}.band h2{color:#fff}.band .acts{margin-top:18px}
+.news{display:grid;grid-template-columns:1.3fr 1fr;gap:30px;align-items:center}
+.news form{display:flex;gap:10px}.news input{flex:1;border:1px solid #ddd;border-radius:100px;padding:12px 16px;font-family:inherit}
+.news button{background:var(--dgold);color:#fff;border:0;border-radius:100px;padding:12px 22px;font-weight:600;cursor:pointer;font-family:inherit}
+@media(max-width:760px){.news{grid-template-columns:1fr;gap:16px}}
+footer{background:var(--black);color:#b7b7b7;padding:50px 0 26px;font-size:14px}
+footer .g{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:28px}
+footer .brand{font-size:19px;color:#fff;margin-bottom:11px}
+footer h4{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#888;margin-bottom:12px}
+footer a{color:#b7b7b7;display:block;padding:3px 0}footer a:hover{color:var(--gold)}
+footer .reg{margin-top:24px;border-top:1px solid #262626;padding-top:14px;font-size:11px;color:#777;display:flex;flex-wrap:wrap;gap:6px 14px}
+@media(max-width:860px){footer .g{grid-template-columns:1fr 1fr}}
+.flag{background:#FCF7EC;color:var(--dgold);text-align:center;font-size:11.5px;padding:7px 16px;font-weight:600;border-bottom:1px solid #EFE3C5}
+.center{text-align:center}.center .eyebrow{justify-content:center}
+</style>
+</head>
+<body>
+<div class="flag swap" data-en="HINDI PREVIEW — click EN / हिंदी in the top-right to switch the whole page · registration codes stay unchanged · NOT deployed" data-hi="हिंदी प्रीव्यू — ऊपर दाईं ओर EN / हिंदी पर क्लिक करके पूरा पेज बदलें · पंजीकरण कोड अपरिवर्तित रहते हैं · डिप्लॉय नहीं किया गया">HINDI PREVIEW — click EN / हिंदी in the top-right to switch the whole page · registration codes stay unchanged · NOT deployed</div>
+
+<nav>
+  <div class="brand">RKM<b>·</b>Foundation</div>
+  <div class="nr">
+    <a class="swap" data-en="About" data-hi="हमारे बारे में" href="#">About</a>
+    <div class="toggle"><button id="bEN" class="on" onclick="setLang('en')">EN</button><button id="bHI" onclick="setLang('hi')">हिंदी</button></div>
+    <a class="cta swap" data-en="Donate Now" data-hi="अभी दान करें" href="#gift">Donate Now</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <img class="bg" src="https://rkmfoundation.com/images/site/dog.jpg" alt="">
+  <div class="in">
+    <span class="eyebrow swap" style="color:#ecd9a8" data-en="Animal Welfare · India" data-hi="पशु कल्याण · भारत">Animal Welfare · India</span>
+    <h1 class="d1 swap" data-en="They can't ask for help. <span class='g'>You can give it.</span>" data-hi="वे मदद नहीं माँग सकते। <span class='g'>आप दे सकते हैं।</span>">They can't ask for help. <span class="g">You can give it.</span></h1>
+    <p class="sub swap" data-en="Every day we rescue, feed, heal, and shelter animals living on India's streets — and we'll show you the exact life your kindness changed." data-hi="हर दिन हम भारत की सड़कों पर रहने वाले जानवरों को बचाते, खिलाते, उनका इलाज करते और उन्हें आश्रय देते हैं — और हम आपको दिखाएँगे कि आपकी दयालुता ने किसकी ज़िंदगी बदली।">Every day we rescue, feed, heal, and shelter animals living on India's streets — and we'll show you the exact life your kindness changed.</p>
+    <div class="acts">
+      <a class="btn btn-gold swap" data-en="Donate Now" data-hi="अभी दान करें" href="#gift">Donate Now</a>
+      <a class="btn btn-ghost swap" data-en="Start a Fundraiser" data-hi="फंडरेज़र शुरू करें" href="#">Start a Fundraiser</a>
+    </div>
+    <p class="tl swap" data-en="12A · 80G · CSR — donations are tax deductible" data-hi="12A · 80G · CSR — दान कर-कटौती के योग्य हैं">12A · 80G · CSR — donations are tax deductible</p>
+  </div>
+</header>
+
+<section class="sec"><div class="wrap">
+  <span class="eyebrow swap" data-en="What We Do" data-hi="हम क्या करते हैं">What We Do</span>
+  <h2 class="d2 swap" style="margin-top:12px" data-en="Four ways we show up for animals." data-hi="जानवरों के लिए हम चार तरह से साथ खड़े रहते हैं।">Four ways we show up for animals.</h2>
+  <div class="wwd">
+    <div class="wcard"><img src="https://rkmfoundation.com/images/site/street.jpg" alt=""><div class="t"><div class="n swap" data-en="01 · On the street" data-hi="01 · सड़कों पर">01 · On the street</div><h3 class="swap" data-en="Rescue" data-hi="बचाव">Rescue</h3><p class="swap" data-en="We go wherever an animal is hurt — the street, the gutter, anywhere." data-hi="जहाँ भी कोई जानवर घायल हो, हम वहाँ पहुँचते हैं — सड़क, नाली, कहीं भी।">We go wherever an animal is hurt — the street, the gutter, anywhere.</p></div></div>
+    <div class="wcard"><img src="https://rkmfoundation.com/images/site/feed.jpg" alt=""><div class="t"><div class="n swap" data-en="02 · Every single day" data-hi="02 · हर एक दिन">02 · Every single day</div><h3 class="swap" data-en="Feed" data-hi="भोजन">Feed</h3><p class="swap" data-en="Warm meals every day, for every animal in our care." data-hi="हमारी देखभाल में मौजूद हर जानवर के लिए, हर दिन गर्म भोजन।">Warm meals every day, for every animal in our care.</p></div></div>
+    <div class="wcard"><img src="https://rkmfoundation.com/images/site/heal.jpg" alt=""><div class="t"><div class="n swap" data-en="03 · With trusted vets" data-hi="03 · भरोसेमंद पशु-चिकित्सकों के साथ">03 · With trusted vets</div><h3 class="swap" data-en="Heal" data-hi="इलाज">Heal</h3><p class="swap" data-en="Wounds dressed, surgeries funded — full vet care until they're whole." data-hi="घावों की मरहम-पट्टी, सर्जरी का खर्च — पूरी तरह ठीक होने तक संपूर्ण पशु-चिकित्सा देखभाल।">Wounds dressed, surgeries funded — full vet care until they're whole.</p></div></div>
+    <div class="wcard"><img src="https://rkmfoundation.com/images/site/rest.jpg" alt=""><div class="t"><div class="n swap" data-en="04 · A place to rest" data-hi="04 · विश्राम की जगह">04 · A place to rest</div><h3 class="swap" data-en="Shelter" data-hi="आश्रय">Shelter</h3><p class="swap" data-en="A safe, quiet place to rest and recover." data-hi="आराम करने और स्वस्थ होने के लिए एक सुरक्षित, शांत जगह।">A safe, quiet place to rest and recover.</p></div></div>
+  </div>
+</div></section>
+
+<section class="sec grey"><div class="wrap story">
+  <div class="pic"><img src="https://rkmfoundation.com/images/site/care.jpg" alt=""></div>
+  <div>
+    <span class="eyebrow swap" data-en="How It Started" data-hi="इसकी शुरुआत कैसे हुई">How It Started</span>
+    <h2 class="d2 swap" style="margin:12px 0 14px" data-en="It started with our dog, Tobler." data-hi="इसकी शुरुआत हमारे कुत्ते टोबलर से हुई।">It started with our dog, Tobler.</h2>
+    <p class="lead swap" data-en="When Tobler fell ill, we spent long nights at the vet clinic. What stayed with us was the strangers who kept coming in — carrying a hurt dog or cat they'd found, then learning the treatment cost more than they had." data-hi="जब टोबलर बीमार पड़ा, हमने पशु-चिकित्सालय में लंबी रातें बिताईं। जो बात मन में रह गई वह थे वे अजनबी जो लगातार आते रहे — किसी घायल कुत्ते या बिल्ली को उठाकर लाते, और फिर पता चलता कि इलाज का खर्च उनकी क्षमता से ज़्यादा है।">When Tobler fell ill, we spent long nights at the vet clinic. What stayed with us was the strangers who kept coming in — carrying a hurt dog or cat they'd found, then learning the treatment cost more than they had.</p>
+    <blockquote class="pq"><span class="swap" data-en="&ldquo;These weren't even their animals. People just couldn't walk past one that was hurt. We figured the least we could do was help with the part they couldn't.&rdquo;" data-hi="&ldquo;ये जानवर उनके अपने भी नहीं थे। लोग बस किसी घायल को यूँ ही छोड़कर नहीं जा पाते थे। हमने सोचा, कम से कम हम वह हिस्सा तो संभाल ही सकते हैं जो वे नहीं कर पाते।&rdquo;">&ldquo;These weren't even their animals. People just couldn't walk past one that was hurt. We figured the least we could do was help with the part they couldn't.&rdquo;</span><cite class="swap" data-en="— The Mundhra family" data-hi="— मुंधड़ा परिवार">— The Mundhra family</cite></blockquote>
+    <a class="btn btn-line swap" data-en="Read Tobler's full story →" data-hi="टोबलर की पूरी कहानी पढ़ें →" href="#">Read Tobler's full story →</a>
+  </div>
+</div></section>
+
+<section class="sec"><div class="wrap">
+  <span class="eyebrow swap" data-en="Why Trust RKM Foundation" data-hi="RKM फाउंडेशन पर भरोसा क्यों करें">Why Trust RKM Foundation</span>
+  <h2 class="d2 swap" style="margin-top:12px" data-en="Give with confidence. See the change you create." data-hi="विश्वास के साथ दें। आप जो बदलाव लाते हैं उसे देखें।">Give with confidence. See the change you create.</h2>
+  <div class="why">
+    <div class="wb"><div class="n">01</div><h3 class="swap" data-en="You see where it goes" data-hi="आप देखते हैं पैसा कहाँ जाता है">You see where it goes</h3><p class="swap" data-en="Photos and videos from the field after every campaign." data-hi="हर अभियान के बाद मैदान से तस्वीरें और वीडियो।">Photos and videos from the field after every campaign.</p></div>
+    <div class="wb"><div class="n">02</div><h3 class="swap" data-en="Registered & tax-deductible" data-hi="पंजीकृत और कर-कटौती योग्य">Registered & tax-deductible</h3><p class="swap" data-en="A registered trust under 12A, 80G & CSR. Every gift gets a receipt." data-hi="12A, 80G और CSR के तहत पंजीकृत ट्रस्ट। हर दान की रसीद मिलती है।">A registered trust under 12A, 80G & CSR. Every gift gets a receipt.</p></div>
+    <div class="wb"><div class="n">03</div><h3 class="swap" data-en="Come see for yourself" data-hi="खुद आकर देखिए">Come see for yourself</h3><p class="swap" data-en="Join a feeding drive or visit the shelter. Our doors are open." data-hi="किसी भोजन अभियान में शामिल हों या आश्रय देखने आएँ। हमारे दरवाज़े खुले हैं।">Join a feeding drive or visit the shelter. Our doors are open.</p></div>
+  </div>
+</div></section>
+
+<section class="sec grey"><div class="wrap">
+  <span class="eyebrow swap" data-en="Registered & Transparent" data-hi="पंजीकृत और पारदर्शी">Registered & Transparent</span>
+  <h2 class="d3 swap" style="margin:12px 0 8px" data-en="Every rupee is accounted for." data-hi="हर रुपये का हिसाब है।">Every rupee is accounted for.</h2>
+  <p class="lead swap" data-en="Reg. E-30560 — every certificate is downloadable." data-hi="पंजीकरण E-30560 — हर प्रमाणपत्र डाउनलोड किया जा सकता है।">Reg. E-30560 — every certificate is downloadable.</p>
+  <div class="certs">
+    <a class="cert swap" data-en="12A Registered" data-hi="12A पंजीकृत" href="#">12A Registered</a>
+    <a class="cert swap" data-en="80G Tax Benefits" data-hi="80G कर लाभ" href="#">80G Tax Benefits</a>
+    <a class="cert swap" data-en="CSR Eligible" data-hi="CSR योग्य" href="#">CSR Eligible</a>
+    <a class="cert swap" data-en="DARPAN Registered" data-hi="DARPAN पंजीकृत" href="#">DARPAN Registered</a>
+  </div>
+</div></section>
+
+<section class="sec" id="gift"><div class="wrap">
+  <span class="eyebrow swap" data-en="What Your Gift Does" data-hi="आपका दान क्या करता है">What Your Gift Does</span>
+  <h2 class="d2 swap" style="margin-top:12px" data-en="No vague promises." data-hi="कोई अस्पष्ट वादे नहीं।">No vague promises.</h2>
+  <p class="lead swap" style="margin-top:12px" data-en="Here's exactly what your money buys — and we'll show you the life it changed." data-hi="यहाँ है कि आपका पैसा वास्तव में क्या ख़रीदता है — और हम आपको वह ज़िंदगी दिखाएँगे जो इसने बदली।">Here's exactly what your money buys — and we'll show you the life it changed.</p>
+  <div class="gift">
+    <div class="gblock"><div class="amt">₹2,500</div><p class="swap" data-en="Two weeks of warm meals for a rescued animal getting back on its feet." data-hi="दोबारा पैरों पर खड़े होते एक बचाए गए जानवर के लिए दो हफ़्ते का गर्म भोजन।">Two weeks of warm meals for a rescued animal getting back on its feet.</p><a class="btn btn-dark swap" data-en="Give ₹2,500" data-hi="₹2,500 दें" href="#">Give ₹2,500</a></div>
+    <div class="gblock"><div class="amt">₹5,000</div><p class="swap" data-en="A full month of food and care for 2–3 animals in our shelter." data-hi="हमारे आश्रय में 2–3 जानवरों के लिए पूरे महीने का भोजन और देखभाल।">A full month of food and care for 2–3 animals in our shelter.</p><a class="btn btn-dark swap" data-en="Give ₹5,000" data-hi="₹5,000 दें" href="#">Give ₹5,000</a></div>
+    <div class="gblock"><div class="amt">₹10,000</div><p class="swap" data-en="Emergency medical treatment — the surgery or care that saves a life." data-hi="आपातकालीन चिकित्सा — वह सर्जरी या देखभाल जो किसी की जान बचाती है।">Emergency medical treatment — the surgery or care that saves a life.</p><a class="btn btn-dark swap" data-en="Give ₹10,000" data-hi="₹10,000 दें" href="#">Give ₹10,000</a></div>
+  </div>
+  <a class="btn btn-line swap" style="margin-top:22px" data-en="Give any amount you choose →" data-hi="अपनी पसंद की कोई भी राशि दें →" href="#">Give any amount you choose →</a>
+</div></section>
+
+<section class="sec final"><div class="wrap">
+  <h2 class="d2 swap" style="max-width:22ch;margin:0 auto 12px" data-en="Somewhere out there, an animal is waiting." data-hi="कहीं न कहीं, कोई जानवर इंतज़ार कर रहा है।">Somewhere out there, an animal is waiting.</h2>
+  <p class="lead swap" style="margin:0 auto" data-en="It doesn't know your name. It just needs someone to show up. Today, that can be you." data-hi="वह आपका नाम नहीं जानता। उसे बस किसी के साथ खड़े होने की ज़रूरत है। आज, वह आप हो सकते हैं।">It doesn't know your name. It just needs someone to show up. Today, that can be you.</p>
+  <div class="acts">
+    <a class="btn btn-gold swap" data-en="Donate Now" data-hi="अभी दान करें" href="#gift">Donate Now</a>
+    <a class="btn btn-line swap" data-en="Start a Fundraiser" data-hi="फंडरेज़र शुरू करें" href="#">Start a Fundraiser</a>
+    <a class="btn btn-line swap" data-en="Become a Volunteer" data-hi="स्वयंसेवक बनें" href="#">Become a Volunteer</a>
+  </div>
+</div></section>
+
+<section class="sec band"><div class="wrap">
+  <div class="eyebrow swap" data-en="RKM Foundation" data-hi="RKM फाउंडेशन">RKM Foundation</div>
+  <h2 class="d3 swap" style="margin-top:10px" data-en="Be the someone who shows up." data-hi="वह बनें जो साथ खड़ा होता है।">Be the someone who shows up.</h2>
+  <div class="acts" style="display:flex;justify-content:center"><a class="btn btn-gold swap" data-en="Donate Now" data-hi="अभी दान करें" href="#gift">Donate Now</a></div>
+</div></section>
+
+<section class="sec"><div class="wrap news">
+  <div><h2 class="d3 swap" data-en="See who you helped this month." data-hi="देखिए इस महीने आपने किसकी मदद की।">See who you helped this month.</h2><p class="lead swap" style="font-size:16px;margin-top:8px" data-en="Real photos and short stories from the field — the rescues, the recoveries, the homecomings. No spam, ever." data-hi="मैदान से असली तस्वीरें और छोटी कहानियाँ — बचाव, स्वस्थ होना, और घर वापसी। कभी कोई स्पैम नहीं।">Real photos and short stories from the field — the rescues, the recoveries, the homecomings. No spam, ever.</p></div>
+  <form onsubmit="return false"><input type="email" class="swap" data-en-ph="Email Address" data-hi-ph="ईमेल पता" placeholder="Email Address"><button class="swap" data-en="Subscribe" data-hi="सदस्यता लें">Subscribe</button></form>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="g">
+    <div><div class="brand">RKM<b style="color:var(--gold)">·</b>Foundation</div><p class="swap" style="max-width:42ch" data-en="We're a family-run charitable trust in India that rescues, feeds, heals, and shelters animals living on the street. Every gift is eligible for CSR contributions and tax deduction under Section 80G." data-hi="हम भारत में एक परिवार द्वारा संचालित धर्मार्थ ट्रस्ट हैं जो सड़कों पर रहने वाले जानवरों को बचाता, खिलाता, उनका इलाज करता और आश्रय देता है। हर दान CSR योगदान और धारा 80G के तहत कर-कटौती के योग्य है।">We're a family-run charitable trust in India that rescues, feeds, heals, and shelters animals living on the street. Every gift is eligible for CSR contributions and tax deduction under Section 80G.</p></div>
+    <div><h4 class="swap" data-en="Quick Links" data-hi="त्वरित लिंक">Quick Links</h4><a class="swap" data-en="FAQs" data-hi="अक्सर पूछे प्रश्न" href="#">FAQs</a><a class="swap" data-en="Legal & Governance" data-hi="कानूनी और शासन" href="#">Legal & Governance</a><a class="swap" data-en="Careers" data-hi="करियर" href="#">Careers</a><a class="swap" data-en="Media" data-hi="मीडिया" href="#">Media</a></div>
+    <div><h4 class="swap" data-en="Contact Us" data-hi="संपर्क करें">Contact Us</h4><a class="swap" data-en="Monday to Friday | 10 AM – 6 PM" data-hi="सोमवार से शुक्रवार | सुबह 10 – शाम 6" href="#">Monday to Friday | 10 AM – 6 PM</a><a href="#">+91 99207 80005</a><a href="#">info@rkm.support</a></div>
+  </div>
+  <div class="reg"><span>Reg. E-30560</span><span>PAN AACTR4271L</span><span>12A 47522</span><span>80G CITE80G9792014-152016-17</span><span>CSR00089305</span><span>DARPAN MH/2024/0457296</span></div>
+</div></footer>
+
+<script>
+function setLang(l){
+  document.documentElement.lang=l;
+  document.getElementById('bEN').classList.toggle('on',l==='en');
+  document.getElementById('bHI').classList.toggle('on',l==='hi');
+  document.querySelectorAll('.swap').forEach(el=>{
+    const v=el.getAttribute('data-'+l);
+    if(v!=null){ if(/<span/.test(v)) el.innerHTML=v; else el.textContent=v; }
+    const ph=el.getAttribute('data-'+l+'-ph'); if(ph!=null) el.placeholder=ph;
+  });
+}
+</script>
+</body>
+</html>

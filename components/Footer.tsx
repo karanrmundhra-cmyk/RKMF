@@ -1,18 +1,35 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { DOWNLOADS, QUICK_LINKS, SITE } from "@/lib/content";
 import SubscribeForm from "./SubscribeForm";
 import BackToTop from "./BackToTop";
 
+const HI_QUICK = [
+  { label: "अक्सर पूछे जाने वाले प्रश्न", href: "/hi/faqs" },
+  { label: "कानूनी और शासन", href: "/hi/legal" },
+  { label: "हमारे साथ साझेदारी करें", href: "/hi/partner-with-us" },
+  { label: "करियर", href: "/hi/careers" },
+  { label: "मीडिया", href: "/hi/media" },
+];
+
 export default function Footer() {
+  const pathname = usePathname();
+  const hi = pathname.startsWith("/hi");
+  const donate = hi ? "/hi/donate-now" : "/donate-now";
+  const quickLinks = hi ? HI_QUICK : QUICK_LINKS;
+
   return (
-    <footer className="border-t border-ink/10 bg-snow">
+    <footer className="border-t border-ink/10 bg-snow" style={hi ? { fontFamily: '"Noto Sans Devanagari", Inter, system-ui, sans-serif' } : undefined}>
       <div className="container-c py-16 sm:py-20">
         {/* Editorial closing masthead — a confident statement + the two actions */}
         <div className="grid gap-10 border-b border-ink/10 pb-14 lg:grid-cols-12 lg:items-end lg:gap-16">
           <div className="lg:col-span-7">
             <p className="eyebrow-index">RKM Foundation</p>
-            <p className="display-2 mt-5 max-w-[15ch] text-balance">Be the someone who shows up.</p>
-            <a href="/donate-now#donation" className="btn-copper mt-8">Donate Now</a>
+            <p className="display-2 mt-5 max-w-[15ch] text-balance">
+              {hi ? "वह बनें जो साथ खड़ा होता है।" : "Be the someone who shows up."}
+            </p>
+            <a href={`${donate}#donation`} className="btn-copper mt-8">{hi ? "अभी दान करें" : "Donate Now"}</a>
           </div>
           <div className="lg:col-span-5">
             <SubscribeForm />
@@ -29,10 +46,14 @@ export default function Footer() {
               <span className="font-semibold">RKM Foundation</span>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink/70">
-              We&apos;re a family-run charitable trust in India that rescues, feeds, heals, and shelters
-              animals living on the street. Every gift is eligible for{" "}
-              <strong className="text-ink">CSR contributions</strong> and tax deduction under{" "}
-              <strong className="text-ink">Section 80G</strong>.
+              {hi ? (
+                <>हम भारत में एक परिवार द्वारा संचालित धर्मार्थ ट्रस्ट हैं जो सड़कों पर रहने वाले जानवरों को बचाता, खिलाता, उनका इलाज करता और आश्रय देता है। हर दान <strong className="text-ink">CSR योगदान</strong> और <strong className="text-ink">धारा 80G</strong> के तहत कर-कटौती के योग्य है।</>
+              ) : (
+                <>We&apos;re a family-run charitable trust in India that rescues, feeds, heals, and shelters
+                animals living on the street. Every gift is eligible for{" "}
+                <strong className="text-ink">CSR contributions</strong> and tax deduction under{" "}
+                <strong className="text-ink">Section 80G</strong>.</>
+              )}
             </p>
             <div className="mt-5 flex items-center gap-4">
               <a href={SITE.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="RKM Foundation Instagram" className="text-ink/60 hover:text-copper-dark">
@@ -49,9 +70,9 @@ export default function Footer() {
 
           {/* 2 — Contact */}
           <div>
-            <h4 className="text-sm font-bold uppercase tracking-wider">Contact Us</h4>
+            <h4 className="text-sm font-bold uppercase tracking-wider">{hi ? "संपर्क करें" : "Contact Us"}</h4>
             <ul className="mt-4 space-y-3 text-sm text-ink/70">
-              <li>{SITE.hours}</li>
+              <li>{hi ? "सोमवार से शुक्रवार | सुबह 10:00 – शाम 6:00" : SITE.hours}</li>
               <li>
                 <a href={SITE.whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 hover:text-copper-dark">
                   <svg className="shrink-0" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden><path d="M21 12a9 9 0 0 1-13.4 7.8L3 21l1.3-4.4A9 9 0 1 1 21 12Z"/></svg>
@@ -75,9 +96,9 @@ export default function Footer() {
 
           {/* 3 — Quick Links */}
           <div>
-            <h4 className="text-sm font-bold uppercase tracking-wider">Quick Links</h4>
+            <h4 className="text-sm font-bold uppercase tracking-wider">{hi ? "त्वरित लिंक" : "Quick Links"}</h4>
             <ul className="mt-4 space-y-2.5 text-sm text-ink/70">
-              {QUICK_LINKS.map((l) => (
+              {quickLinks.map((l) => (
                 <li key={l.href}><Link href={l.href} className="hover:text-copper-dark">{l.label}</Link></li>
               ))}
             </ul>
@@ -85,7 +106,7 @@ export default function Footer() {
 
           {/* 4 — Downloads (between Quick Links and Scan to Give) */}
           <div>
-            <h4 className="text-sm font-bold uppercase tracking-wider">Downloads</h4>
+            <h4 className="text-sm font-bold uppercase tracking-wider">{hi ? "डाउनलोड" : "Downloads"}</h4>
             <ul className="mt-4 space-y-2.5 text-sm text-ink/70">
               {DOWNLOADS.map((d) => (
                 <li key={d.file}>
@@ -97,17 +118,17 @@ export default function Footer() {
 
           {/* 5 — Scan to Give */}
           <div>
-            <h4 className="text-sm font-bold uppercase tracking-wider">Scan to Give</h4>
-            <Link href="/donate-now" className="mt-4 block w-fit">
+            <h4 className="text-sm font-bold uppercase tracking-wider">{hi ? "स्कैन करके दें" : "Scan to Give"}</h4>
+            <Link href={donate} className="mt-4 block w-fit">
               <img src="/images/site/qr.png" alt="QR code to donate to RKM Foundation" width={140} height={140} loading="lazy" className="h-36 w-36 rounded-xl ring-1 ring-ink/10" />
             </Link>
-            <Link href="/donate-now" className="link-secondary mt-3 inline-block text-sm">Donate Now</Link>
+            <Link href={donate} className="link-secondary mt-3 inline-block text-sm">{hi ? "अभी दान करें" : "Donate Now"}</Link>
           </div>
         </div>
 
         {/* Copyright row */}
         <div className="mt-12 flex flex-col items-center gap-2 border-t border-ink/10 pt-6 text-center text-xs text-ink/60 sm:flex-row sm:justify-center sm:gap-3">
-          <span>Copyright © 2026 RKM Foundation | All Rights Reserved</span>
+          <span>{hi ? "कॉपीराइट © 2026 RKM Foundation | सर्वाधिकार सुरक्षित" : "Copyright © 2026 RKM Foundation | All Rights Reserved"}</span>
         </div>
       </div>
       <BackToTop />
