@@ -28,7 +28,7 @@ export default function Header() {
   const onDark = (pathname === "/" || pathname === "/hi") && !scrolled; // dark hero surface
   const isHi = pathname.startsWith("/hi");
   // Pages that have a Hindi (/hi/...) version. Extend as more pages are translated.
-  const HI_PAGES = new Set(["/", "/about", "/csr", "/contact", "/donate-now", "/careers", "/other-ways-to-give", "/partner-with-us", "/fundraiser", "/fundraiser/create", "/faqs", "/media", "/blog", "/blog/the-dog-who-started-it-all", "/shop", "/legal", "/legal/terms-and-conditions", "/legal/privacy-policy", "/legal/website-disclaimer-cookie-policy", "/legal/donation-refund-policy", "/legal/shop-refund-policy", "/legal/80g-tax-disclaimer", "/newsletter-confirmed", "/unsubscribe"]);
+  const HI_PAGES = new Set(["/", "/about", "/csr", "/contact", "/donate-now", "/careers", "/other-ways-to-give", "/partner-with-us", "/fundraiser", "/fundraiser/create", "/faqs", "/media", "/blog", "/blog/the-dog-who-started-it-all", "/shop", "/legal", "/legal/terms-and-conditions", "/legal/privacy-policy", "/legal/website-disclaimer-cookie-policy", "/legal/donation-refund-policy", "/legal/shop-refund-policy", "/legal/80g-tax-disclaimer", "/newsletter-confirmed", "/unsubscribe", "/fundraiser/ready", "/fundraiser/success", "/fundraiser/thank-you", "/shop/thank-you", "/shop/order-failed"]);
   const basePath = isHi ? pathname.replace(/^\/hi/, "") || "/" : pathname;
   const enHref = basePath;
   const hiHref = HI_PAGES.has(basePath) ? (basePath === "/" ? "/hi" : `/hi${basePath}`) : "/hi";
@@ -80,12 +80,12 @@ export default function Header() {
       </a>
       <header style={isHi ? FONT_HI : undefined} className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/90 backdrop-blur-md shadow-[0_1px_0_rgba(0,0,0,0.06)]" : "bg-transparent"}`}>
         <div className="container-c flex h-16 items-center justify-between sm:h-[72px]">
-          <Link href="/" className={`flex items-center gap-2.5 ${tone}`} aria-label="RKM Foundation — Home">
+          <Link href={isHi ? "/hi" : "/"} className={`flex items-center gap-2.5 ${tone}`} aria-label={isHi ? "RKM Foundation — होम" : "RKM Foundation — Home"}>
             <img src="/logo-128.png" alt="" width={36} height={36} className={`h-9 w-9 ${onDark ? "rounded-full bg-white/90 p-0.5" : ""}`} />
             <span className="text-[15px] font-semibold tracking-tight sm:text-base">RKM Foundation</span>
           </Link>
           <nav className="flex items-center gap-2 sm:gap-5">
-            <div className={`hidden overflow-hidden rounded-full text-xs font-semibold ring-1 sm:inline-flex ${onDark ? "ring-white/30" : "ring-ink/15"}`} aria-label="Language">
+            <div className={`hidden overflow-hidden rounded-full text-xs font-semibold ring-1 sm:inline-flex ${onDark ? "ring-white/30" : "ring-ink/15"}`} aria-label={isHi ? "भाषा" : "Language"}>
               <Link href={enHref} aria-label="English" className={`px-2.5 py-1.5 transition-colors ${!isHi ? "bg-copper-dark text-white" : tone}`}>EN</Link>
               <Link href={hiHref} aria-label="हिंदी" className={`px-2.5 py-1.5 transition-colors ${isHi ? "bg-copper-dark text-white" : tone}`}>हिंदी</Link>
             </div>
@@ -93,7 +93,7 @@ export default function Header() {
               {isHi ? "हमारे बारे में" : "About"}
             </Link>
             <Link href={isHi ? "/hi/donate-now" : "/donate-now"} className="btn-copper !px-5 !py-2.5 text-sm">{isHi ? "अभी दान करें" : "Donate Now"}</Link>
-            <button ref={triggerRef} onClick={() => setOpen(true)} aria-label="Open menu" aria-expanded={open} aria-controls="nav-drawer"
+            <button ref={triggerRef} onClick={() => setOpen(true)} aria-label={isHi ? "मेन्यू खोलें" : "Open menu"} aria-expanded={open} aria-controls="nav-drawer"
               className={`flex h-10 items-center gap-1.5 rounded-full px-3.5 ring-1 transition-colors ${tone} ${ring}`}>
               <span className="hidden text-xs font-semibold uppercase tracking-wider sm:block">{isHi ? "मेन्यू" : "Menu"}</span>
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden>
@@ -118,7 +118,7 @@ export default function Header() {
               aria-hidden
             />
             <motion.div
-              ref={drawerRef} id="nav-drawer" role="dialog" aria-modal="true" aria-label="Site navigation"
+              ref={drawerRef} id="nav-drawer" role="dialog" aria-modal="true" aria-label={isHi ? "साइट नेविगेशन" : "Site navigation"}
               className="absolute inset-y-0 right-0 flex w-full max-w-xl flex-col bg-snow"
               style={isHi ? FONT_HI : undefined}
               initial={{ x: "100%" }}
@@ -128,7 +128,7 @@ export default function Header() {
             >
               <div className="flex h-16 items-center justify-between px-6 sm:h-[72px] sm:px-10">
                 <span className="eyebrow">{isHi ? "मेन्यू" : "Menu"}</span>
-                <button onClick={() => setOpen(false)} aria-label="Close menu"
+                <button onClick={() => setOpen(false)} aria-label={isHi ? "मेन्यू बंद करें" : "Close menu"}
                   className="grid h-10 w-10 place-items-center rounded-full ring-1 ring-ink/10 hover:ring-copper">
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
                     <path d="M1 1l12 12M13 1L1 13" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
@@ -154,7 +154,7 @@ export default function Header() {
               </nav>
               <div className="flex items-center justify-between border-t border-ink/10 px-6 py-5 sm:px-10">
                 <div className="flex items-center gap-4">
-                  <a href={`mailto:${SITE.email}`} aria-label="Email RKM Foundation" className="text-ink/70 hover:text-copper-dark">
+                  <a href={`mailto:${SITE.email}`} aria-label={isHi ? "RKM Foundation को ईमेल करें" : "Email RKM Foundation"} className="text-ink/70 hover:text-copper-dark">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden><rect x="2" y="4" width="20" height="16" rx="3"/><path d="m3 6 9 7 9-7"/></svg>
                   </a>
                   <a href={SITE.whatsapp} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp RKM Foundation" className="text-ink/70 hover:text-copper-dark">

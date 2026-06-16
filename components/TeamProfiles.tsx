@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { TEAM } from "@/lib/content";
 
 type Member = {
@@ -24,6 +25,7 @@ function Chevron({ open }: { open: boolean }) {
 }
 
 function ProfileCard({ m, open, onToggle, expertiseLabel }: { m: Member; open: boolean; onToggle: () => void; expertiseLabel: string }) {
+  const hi = usePathname().startsWith("/hi");
   const id = m.name.replace(/\s+/g, "-").toLowerCase();
   return (
     <div
@@ -67,7 +69,7 @@ function ProfileCard({ m, open, onToggle, expertiseLabel }: { m: Member; open: b
       <div
         id={`${id}-panel`}
         role="region"
-        aria-label={`${m.name} — profile`}
+        aria-label={hi ? `${m.name} — प्रोफ़ाइल` : `${m.name} — profile`}
         className={`grid transition-[grid-template-rows] duration-500 ease-out ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
       >
         <div className="overflow-hidden">
@@ -91,7 +93,7 @@ function ProfileCard({ m, open, onToggle, expertiseLabel }: { m: Member; open: b
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 inline-flex items-center gap-1.5 text-xs font-medium text-copper-dark hover:underline"
-                aria-label={`${m.name} on LinkedIn`}
+                aria-label={hi ? `लिंक्डइन पर ${m.name}` : `${m.name} on LinkedIn`}
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
                   <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 18.34V9.96H5.56v8.38h2.78zM6.95 8.72a1.61 1.61 0 1 0 0-3.22 1.61 1.61 0 0 0 0 3.22zM18.44 18.34v-4.6c0-2.46-1.31-3.6-3.06-3.6-1.41 0-2.04.78-2.39 1.32v-1.13h-2.78c.04.78 0 8.38 0 8.38h2.78v-4.68c0-.25.02-.5.09-.68.2-.5.65-1.01 1.41-1.01.99 0 1.39.76 1.39 1.86v4.51h2.56z" />

@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
 type Field = {
   name: string; label: string; type?: string; required?: boolean; placeholder?: string;
@@ -11,6 +12,7 @@ export default function FormShell({
 }: {
   formType: string; fields: Field[]; submitLabel: string; successMessage: string; note?: string;
 }) {
+  const hi = usePathname().startsWith("/hi");
   const [state, setState] = useState<"idle" | "loading" | "ok" | "dup" | "err">("idle");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -52,7 +54,7 @@ export default function FormShell({
             <textarea id={`${formType}-${f.name}`} name={f.name} required={f.required} placeholder={f.placeholder} rows={4} className="input-c" />
           ) : f.options ? (
             <select id={`${formType}-${f.name}`} name={f.name} required={f.required} className="input-c" defaultValue="">
-              <option value="" disabled>{f.placeholder ?? "Select…"}</option>
+              <option value="" disabled>{f.placeholder ?? (hi ? "चुनें…" : "Select…")}</option>
               {f.options.map((o) => <option key={o}>{o}</option>)}
             </select>
           ) : (
@@ -63,12 +65,12 @@ export default function FormShell({
       ))}
       <div className="sm:col-span-2">
         <button className="btn-dark w-full sm:w-auto" disabled={state === "loading"}>
-          {state === "loading" ? "Submitting…" : submitLabel}
+          {state === "loading" ? (hi ? "भेजा जा रहा है…" : "Submitting…") : submitLabel}
         </button>
         {note && <p className="mt-3 text-xs text-ink/60">{note}</p>}
         <p aria-live="polite" className="mt-2 min-h-5 text-sm">
-          {state === "dup" && <span className="text-ink/70">You have already submitted this request. Our team will be in touch shortly.</span>}
-          {state === "err" && <span className="text-red-600">Something went wrong. Please try again or contact us at info@rkm.support.</span>}
+          {state === "dup" && <span className="text-ink/70">{hi ? "आप यह अनुरोध पहले ही भेज चुके हैं। हमारी टीम जल्द ही आपसे संपर्क करेगी।" : "You have already submitted this request. Our team will be in touch shortly."}</span>}
+          {state === "err" && <span className="text-red-600">{hi ? "कुछ गलत हो गया। कृपया फिर से प्रयास करें या info@rkm.support पर हमसे संपर्क करें।" : "Something went wrong. Please try again or contact us at info@rkm.support."}</span>}
         </p>
       </div>
     </form>

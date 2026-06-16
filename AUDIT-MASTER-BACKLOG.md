@@ -15,7 +15,7 @@
 | Low | 10 |
 | **Total** | **38** |
 
-> **Meta-issue (blocker):** The local working copy **diverges from deployed production**. Hindi legal pages (`app/hi/legal/*`) appeared mid-audit via OneDrive sync (file timestamps 2026-06-16 08:24–08:28). Decide the source of truth (local repo vs. live Vercel deploy) **before** any implementation, or fixes may collide with in-flight edits.
+> **Meta-issue (BLOCKER, now confirmed live):** The local working copy **is behind deployed production**. Live validation proved it: production serves a localized **Hindi** `<title>` on `/hi`, and `/hi/legal/website-disclaimer-cookie-policy`, `/hi/legal/80g-tax-disclaimer`, `/hi/legal/terms-and-conditions`, `/hi/shop` all return **HTTP 200** — pages the local route inventory lacked. **Production is ahead of this repo.** Decide the source of truth (pull production state into the repo) **before** any implementation, or fixes will regress live work. This single root cause invalidates several code-only findings (see Audit F).
 
 ---
 
@@ -77,9 +77,9 @@
 - **Accessibility (WCAG 3.1.1) / SEO · M** · **Evidence:** `app/layout.tsx:24` hard-codes `<html lang="en">`; single root layout, no `/hi` layout. All Devanagari content is announced as English by screen readers and declared English to crawlers.
 - **Fix:** Set `lang="hi"` for the `/hi` subtree (route-group layout or server-side segment check). *(A11Y-1, SEO-9)*
 
-### H10 — Homepage `/` and `/hi` have no page-level metadata
-- **SEO · S** · **Evidence:** `app/page.tsx` and `app/hi/page.tsx` have no `export const metadata`; both inherit the layout default, so `/hi` emits an English title/description and no canonical/hreflang.
-- **Fix:** Add unique localized metadata + canonical to both (`/hi` in Hindi). *(SEO-3)*
+### H10 — Homepage `/` and `/hi` have no page-level metadata `[⚠ partially resolved on prod]`
+- **SEO · S** · **Evidence:** `app/page.tsx` and `app/hi/page.tsx` (local) have no `export const metadata`. **Live check:** production `/hi` already serves a localized Hindi title (`RKM फाउंडेशन — भारत में पशु बचाव…`), so prod is fine for `/hi`; this is a **local-repo staleness** artifact. Still worth confirming `/` (EN home) has a unique title vs. the layout default, and that canonical/hreflang exist.
+- **Fix:** Sync repo to prod; then add canonical + hreflang. *(SEO-3)*
 
 ### H11 — Widespread low-contrast text below 4.5:1
 - **Accessibility (WCAG 1.4.3) · M** · **Evidence:** `text-ink/40` (~2.6:1), `/45` (~2.9:1), `/55` (~3.5–3.9:1) on real content incl. legal/disclaimer copy — e.g. `app/csr/page.tsx:122` (`text-ink/45` disclaimer), `app/contact/page.tsx:40` (detail labels), `components/ImpactSlider.tsx:60` ("256-bit secure…" trust line), `CsrAccordion.tsx`, `TeamProfiles.tsx:78`, `HomeHi.tsx:83,110,177`.
@@ -125,11 +125,11 @@
 ### M10 — Hindi nav/footer link to English destinations; toggle drops users home
 - **UX / i18n · S** · **Evidence:** `Footer.tsx:10` Hindi "कानूनी और शासन" → `/legal` (English) though `/hi/legal` exists; `Header.tsx:16` Hindi "शॉप" → `/shop`; `Header.tsx:31-34` `HI_PAGES` omits many translated routes so the EN→HI toggle sends users to `/hi` home instead of the equivalent page. **Fix:** point to `/hi/*`; expand `HI_PAGES`. *(QA-2, QA-3)*
 
-### M11 — Broken Hindi internal link (404)
-- **QA · S** · **Evidence:** `app/hi/legal/privacy-policy/page.tsx:114` links `/hi/legal/website-disclaimer-cookie-policy` — no such route exists (Hindi has privacy, terms, donation-refund, shop-refund only). **Fix:** point to EN equivalent or create the Hindi route. *(QA-1)*
+### M11 — Broken Hindi internal link (404) `[✗ FALSE POSITIVE — resolved on prod]`
+- **QA · S** · **Evidence:** code audit flagged `/hi/legal/website-disclaimer-cookie-policy` as missing. **Live check: returns HTTP 200.** The page exists on production; the local repo is simply behind. **No action** beyond syncing the repo. *(QA-1 — retracted)*
 
-### M12 — EN↔HI parity gaps
-- **Content / SEO · M · Approval: YES (content)** · **Evidence:** Hindi tree missing `website-disclaimer-cookie-policy` + `80g-tax-disclaimer`, and fundraiser/shop confirmation pages. Hindi-converting donors hit English legal/policy content. **Fix:** translate the missing legal pages (prioritize 80g-tax-disclaimer + disclaimer/cookie). *(SEO parity)*
+### M12 — EN↔HI parity gaps `[⚠ mostly resolved on prod]`
+- **Content / SEO · M** · **Evidence:** code audit (stale repo) flagged missing Hindi legal pages. **Live check:** `/hi/legal/80g-tax-disclaimer` and `/hi/legal/website-disclaimer-cookie-policy` both return **200** on production — the Hindi legal section is complete live. Remaining real gap to verify post-sync: Hindi fundraiser/shop *confirmation* pages. **Fix:** sync repo, then confirm only the confirmation-page gaps. *(SEO parity — largely retracted)*
 
 ### M13 — No client-side email validation before payment
 - **Conversion · S · Approval: YES (flow)** · **Evidence:** `DonateWidget.tsx:29-44` validates only amount; malformed email proceeds to order, receipt silently fails. **Fix:** validate email shape, inline error. *(CONV-4)*
@@ -163,6 +163,27 @@
 - Hindi content is genuine, high-quality Devanagari (not machine copy-paste). CTAs consistent ("Donate Now"/"अभी दान करें"). Trust signals strong (12A/80G/CSR/DARPAN + downloadable certs — all 6 PDFs present). No lorem/TBD/fake-stats in production copy. No unused npm dependencies.
 
 ---
+
+## Audit F — Live Site Validation (runtime, production)
+Cross-checked the code findings against the running site via a real browser (console, network, DOM, timing) + live HTTP status checks.
+
+**Validated clean at runtime** (homepage, `/donate-now`, `/hi`):
+- **Zero console errors/exceptions**; **zero failed network requests** — all 24 homepage requests 200/304, no 4xx/5xx, no missing assets, no broken images (`naturalWidth` check).
+- Exactly **one H1** per page; fast delivery (TTFB ~16–89 ms, load ~88–210 ms warm); **no horizontal overflow** at desktop width.
+- Donation page renders correctly with amount tiers, name/email/PAN/address fields, T&C + WhatsApp opt-in, and "secured by Razorpay" handoff intact.
+
+**Confirmed live (real issues, not stale):**
+- **H7** — two render-blocking requests to `fonts.googleapis.com` / `fonts.gstatic.com` fire on every page. ✓
+- **H9** — `/hi` serves a Hindi title + Devanagari H1 but `document.documentElement.lang === "en"`. ✓ (WCAG 3.1.1 fail confirmed in the browser.)
+
+**Retracted/downgraded by live check (code audit ran against a stale local repo):**
+- **M11** broken Hindi link → **200 on prod** (retracted).
+- **M12** Hindi legal parity → Hindi legal pages **exist on prod** (largely retracted).
+- **H10** `/hi` metadata → prod serves **localized Hindi** title (partially resolved).
+
+**Could not complete (honest gaps — need different tooling):**
+- **True mobile/tablet viewport testing:** the controlled browser window would not shrink below ~1710 px on this display and no device-emulation mode is exposed, so I will not claim a mobile render pass. Needs DevTools device mode, a real device, or BrowserStack. (Desktop responsive layout shows no overflow; Tailwind responsive classes are present in code.)
+- **Lighthouse scores:** the PageSpeed Insights API returned empty through the available fetch tool, and the site's CSP blocks in-page PSI calls; warm-cache in-browser CWV (LCP read as 0) isn't reliable enough to quote. Needs a PSI API key or a local `npx lighthouse` run — I can do either if you enable it.
 
 ## Recommended execution workflow
 1. **Resolve source-of-truth** (local repo vs live Vercel) — blocker.
