@@ -23,7 +23,7 @@ function Chevron({ open }: { open: boolean }) {
   );
 }
 
-function ProfileCard({ m, open, onToggle }: { m: Member; open: boolean; onToggle: () => void }) {
+function ProfileCard({ m, open, onToggle, expertiseLabel }: { m: Member; open: boolean; onToggle: () => void; expertiseLabel: string }) {
   const id = m.name.replace(/\s+/g, "-").toLowerCase();
   return (
     <div
@@ -75,7 +75,7 @@ function ProfileCard({ m, open, onToggle }: { m: Member; open: boolean; onToggle
             {m.bio && <p className="text-[0.94rem] leading-relaxed text-ink/70">{m.bio}</p>}
             {m.expertise && m.expertise.length > 0 && (
               <div className="mt-4">
-                <p className="text-[0.64rem] font-semibold uppercase tracking-[0.16em] text-ink/45">Expertise</p>
+                <p className="text-[0.64rem] font-semibold uppercase tracking-[0.16em] text-ink/45">{expertiseLabel}</p>
                 <div className="mt-2 flex flex-wrap gap-2">
                   {m.expertise.map((e) => (
                     <span key={e} className="rounded-full bg-copper/10 px-3 py-1 text-xs font-medium text-copper-dark">
@@ -112,11 +112,14 @@ const GROUPS: { title: string; members: Member[]; cols: string }[] = [
   { title: "Lead Coordinators", members: TEAM.coordinators, cols: "sm:grid-cols-2" },
 ];
 
-export default function TeamProfiles() {
+export default function TeamProfiles(
+  { groups = GROUPS, expertiseLabel = "Expertise" }:
+  { groups?: { title: string; members: Member[]; cols: string }[]; expertiseLabel?: string } = {}
+) {
   const [openId, setOpenId] = useState<string | null>(null);
   return (
     <div className="mt-12 space-y-12">
-      {GROUPS.map((g) => (
+      {groups.map((g) => (
         <div key={g.title}>
           <h3 className="text-center text-sm font-bold uppercase tracking-wider text-ink/60">{g.title}</h3>
           <div className={`mx-auto mt-5 grid max-w-4xl gap-3.5 ${g.cols}`}>
@@ -128,6 +131,7 @@ export default function TeamProfiles() {
                   m={m}
                   open={openId === id}
                   onToggle={() => setOpenId(openId === id ? null : id)}
+                  expertiseLabel={expertiseLabel}
                 />
               );
             })}
