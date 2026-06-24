@@ -57,10 +57,16 @@ export default function DonateWidget() {
         await new Promise<void>((res, rej) => {
           const s = document.createElement("script");
           s.src = "https://checkout.razorpay.com/v1/checkout.js";
-          s.onload = () => res(); s.onerror = () => rej(new Error("load"));
+          // Fail fast instead of hanging on "Opening secure payment…" forever when
+          // checkout.js is blocked (ad-blocker / privacy extension) or the network stalls.
+          const timer = setTimeout(() => rej(new Error("rzp-load-timeout")), 12000);
+          s.onload = () => { clearTimeout(timer); res(); };
+          s.onerror = () => { clearTimeout(timer); rej(new Error("rzp-load-error")); };
           document.body.appendChild(s);
         });
       }
+      // Guard: even if the <script> "loaded", an extension can strip the global.
+      if (!window.Razorpay) throw new Error("rzp-unavailable");
       const rzp = new window.Razorpay({
         key: d.keyId,
         ...(d.monthly ? { subscription_id: d.subscriptionId } : { order_id: d.orderId, amount: d.amount, currency: "INR" }),
@@ -88,7 +94,17 @@ export default function DonateWidget() {
       track(EV.razorpayLaunched, { amount: amountToCharge, frequency: freq });
       rzp.open();
     } catch {
-      setMsg(hi ? "भुगतान शुरू नहीं हो सका। कृपया फिर से प्रयास करें।" : "Could not initiate payment. Please try again.");
+      // If the Razorpay global never appeared, the checkout script was almost
+      // certainly blocked by an ad-blocker / privacy extension — tell the donor
+      // exactly that and offer a fallback, rather than a generic retry.
+      const blocked = typeof window !== "undefined" && !window.Razorpay;
+      setMsg(
+        blocked
+          ? (hi
+              ? "सुरक्षित भुगतान विंडो नहीं खुल सकी — कोई ऐड-ब्लॉकर या प्राइवेसी एक्सटेंशन इसे रोक रहा हो सकता है। कृपया उसे इस साइट के लिए बंद करें और फिर से प्रयास करें, या फ़ुटर में दिए QR से UPI द्वारा दें, या info@rkm.support पर लिखें।"
+              : "We couldn't open the secure payment window — an ad-blocker or privacy extension may be blocking it. Please disable it for this site and retry, or pay via the UPI/QR in the footer, or write to info@rkm.support.")
+          : (hi ? "भुगतान शुरू नहीं हो सका। कृपया फिर से प्रयास करें।" : "Could not initiate payment. Please try again.")
+      );
       setBusy(false);
     }
   }

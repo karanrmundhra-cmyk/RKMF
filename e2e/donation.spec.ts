@@ -140,6 +140,20 @@ test("failed verification routes to the donation-failed page", async ({ page }) 
   await expect(page).toHaveURL(/\/donation-failed/);
 });
 
+test("blocked Razorpay checkout (ad-blocker) shows a helpful message and recovers", async ({ page }) => {
+  // Order succeeds, but checkout.js is blocked — simulates an ad-blocker /
+  // privacy extension (the real-world failure we diagnosed in production).
+  await page.route("**/api/donate", (route) =>
+    route.fulfill({ contentType: "application/json", body: JSON.stringify({ keyId: "rzp_test", subscriptionId: "sub_test", amount: 500000, monthly: true }) }),
+  );
+  await page.route("https://checkout.razorpay.com/**", (route) => route.abort());
+  await fillRequiredFields(page);
+  await submit(page).click();
+  await expect(page.getByText(/ad-blocker or privacy extension/i)).toBeVisible({ timeout: 20000 });
+  // The button must recover from the "Opening secure payment…" busy state.
+  await expect(submit(page)).not.toContainText("Opening secure payment");
+});
+
 test("analytics consent stays off until explicitly accepted (SOP-01)", async ({ page }) => {
   // beforeEach already clicked Reject, so the flag must not be true.
   const consent = await page.evaluate(() => (window as unknown as { __rkmf_analyticsConsent?: boolean }).__rkmf_analyticsConsent);
