@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import EditorialFigure from "@/components/EditorialFigure";
@@ -7,6 +8,7 @@ import CTABanner from "@/components/CTABanner";
 export const metadata: Metadata = {
   title: "Shop for a Cause",
   description: "The “Hope” Candle — every candle you buy helps feed, treat, and protect rescued animals in need.",
+  alternates: { canonical: "/shop", languages: { en: "/shop", hi: "/hi/shop", "x-default": "/shop" } },
 };
 
 const BADGES = ["Pet-Friendly", "Vegan", "Cruelty-Free", "No Toxins", "Ethically Sourced", "Made in India"];
@@ -160,7 +162,7 @@ export default function ShopPage() {
                     <p className="mt-4 max-w-xl leading-relaxed text-ink/60">{r.body}</p>
                   </div>
                   <figcaption className="flex items-center gap-3 lg:col-span-4 lg:justify-end">
-                    <img src={r.img} alt={r.name} className="h-11 w-11 rounded-full object-cover" loading="lazy" />
+                    <Image src={r.img} alt={r.name} width={44} height={44} className="h-11 w-11 rounded-full object-cover" />
                     <span className="font-medium">{r.name}</span>
                   </figcaption>
                 </figure>

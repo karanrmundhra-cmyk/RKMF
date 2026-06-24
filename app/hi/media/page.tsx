@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import { SITE } from "@/lib/content";
@@ -58,7 +59,7 @@ export default function MediaHiPage() {
                     <p className="text-2xl font-medium leading-snug tracking-tight text-ink/90 sm:text-3xl">&ldquo;{t.quote}&rdquo;</p>
                   </blockquote>
                   <figcaption className="flex items-center gap-3 lg:col-span-3 lg:flex-col lg:items-start lg:gap-2">
-                    <img src={t.img} alt={`${t.name} का चित्र`} width={48} height={48} className="h-12 w-12 rounded-full object-cover" loading="lazy" />
+                    <Image src={t.img} alt={`${t.name} का चित्र`} width={48} height={48} className="h-12 w-12 rounded-full object-cover" />
                     <div>
                       <div className="font-semibold">{t.name}</div>
                       <div className="text-sm text-ink/55">{t.place}</div>

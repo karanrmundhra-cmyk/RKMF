@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { TEAM } from "@/lib/content";
@@ -41,12 +42,11 @@ function ProfileCard({ m, open, onToggle, expertiseLabel }: { m: Member; open: b
         className="flex w-full items-center gap-4 p-4 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-copper/50 sm:p-5"
       >
         {m.img ? (
-          <img
+          <Image
             src={m.img}
             alt={m.name}
             width={64}
             height={64}
-            loading="lazy"
             className="h-16 w-16 shrink-0 rounded-full object-cover ring-1 ring-ink/10"
           />
         ) : (

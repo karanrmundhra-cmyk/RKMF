@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { DOWNLOADS, QUICK_LINKS, SITE } from "@/lib/content";
@@ -43,7 +44,7 @@ export default function Footer() {
           {/* 1 — Organisation identity & social */}
           <div className="sm:col-span-2 lg:col-span-1">
             <div className="flex items-center gap-2.5">
-              <img src="/logo-128.png" alt="" width={40} height={40} className="h-10 w-10" loading="lazy" />
+              <Image src="/logo-128.png" alt="" width={40} height={40} className="h-10 w-10" />
               <span className="font-semibold">RKM Foundation</span>
             </div>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink/70">
@@ -121,7 +122,7 @@ export default function Footer() {
           <div>
             <h4 className="text-sm font-bold uppercase tracking-wider">{hi ? "स्कैन करके दें" : "Scan to Give"}</h4>
             <Link href={donate} className="mt-4 block w-fit">
-              <img src="/images/site/qr.png" alt="QR code to donate to RKM Foundation" width={140} height={140} loading="lazy" className="h-36 w-36 rounded-xl ring-1 ring-ink/10" />
+              <Image src="/images/site/qr.png" alt="QR code to donate to RKM Foundation" width={140} height={140} className="h-36 w-36 rounded-xl ring-1 ring-ink/10" />
             </Link>
             <Link href={donate} className="link-secondary mt-3 inline-block text-sm">{hi ? "अभी दान करें" : "Donate Now"}</Link>
           </div>

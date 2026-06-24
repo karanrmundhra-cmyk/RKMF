@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -81,7 +82,7 @@ export default function Header() {
       <header style={isHi ? FONT_HI : undefined} className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/90 backdrop-blur-md shadow-[0_1px_0_rgba(0,0,0,0.06)]" : "bg-transparent"}`}>
         <div className="container-c flex h-16 items-center justify-between sm:h-[72px]">
           <Link href={isHi ? "/hi" : "/"} className={`flex items-center gap-2.5 ${tone}`} aria-label={isHi ? "RKM Foundation — होम" : "RKM Foundation — Home"}>
-            <img src="/logo-128.png" alt="" width={36} height={36} className={`h-9 w-9 ${onDark ? "rounded-full bg-white/90 p-0.5" : ""}`} />
+            <Image src="/logo-128.png" alt="" width={36} height={36} className={`h-9 w-9 ${onDark ? "rounded-full bg-white/90 p-0.5" : ""}`} />
             <span className="text-[15px] font-semibold tracking-tight sm:text-base">RKM Foundation</span>
           </Link>
           <nav className="flex items-center gap-2 sm:gap-5">
@@ -149,7 +150,7 @@ export default function Header() {
                   ))}
                 </motion.ul>
                 <div className="mt-10 hidden justify-center sm:flex">
-                  <img src="/logo-512.png" alt="" width={112} height={112} className="h-28 w-28 opacity-90" />
+                  <Image src="/logo-512.png" alt="" width={112} height={112} className="h-28 w-28 opacity-90" />
                 </div>
               </nav>
               <div className="flex items-center justify-between border-t border-ink/10 px-6 py-5 sm:px-10">

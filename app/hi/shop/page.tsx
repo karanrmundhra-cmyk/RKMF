@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import EditorialFigure from "@/components/EditorialFigure";
@@ -159,7 +160,7 @@ export default function ShopHiPage() {
                     <p className="mt-4 max-w-xl leading-relaxed text-ink/60">{r.body}</p>
                   </div>
                   <figcaption className="flex items-center gap-3 lg:col-span-4 lg:justify-end">
-                    <img src={r.img} alt={r.name} className="h-11 w-11 rounded-full object-cover" loading="lazy" />
+                    <Image src={r.img} alt={r.name} width={44} height={44} className="h-11 w-11 rounded-full object-cover" />
                     <span className="font-medium">{r.name}</span>
                   </figcaption>
                 </figure>

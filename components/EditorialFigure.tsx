@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Parallax from "./Parallax";
 
 /**
@@ -37,11 +38,13 @@ export default function EditorialFigure({
 }) {
   const inner = src ? (
     <div className={`figure-frame ${ratio}`}>
-      <img
+      <Image
         src={src}
         alt={alt}
-        loading={priority ? "eager" : "lazy"}
-        className="transition-transform duration-[1200ms] ease-out will-change-transform"
+        fill
+        sizes="(max-width: 1024px) 100vw, 50vw"
+        priority={priority}
+        className="object-cover transition-transform duration-[1200ms] ease-out will-change-transform"
       />
     </div>
   ) : (

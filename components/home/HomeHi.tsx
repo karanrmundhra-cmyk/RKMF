@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 
@@ -75,7 +76,7 @@ export function HomeHi() {
               return (
                 <div key={r.word} className={`grid items-center gap-y-8 gap-x-10 border-t border-ink/10 py-12 sm:py-16 lg:grid-cols-12 ${i === WWD.length - 1 ? "border-b" : ""}`}>
                   <Reveal delay={80} className={`lg:col-span-6 ${imageLeft ? "lg:order-1" : "lg:order-2"}`}>
-                    <div className="figure-frame aspect-[16/10]"><img src={r.src} alt={r.alt} loading="lazy" /></div>
+                    <div className="figure-frame aspect-[16/10]"><Image src={r.src} alt={r.alt} fill sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" /></div>
                   </Reveal>
                   <Reveal className={`lg:col-span-6 ${imageLeft ? "lg:order-2 lg:pl-6" : "lg:order-1 lg:pr-6"}`}>
                     <div className="flex items-baseline gap-4">
@@ -96,7 +97,7 @@ export function HomeHi() {
       <section className="section-y">
         <div className="container-c grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
           <Reveal className="order-2 lg:order-1 lg:col-span-5">
-            <div className="figure-frame aspect-[4/5]"><img src="/images/site/care.jpg" alt="टोबलर, वह कुत्ता जिसने RKM फाउंडेशन को प्रेरित किया" loading="lazy" /></div>
+            <div className="figure-frame aspect-[4/5]"><Image src="/images/site/care.jpg" alt="टोबलर, वह कुत्ता जिसने RKM फाउंडेशन को प्रेरित किया" fill sizes="(max-width: 1024px) 100vw, 40vw" className="object-cover" /></div>
           </Reveal>
           <Reveal delay={100} className="order-1 lg:order-2 lg:col-span-7 lg:pl-4">
             <p className="eyebrow-index">इसकी शुरुआत कैसे हुई</p>

@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import { useState } from "react";
 import { CSR_PILLARS } from "@/lib/content";
 
@@ -46,12 +47,13 @@ export default function CsrAccordion() {
             >
               <div className="overflow-hidden">
                 <div className="grid gap-6 px-5 pb-8 sm:px-7 lg:grid-cols-2 lg:items-center lg:gap-10">
-                  <div className="overflow-hidden rounded-xl bg-ink/5 lg:order-2">
-                    <img
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-ink/5 lg:order-2">
+                    <Image
                       src={p.img}
                       alt={`${p.name} — RKM Foundation CSR pillar`}
-                      loading="lazy"
-                      className="aspect-[4/3] h-full w-full object-cover"
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover"
                     />
                   </div>
                   <div className="lg:order-1">

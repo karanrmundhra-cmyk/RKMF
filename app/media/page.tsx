@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import CTABanner from "@/components/CTABanner";
 import ScrollFadeWords from "@/components/ScrollFadeWords";
@@ -7,6 +8,7 @@ import { TESTIMONIALS, SITE } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Media",
   description: "The donors, volunteers, vets, and neighbours behind every RKM Foundation rescue — in their own words.",
+  alternates: { canonical: "/media", languages: { en: "/media", hi: "/hi/media", "x-default": "/media" } },
 };
 
 const UPDATES = [
@@ -63,7 +65,7 @@ export default function MediaPage() {
                     <p className="text-2xl font-medium leading-snug tracking-tight text-ink/90 sm:text-3xl">&ldquo;{t.quote}&rdquo;</p>
                   </blockquote>
                   <figcaption className="flex items-center gap-3 lg:col-span-3 lg:flex-col lg:items-start lg:gap-2">
-                    <img src={t.img} alt={`Portrait of ${t.name}`} width={48} height={48} className="h-12 w-12 rounded-full object-cover" loading="lazy" />
+                    <Image src={t.img} alt={`Portrait of ${t.name}`} width={48} height={48} className="h-12 w-12 rounded-full object-cover" />
                     <div>
                       <div className="font-semibold">{t.name}</div>
                       <div className="text-sm text-ink/55">{t.place}</div>
