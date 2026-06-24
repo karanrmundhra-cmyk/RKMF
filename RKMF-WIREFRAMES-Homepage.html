@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKM Foundation — Homepage Wireframes (low-fi)</title>
+<style>
+  :root{
+    --ink:#111111; --snow:#f5f5f5; --copper:#b89245; --copper-dark:#8f6a2a;
+    --line:#c9c9c9; --box:#e7e4df; --boxline:#bdb8b0; --muted:#6b6b6b;
+    --mono:"SFMono-Regular",ui-monospace,Menlo,Consolas,monospace;
+    --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#ece9e4;color:var(--ink);font-family:var(--sans);line-height:1.5}
+  .wrap{max-width:1180px;margin:0 auto;padding:40px 24px 96px}
+  header.doc{border-bottom:2px solid var(--ink);padding-bottom:20px;margin-bottom:8px}
+  header.doc h1{font-size:30px;margin:0 0 4px;letter-spacing:-.01em}
+  header.doc .sub{color:var(--muted);font-size:14px}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;margin:18px 0 36px;font-size:12px;color:var(--muted)}
+  .legend span{display:inline-flex;align-items:center;gap:7px}
+  .swatch{width:22px;height:14px;border:1px solid var(--boxline);border-radius:3px;background:var(--box)}
+  .swatch.copper{background:#f0e6cf;border-color:var(--copper)}
+  .swatch.data{background:repeating-linear-gradient(45deg,#fbe6c8,#fbe6c8 5px,#f3d39e 5px,#f3d39e 10px);border-color:var(--copper-dark)}
+  .arc{font-family:var(--mono);font-size:12px;background:var(--ink);color:#fff;padding:10px 14px;border-radius:8px;margin-bottom:40px;letter-spacing:.02em}
+  .arc b{color:var(--copper)}
+
+  .frame{display:grid;grid-template-columns:1fr 270px;gap:22px;margin:0 0 46px;align-items:start}
+  @media(max-width:820px){.frame{grid-template-columns:1fr}}
+  .stage{background:var(--snow);border:1px solid var(--boxline);border-radius:14px;overflow:hidden}
+  .stage .bar{display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid var(--line);padding:9px 14px;font-size:11px;color:var(--muted);font-family:var(--mono)}
+  .navbits{display:flex;gap:10px;align-items:center}
+  .pill{border:1px solid var(--boxline);border-radius:999px;padding:3px 10px}
+  .pill.cta{background:var(--copper-dark);color:#fff;border-color:var(--copper-dark)}
+  .canvas{padding:26px 26px 30px;min-height:150px}
+
+  .flabel{font-family:var(--mono);font-size:12px;color:var(--copper-dark);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+  .imgbox{background:var(--box);border:1px dashed var(--boxline);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#9a948b;font-family:var(--mono);font-size:12px;text-align:center;padding:10px}
+  .imgbox.tall{min-height:230px}
+  .imgbox.eye{min-height:300px;background:linear-gradient(180deg,#3a342c,#15110c);color:#cdbf9c;border-color:#3a342c}
+  .copy-1{font-size:22px;font-weight:600;letter-spacing:-.01em;margin:14px 0 2px}
+  .copy-2{font-size:26px;font-weight:600;letter-spacing:-.015em;font-style:italic;margin:2px 0 14px}
+  .serif{font-family:Georgia,"Times New Roman",serif}
+  .cta{display:inline-block;border:1px solid var(--ink);border-radius:999px;padding:8px 18px;font-size:13px;font-weight:600;margin-top:6px}
+  .cta.quiet{border-color:var(--copper-dark);color:var(--copper-dark)}
+  .pull{font-family:Georgia,serif;font-size:30px;font-style:italic;color:var(--copper-dark);border-left:3px solid var(--copper);padding:8px 0 8px 18px;margin:18px 0}
+  .lines{margin:10px 0}
+  .lines i{display:block;height:9px;background:#ddd9d3;border-radius:4px;margin:7px 0}
+  .lines i.s{width:55%}.lines i.m{width:78%}.lines i.l{width:92%}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:6px}
+  @media(max-width:620px){.grid4{grid-template-columns:repeat(2,1fr)}}
+  .verb{font-weight:700;font-size:15px;margin:8px 0 2px}
+  .ledger{background:linear-gradient(180deg,#15110c,#241c12 55%,#5a4a2e);border-radius:10px;padding:22px;color:#efe4cc}
+  .ledger .pin{font-family:var(--mono);font-size:12px;color:var(--copper);border:1px solid var(--copper-dark);border-radius:6px;padding:6px 10px;display:inline-block;margin-bottom:14px}
+  .names{display:flex;flex-wrap:wrap;gap:10px 22px}
+  .names b{font-weight:600;font-size:18px;opacity:.92}
+  .names b small{font-weight:400;font-size:11px;color:#caa86a;display:block}
+  .donate{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:620px){.donate{grid-template-columns:1fr}}
+  .card{border:1px solid var(--boxline);border-radius:10px;background:#fff;padding:16px}
+  .toggle{display:flex;border:1px solid var(--boxline);border-radius:999px;overflow:hidden;font-size:13px;margin-bottom:12px}
+  .toggle div{flex:1;text-align:center;padding:8px}
+  .toggle .on{background:var(--ink);color:#fff;font-weight:600}
+  .tiers{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+  .tier{border:1px solid var(--boxline);border-radius:8px;padding:10px;font-size:12px}
+  .tier.on{border-color:var(--copper);background:#f0e6cf}
+  .btnbig{background:var(--copper-dark);color:#fff;text-align:center;border-radius:999px;padding:12px;font-weight:600;margin-top:12px;font-size:14px}
+
+  aside.note{font-size:13px;color:#3a3a3a}
+  aside.note h4{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+  aside.note p{margin:0 0 12px}
+  .feel{background:#fff;border:1px solid var(--boxline);border-left:3px solid var(--copper);border-radius:8px;padding:10px 12px;margin-bottom:12px}
+  .feel b{color:var(--copper-dark)}
+  .data{background:repeating-linear-gradient(45deg,#fbe6c8,#fbe6c8 6px,#f6ddae 6px,#f6ddae 12px);border:1px solid var(--copper-dark);border-radius:6px;padding:8px 10px;font-size:12px;color:#5e4715;margin-bottom:10px}
+  .data b{font-family:var(--mono)}
+  .mobcol{max-width:300px}
+  .phone{border:8px solid var(--ink);border-radius:28px;overflow:hidden;background:var(--snow)}
+  .phone .canvas{padding:16px;min-height:auto}
+  .sectiontitle{font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:54px 0 18px;border-top:1px solid var(--boxline);padding-top:18px}
+  .peak{outline:2px solid var(--copper);outline-offset:3px}
+  footer.doc{margin-top:60px;border-top:1px solid var(--boxline);padding-top:18px;color:var(--muted);font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="doc">
+    <h1>RKM Foundation — Homepage Wireframes <span style="color:var(--muted);font-weight:400;font-size:18px">(low-fi)</span></h1>
+    <div class="sub">Concept: <b>“The Ones Who Didn’t Walk Past.”</b> · Frames F0–F7 + Donate + mobile · per RKMF-EXPERIENCE-DESIGN.md · structure &amp; copy only, no visual design yet.</div>
+  </header>
+
+  <div class="legend">
+    <span><i class="swatch"></i> image / photo placeholder</span>
+    <span><i class="swatch copper"></i> signature “lamp-light” moment</span>
+    <span><i class="swatch data"></i> <b>[NEEDS DATA]</b> — real content from Founder Pack</span>
+  </div>
+
+  <div class="arc">EMOTIONAL ARC &nbsp;→&nbsp; Pause &nbsp;·&nbsp; Confidence &nbsp;·&nbsp; Respect &nbsp;·&nbsp; Clarity &nbsp;·&nbsp; <b>AWE (peak)</b> &nbsp;·&nbsp; Agency &nbsp;·&nbsp; Action &nbsp;·&nbsp; Belonging</div>
+
+  <!-- F0 -->
+  <div class="frame">
+    <div class="stage">
+      <div class="bar"><span>◐ RKM</span><div class="navbits"><span class="pill">EN · हिं</span><span class="pill cta">Don’t walk past →</span></div></div>
+      <div class="canvas">
+        <div class="flabel">Frame 0 — Arrival (full viewport, pre-scroll)</div>
+        <div class="imgbox eye">ONE real rescued animal · eye-level · warm night-vigil light<br>still · present · looking just past you · <b>[NEEDS DATA: hero photo]</b></div>
+        <div class="copy-1">Most people walk past.</div>
+        <div class="copy-2 serif">We’re who they call when someone doesn’t.</div>
+        <span class="cta quiet">Don’t walk past →</span>
+      </div>
+    </div>
+    <aside class="note">
+      <div class="feel"><b>Feel:</b> Pattern-break → recognition, not guilt. You pause.</div>
+      <h4>Craft</h4><p>The only motion: line 2 settles a half-beat after line 1, so the sentence completes in your mind. No carousel, no “Donate Now” shout.</p>
+      <div class="data"><b>[NEEDS DATA]</b> real hero animal photo (eye-level, night light).</div>
+    </aside>
+  </div>
+
+  <!-- F1 -->
+  <div class="frame">
+    <div class="stage"><div class="canvas">
+      <div class="flabel">Frame 1 — The founding truth</div>
+      <div class="lines"><i class="l"></i><i class="l"></i><i class="m"></i></div>
+      <p style="max-width:60ch;color:#333;margin:8px 0">“Years ago, our dog Tobler fell ill, and we spent long nights beside him at a vet clinic. What we kept noticing wasn’t the other patients — it was the people at the door. Strangers, carrying a dog or a cat they’d found hurt on the road. Because they couldn’t walk past it.”</p>
+      <div class="pull">“They couldn’t walk past it.”</div>
+    </div></div>
+    <aside class="note"><div class="feel"><b>Feel:</b> Trust forms — specific, human, not about a logo.</div><h4>Craft</h4><p>Text arrives at reading pace, one thought at a time. Giant pull-quote glows lamp-light copper.</p></aside>
+  </div>
+
+  <!-- F2 -->
+  <div class="frame">
+    <div class="stage"><div class="canvas">
+      <div class="flabel">Frame 2 — The honesty turn</div>
+      <p class="serif" style="font-size:22px;max-width:30ch;margin:6px 0">“We’d rather grow slowly and keep every promise than grow fast and break one. We’re small, family-funded, and honest about it.”</p>
+    </div></div>
+    <aside class="note"><div class="feel"><b>Feel:</b> Respect. The differentiator beat — an NGO that <i>under</i>-claims.</div></aside>
+  </div>
+
+  <!-- F3 -->
+  <div class="frame">
+    <div class="stage"><div class="canvas">
+      <div class="flabel">Frame 3 — What we do: “Four ways we show up”</div>
+      <div class="grid4">
+        <div><div class="imgbox tall">photo</div><div class="verb">Rescue</div><small>wherever an animal is hurt.</small></div>
+        <div><div class="imgbox tall">photo</div><div class="verb">Feed</div><small>every day, for every animal in our care.</small></div>
+        <div><div class="imgbox tall">photo</div><div class="verb">Heal</div><small>wounds dressed, surgeries funded.</small></div>
+        <div><div class="imgbox tall">photo</div><div class="verb">Shelter</div><small>a safe place to rest.</small></div>
+      </div>
+    </div></div>
+    <aside class="note"><div class="feel"><b>Feel:</b> Clarity — in 10s you know exactly what they do.</div><p>Photos revealed one at a time on scroll. Photo leads · verb anchors · line supports.</p></aside>
+  </div>
+
+  <!-- F4 PEAK -->
+  <div class="frame">
+    <div class="stage peak"><div class="canvas" style="padding:0">
+      <div style="padding:18px 18px 0"><div class="flabel" style="color:var(--copper-dark)">Frame 4 — TOBLER’S LEDGER · ★ THE PEAK (signature concept)</div></div>
+      <div class="ledger" style="margin:12px 18px 18px">
+        <span class="pin">Tobler · #00 · Not a rescue. The reason.</span>
+        <div class="names">
+          <b>███████<small>Recovered</small></b><b>██████<small>Adopted</small></b><b>████████<small>Released</small></b>
+          <b>█████<small>Resting</small></b><b>███████<small>Recovered</small></b><b>██████<small>Adopted</small></b>
+          <b>█████████<small>Released</small></b><b>██████<small>Resting</small></b><b>███████<small>Recovered</small></b>
+        </div>
+        <p style="font-family:var(--mono);font-size:11px;color:#caa86a;margin-top:16px">light warms from night → first light (dawn) the further you scroll · tap a name → one-line story</p>
+      </div>
+    </div></div>
+    <aside class="note">
+      <div class="feel"><b>Feel:</b> <b>AWE</b> — not at a number, at the density of real promises kept. The memory you leave with.</div>
+      <h4>Why it wins</h4><p>Replaces the clichéd spinning counter with something only RKM could build. Type <i>is</i> the image — works without photos. Smallness becomes intimacy.</p>
+      <div class="data"><b>[NEEDS DATA]</b> real animal names + outcomes (Recovered/Adopted/Released/Resting) + one-line stories + any photos.</div>
+    </aside>
+  </div>
+
+  <!-- F5 -->
+  <div class="frame">
+    <div class="stage"><div class="canvas">
+      <div class="flabel">Frame 5 — The mirror (donor-as-hero)</div>
+      <p class="serif" style="font-size:24px;max-width:34ch;margin:6px 0">“You can’t be everywhere a hurt animal is. But you can be the reason someone doesn’t walk past.”</p>
+    </div></div>
+    <aside class="note"><div class="feel"><b>Feel:</b> Agency. The site hands <i>you</i> the identity — become one of the ones who don’t walk past.</div></aside>
+  </div>
+
+  <!-- F6 -->
+  <div class="frame">
+    <div class="stage"><div class="canvas">
+      <div class="flabel">Frame 6 — The ask (calm, monthly-first)</div>
+      <div class="donate">
+        <div class="card">
+          <small style="color:var(--muted);font-family:var(--mono)">THE WHY</small>
+          <div class="pull" style="font-size:20px;margin:10px 0">“…they couldn’t walk past it.”</div>
+          <div class="imgbox" style="min-height:54px">named monthly-donor testimonial + photo</div>
+        </div>
+        <div class="card">
+          <div class="toggle"><div class="on">Stay with them (monthly)</div><div>Give once</div></div>
+          <div class="tiers"><div class="tier">₹__</div><div class="tier on">₹__ ✓</div><div class="tier">₹__</div><div class="tier">Custom</div></div>
+          <p style="font-size:11px;color:var(--muted);margin:8px 0 0">each tier → a concrete outcome · 2nd-lowest pre-selected · “where your money goes” · “cover the fee”</p>
+          <div class="btnbig">Stay with them — ₹__/month</div>
+        </div>
+      </div>
+    </div></div>
+    <aside class="note">
+      <div class="feel"><b>Feel:</b> Acting is easy, safe, meaningful — the natural next step.</div>
+      <div class="data"><b>[NEEDS DATA]</b> real cost-per-outcome math · fund-allocation % · consented donor testimonial.</div>
+    </aside>
+  </div>
+
+  <!-- F7 -->
+  <div class="frame">
+    <div class="stage"><div class="canvas">
+      <div class="flabel">Frame 7 — Trust spine + honest close</div>
+      <div class="grid4" style="grid-template-columns:repeat(5,1fr)">
+        <div class="tier">Trust Reg E-30560</div><div class="tier">12A 47522</div><div class="tier">80G</div><div class="tier">CSR-1</div><div class="tier">DARPAN</div>
+      </div>
+      <p style="margin:14px 0 0;color:#333;max-width:50ch">Thane West, Maharashtra · info@rkm.support · +91 99207 80005 — <i>“we’re small, and we keep our promises.”</i></p>
+    </div></div>
+    <aside class="note"><div class="feel"><b>Feel:</b> Settled confidence. You leave having given — or remembering the one you couldn’t walk past.</div></aside>
+  </div>
+
+  <!-- DONATE PAGE -->
+  <div class="sectiontitle">Donate experience — “the moment you join the ones who didn’t walk past”</div>
+  <div class="frame">
+    <div class="stage"><div class="canvas">
+      <div class="flabel">/donate-now</div>
+      <h3 class="serif" style="font-size:22px;margin:4px 0 16px">“You didn’t walk past. Here’s what that does.”</h3>
+      <div class="donate">
+        <div class="card"><small style="color:var(--muted);font-family:var(--mono)">LEFT — THE WHY</small><div class="pull" style="font-size:18px">compact Tobler line</div><div class="imgbox" style="min-height:60px">one real monthly-donor testimonial (named, their words)</div></div>
+        <div class="card"><small style="color:var(--muted);font-family:var(--mono)">RIGHT — THE ACT</small>
+          <div class="toggle" style="margin-top:8px"><div class="on">Stay with them</div><div>Give once</div></div>
+          <div class="tiers"><div class="tier">₹__</div><div class="tier on">₹__ ✓</div><div class="tier">₹__</div><div class="tier">Custom →live impact</div></div>
+          <p style="font-size:11px;color:var(--muted);margin:8px 0 0">UPI / GPay surfaced first · fewest fields · “cover the fee”</p>
+          <div class="btnbig">Stay with them — ₹__/month</div>
+        </div>
+      </div>
+      <p style="font-size:12px;color:var(--muted);margin-top:14px">Thank-you (not a dead end): <b>“You’re one of them now.”</b> · one-time → one-tap “make it monthly” · low-friction share · “a name will come to you” <span class="data" style="padding:2px 6px">[NEEDS DATA]</span></p>
+    </div></div>
+    <aside class="note"><div class="feel"><b>Feel:</b> Welcomed into a group, not thanked by a vendor.</div><p>Micro-arc: chosen, not processed → staying, not transacting → welcomed.</p></aside>
+  </div>
+
+  <!-- MOBILE -->
+  <div class="sectiontitle">Mobile-first (designed for the thumb &amp; the street)</div>
+  <div style="display:flex;gap:24px;flex-wrap:wrap">
+    <div class="mobcol">
+      <div class="phone"><div class="bar" style="font-size:10px"><span>◐ RKM</span><span class="pill cta">≡</span></div><div class="canvas">
+        <div class="imgbox eye" style="min-height:360px">animal fills the screen</div>
+        <div class="copy-1" style="font-size:18px">Most people walk past.</div>
+        <div class="copy-2 serif" style="font-size:19px">We’re who they call…</div>
+        <span class="cta quiet" style="width:100%;text-align:center">Don’t walk past →</span>
+      </div></div>
+      <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:8px">Hero — line in lower thumb-zone; stillness reads louder on a busy device.</p>
+    </div>
+    <div class="mobcol">
+      <div class="phone"><div class="bar" style="font-size:10px"><span>Tobler’s Ledger</span></div><div class="canvas">
+        <div class="ledger" style="padding:14px"><span class="pin" style="font-size:10px">Tobler · #00</span>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px"><b style="font-size:16px;color:#efe4cc">███████ <small style="color:#caa86a">Recovered</small></b><b style="font-size:16px;color:#efe4cc">██████ <small style="color:#caa86a">Adopted</small></b><b style="font-size:16px;color:#efe4cc">████████ <small style="color:#caa86a">Released</small></b><b style="font-size:16px;color:#efe4cc">█████ <small style="color:#caa86a">Resting</small></b></div>
+        </div>
+      </div></div>
+      <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:8px">Ledger — a vertical register you <i>flick</i> like a names-book; tap to expand.</p>
+    </div>
+    <div class="mobcol">
+      <div class="phone"><div class="bar" style="font-size:10px"><span>Donate</span></div><div class="canvas">
+        <div class="toggle" style="font-size:11px"><div class="on">Monthly</div><div>Once</div></div>
+        <div style="display:grid;grid-template-columns:1fr;gap:8px"><div class="btnbig" style="margin:0;background:#222">UPI / GPay</div><div class="tiers"><div class="tier on">₹__ ✓</div><div class="tier">₹__</div></div></div>
+        <div class="btnbig">Stay with them ₹__/mo</div>
+      </div></div>
+      <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:8px">Donate — UPI/GPay first; big tap targets; identity button in thumb reach.</p>
+    </div>
+  </div>
+
+  <footer class="doc">
+    Wireframe order per spec: Homepage F0→F4 (carry the concept) → Donate → Ledger destination → journey state-variations (first-time / returning / Guardian). · <b>Non-negotiable:</b> the hero stays quiet — the experience peaks at <i>stillness</i> (hero) and <i>density</i> (Ledger), not effects. · Striped blocks = <b>[NEEDS DATA]</b> from the Founder Content Pack to reach full power.
+  </footer>
+</div>
+</body>
+</html>

@@ -58,13 +58,13 @@ export default function Footer() {
               )}
             </p>
             <div className="mt-5 flex items-center gap-4">
-              <a href={SITE.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="RKM Foundation Instagram" className="text-ink/60 hover:text-copper-dark">
+              <a href={SITE.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="RKM Foundation Instagram" className="inline-flex p-1 -m-1 text-ink/60 hover:text-copper-dark">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
               </a>
-              <a href={SITE.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="RKM Foundation Facebook" className="text-ink/60 hover:text-copper-dark">
+              <a href={SITE.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="RKM Foundation Facebook" className="inline-flex p-1 -m-1 text-ink/60 hover:text-copper-dark">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden><path d="M13.5 21v-7h2.6l.4-3h-3V9.1c0-.9.3-1.5 1.6-1.5H16.6V5c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9V11H8v3h2.5v7h3Z"/></svg>
               </a>
-              <a href={SITE.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="RKM Foundation LinkedIn" className="text-ink/60 hover:text-copper-dark">
+              <a href={SITE.social.linkedin} target="_blank" rel="noopener noreferrer" aria-label="RKM Foundation LinkedIn" className="inline-flex p-1 -m-1 text-ink/60 hover:text-copper-dark">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden><path d="M6.5 8.5v12H3v-12h3.5ZM4.7 3a2 2 0 1 1 0 4 2 2 0 0 1 0-4ZM21 20.5h-3.5v-6.2c0-1.6-.6-2.6-2-2.6-1.1 0-1.7.7-2 1.4-.1.2-.1.6-.1.9v6.5H9.9v-12h3.5v1.5c.5-.8 1.4-1.8 3.3-1.8 2.4 0 4.3 1.6 4.3 5v7.3Z"/></svg>
               </a>
             </div>
