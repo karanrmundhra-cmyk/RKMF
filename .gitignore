@@ -3,3 +3,17 @@ node_modules
 .env*.local
 .vercel
 *.tsbuildinfo
+
+# OS / editor cruft (these were committed 357× — never again)
+.DS_Store
+*.swp
+*.swo
+.fuse_hidden*
+*.bak
+*.bak-*
+*.orig
+untitled folder/
+**/untitled folder/
+
+# Lighthouse CI artifacts
+.lighthouseci/

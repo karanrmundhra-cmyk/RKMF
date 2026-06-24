@@ -4,6 +4,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CookieBanner from "@/components/CookieBanner";
 import StickyDonateBar from "@/components/StickyDonateBar";
+import LangSync from "@/components/LangSync";
+import Analytics from "@/components/Analytics";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rkmfoundation.com"),
@@ -29,15 +31,30 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet" />
         <link rel="icon" href="/logo-128.png" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
-          "@context": "https://schema.org", "@type": "NGO", name: "RKM Foundation",
+          "@context": "https://schema.org", "@type": ["NGO", "Organization"], name: "RKM Foundation",
           url: "https://rkmfoundation.com", logo: "https://rkmfoundation.com/logo-512.png",
           email: "info@rkm.support", telephone: "+91-99207-80005",
           address: { "@type": "PostalAddress", streetAddress: "201, 2nd Floor, Paramos Tower, Vasant Lawns, Majiwada", addressLocality: "Thane West", addressRegion: "Maharashtra", postalCode: "400601", addressCountry: "IN" },
-          nonprofitStatus: "https://schema.org/Nonprofit501c3", taxID: "AACTR4271L",
+          // Indian registered charitable trust — NOT a US 501(c)(3). Real statutory identifiers only.
+          taxID: "AACTR4271L",
+          identifier: [
+            { "@type": "PropertyValue", name: "Trust Registration", value: "E-30560" },
+            { "@type": "PropertyValue", name: "12A", value: "47522" },
+            { "@type": "PropertyValue", name: "80G", value: "CITE80G9792014-152016-17" },
+            { "@type": "PropertyValue", name: "CSR-1", value: "CSR00089305" },
+            { "@type": "PropertyValue", name: "NITI Aayog DARPAN", value: "MH/2024/0457296" },
+          ],
+          potentialAction: {
+            "@type": "DonateAction",
+            target: "https://rkmfoundation.com/donate-now",
+            recipient: { "@type": "NGO", name: "RKM Foundation" },
+          },
           description: "Registered charitable trust in India focused on animal welfare - rescue, feeding, medical care, and shelter.",
         }) }} />
       </head>
       <body>
+        <LangSync />
+        <Analytics />
         <Header />
         <main id="main">{children}</main>
         <Footer />
