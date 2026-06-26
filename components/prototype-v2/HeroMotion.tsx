@@ -93,8 +93,8 @@ export function HeroMotion() {
             than an entrance animation. */}
         <p className="eyebrow-index !text-copper-light before:!bg-copper-light/70">Animal Welfare · India</p>
         <h1 className="display-1 mt-6 max-w-[15ch] text-balance">
-          They can&apos;t ask for help.{" "}
-          <span className="text-copper-light">You can give it.</span>
+          Every street has{" "}
+          <span className="text-copper-light">a life worth saving.</span>
         </h1>
         <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/80 sm:text-xl">
           Every day we rescue, feed, heal, and shelter animals living on India&apos;s streets —

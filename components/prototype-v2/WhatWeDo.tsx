@@ -12,8 +12,8 @@ import EditorialFigure from "@/components/EditorialFigure";
 const ROWS = [
   { word: "Rescue", label: "On the street", desc: "We go wherever an animal is hurt — the street, the gutter, anywhere.", src: "/images/site/street.jpg", alt: "A rescued street dog in RKM Foundation's care" },
   { word: "Feed", label: "Every single day", desc: "Warm meals every day, for every animal in our care.", src: "/images/site/feed.jpg", alt: "A happy, well-fed rescued dog" },
-  { word: "Heal", label: "With trusted vets", desc: "Wounds dressed, surgeries funded — full vet care until they're whole.", src: "/images/site/heal.jpg", alt: "A rescued dog receiving veterinary care at the RKM shelter" },
-  { word: "Shelter", label: "A place to rest", desc: "A safe, quiet place to rest and recover.", src: "/images/site/rest.jpg", alt: "A rescued dog resting at the RKM Foundation shelter" },
+  { word: "Heal", label: "With trusted vets", desc: "Wounds dressed, surgeries funded — full vet care until they're whole.", src: "/images/site/heal-run.jpg", alt: "A happy, healthy dog running outdoors" },
+  { word: "Shelter", label: "A place to rest", desc: "A safe, quiet place to rest and recover.", src: "/images/site/shelter-cat.jpg", alt: "A cat resting safely indoors" },
 ];
 
 export function WhatWeDo() {
