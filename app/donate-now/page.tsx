@@ -23,6 +23,9 @@ const GIFTS = [
 export default function DonatePage() {
   return (
     <>
+      {/* Warm up the Razorpay checkout origin so the payment modal opens fast (§8). */}
+      <link rel="preconnect" href="https://checkout.razorpay.com" crossOrigin="anonymous" />
+      <link rel="dns-prefetch" href="https://checkout.razorpay.com" />
       <section className="bg-snow pb-16 pt-28 sm:pb-20 sm:pt-32">
         <div className="container-c grid items-start gap-x-16 gap-y-10 lg:grid-cols-12">
           {/* Editorial left column — below the widget on mobile so the form is reached first */}

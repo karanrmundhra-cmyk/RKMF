@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKM Foundation — Ledger &amp; Journey Wireframes (low-fi)</title>
+<style>
+  :root{--ink:#111;--snow:#f5f5f5;--copper:#b89245;--copper-dark:#8f6a2a;--line:#c9c9c9;--box:#e7e4df;--boxline:#bdb8b0;--muted:#6b6b6b;--mono:ui-monospace,Menlo,Consolas,monospace;--sans:"Inter",system-ui,sans-serif}
+  *{box-sizing:border-box}
+  body{margin:0;background:#ece9e4;color:var(--ink);font-family:var(--sans);line-height:1.5}
+  .wrap{max-width:1180px;margin:0 auto;padding:40px 24px 96px}
+  header.doc{border-bottom:2px solid var(--ink);padding-bottom:20px;margin-bottom:30px}
+  header.doc h1{font-size:28px;margin:0 0 4px}
+  header.doc .sub{color:var(--muted);font-size:14px}
+  .sectiontitle{font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:48px 0 16px;border-top:1px solid var(--boxline);padding-top:16px}
+  .frame{display:grid;grid-template-columns:1fr 270px;gap:22px;margin:0 0 30px;align-items:start}
+  @media(max-width:820px){.frame{grid-template-columns:1fr}}
+  .stage{background:var(--snow);border:1px solid var(--boxline);border-radius:14px;overflow:hidden}
+  .bar{display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid var(--line);padding:9px 14px;font-size:11px;color:var(--muted);font-family:var(--mono)}
+  .canvas{padding:22px 24px 26px}
+  .flabel{font-family:var(--mono);font-size:12px;color:var(--copper-dark);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+  .ledger{background:linear-gradient(180deg,#15110c,#241c12 55%,#5a4a2e);border-radius:10px;padding:22px;color:#efe4cc}
+  .pin{font-family:var(--mono);font-size:12px;color:var(--copper);border:1px solid var(--copper-dark);border-radius:6px;padding:6px 10px;display:inline-block;margin-bottom:16px}
+  .filterbar{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+  .chip{font-size:11px;border:1px solid #6b5a3a;color:#caa86a;border-radius:999px;padding:4px 12px}
+  .chip.on{background:var(--copper);color:#1a140b;border-color:var(--copper)}
+  .names{display:flex;flex-direction:column;gap:12px}
+  .names b{font-weight:600;font-size:19px;display:flex;justify-content:space-between;align-items:baseline;opacity:.92;border-bottom:1px dashed #3a3128;padding-bottom:8px}
+  .names b small{font-weight:400;font-size:11px;color:#caa86a}
+  .card-rev{background:#241c12;border:1px solid #4a3c26;border-radius:10px;padding:16px;margin-top:14px;display:grid;grid-template-columns:90px 1fr;gap:14px;align-items:center}
+  .photo{background:#3a2f1e;border:1px dashed #6b5a3a;border-radius:8px;height:90px;display:flex;align-items:center;justify-content:center;color:#9a8a6a;font-family:var(--mono);font-size:10px;text-align:center}
+  aside.note{font-size:13px;color:#3a3a3a}
+  aside.note h4{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+  .feel{background:#fff;border:1px solid var(--boxline);border-left:3px solid var(--copper);border-radius:8px;padding:10px 12px;margin-bottom:12px}
+  .feel b{color:var(--copper-dark)}
+  .data{background:repeating-linear-gradient(45deg,#fbe6c8,#fbe6c8 6px,#f6ddae 6px,#f6ddae 12px);border:1px solid var(--copper-dark);border-radius:6px;padding:8px 10px;font-size:12px;color:#5e4715}
+  .journey{display:grid;grid-template-columns:1fr;gap:0;background:#fff;border:1px solid var(--boxline);border-radius:12px;overflow:hidden}
+  .step{display:grid;grid-template-columns:38px 1fr;gap:14px;padding:14px 16px;border-bottom:1px solid var(--line);align-items:start}
+  .step:last-child{border-bottom:0}
+  .num{width:30px;height:30px;border-radius:999px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+  .step .t{font-weight:600;margin-bottom:2px}
+  .step .d{font-size:13px;color:#444}
+  .greet{background:#f0e6cf;border:1px solid var(--copper);border-radius:8px;padding:10px 12px;font-size:14px;margin-bottom:12px}
+  .light{font-family:var(--mono);font-size:11px;color:#caa86a;margin-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="doc">
+    <h1>RKM Foundation — Ledger &amp; Journey Wireframes <span style="color:var(--muted);font-weight:400;font-size:17px">(low-fi)</span></h1>
+    <div class="sub">Tobler’s Ledger destination + first-time / returning / Guardian journeys · companion to <b>RKMF-WIREFRAMES-Homepage.html</b> · striped blocks = <b>[NEEDS DATA]</b>.</div>
+  </header>
+
+  <!-- LEDGER DESTINATION -->
+  <div class="sectiontitle">Tobler’s Ledger — its own destination (“Every animal we ever kept a promise to.”)</div>
+  <div class="frame">
+    <div class="stage">
+      <div class="bar"><span>◐ RKM · Tobler’s Ledger</span><span>EN · हिं</span></div>
+      <div class="canvas">
+        <div class="flabel">Entry + browse</div>
+        <div class="ledger">
+          <span class="pin">Tobler · #00 · Not a rescue. The reason.</span>
+          <div class="filterbar"><span class="chip on">All</span><span class="chip">Recovered</span><span class="chip">Adopted</span><span class="chip">Released</span><span class="chip">Resting</span></div>
+          <div class="names">
+            <b>████████ <small>Recovered · found Majiwada</small></b>
+            <b>██████ <small>Adopted</small></b>
+            <b>█████████ <small>Released</small></b>
+            <b>███████ <small>Resting</small></b>
+            <b>██████ <small>Recovered</small></b>
+          </div>
+          <div class="card-rev">
+            <div class="photo">photo<br>if it exists</div>
+            <div><b style="font-size:18px">████████</b><div style="font-size:13px;color:#cbb890;margin-top:4px">one-line story — where found, what happened, where they are now. · date found · outcome</div></div>
+          </div>
+          <div class="light">▸ the page warms night → dawn the further you read (more promises kept) · no metrics, no share-spam — dignity first</div>
+        </div>
+      </div>
+    </div>
+    <aside class="note">
+      <div class="feel"><b>Feel:</b> reverence, intimacy, permanence — the opposite of a counter ticking up.</div>
+      <h4>Personal thread</h4><p>After you give, “your” animal appears here — or you’re told a name will be sent to you. Your gift becomes a <i>name you know</i>, not a receipt number.</p>
+      <div class="data"><b>[NEEDS DATA]</b> real animal names · outcomes · one-line stories · dates · photos where they exist.</div>
+    </aside>
+  </div>
+
+  <!-- FIRST-TIME -->
+  <div class="sectiontitle">First-time visitor journey — curiosity → trust → belief → identity → action</div>
+  <div class="frame">
+    <div class="stage"><div class="canvas">
+      <div class="flabel">State variations (cold arrival from social / search)</div>
+      <div class="journey">
+        <div class="step"><div class="num">1</div><div><div class="t">Lands cold, expecting another charity</div><div class="d">The hero <b>pattern-break</b> (“Most people walk past.”) stops the scroll.</div></div></div>
+        <div class="step"><div class="num">2</div><div><div class="t">Origin story earns trust</div><div class="d">Specific, human, humble — Tobler + the people at the vet door.</div></div></div>
+        <div class="step"><div class="num">3</div><div><div class="t">Tobler’s Ledger makes them believe</div><div class="d">Real names, not slogans. The peak.</div></div></div>
+        <div class="step"><div class="num">4</div><div><div class="t">The mirror hands them an identity</div><div class="d">“someone who doesn’t walk past.”</div></div></div>
+        <div class="step"><div class="num">5</div><div><div class="t">They give — or they leave remembering</div><div class="d">Even non-donors leave with the brand lodged → memory becomes a later gift.</div></div></div>
+      </div>
+    </div></div>
+    <aside class="note"><div class="feel"><b>Felt:</b> “This one is different. I’ll remember it.”</div></aside>
+  </div>
+
+  <!-- RETURNING -->
+  <div class="sectiontitle">Returning donor (known, not yet monthly) — recognise &amp; skip the pitch</div>
+  <div class="frame">
+    <div class="stage"><div class="canvas">
+      <div class="flabel">Recognised state</div>
+      <div class="greet">“Welcome back. The animals you helped are still here.”</div>
+      <div class="journey">
+        <div class="step"><div class="num">·</div><div><div class="t">Surfaces an outcome tied to their last gift</div><div class="d">…or a new name to meet. <span class="data" style="padding:1px 5px">[NEEDS DATA]</span></div></div></div>
+        <div class="step"><div class="num">·</div><div><div class="t">The ask shifts</div><div class="d">“Give again” — or, gently, “Stay with them — make it monthly.”</div></div></div>
+      </div>
+    </div></div>
+    <aside class="note"><div class="feel"><b>Felt:</b> remembered &amp; appreciated; invited one step deeper without pressure.</div><h4>Detection</h4><p>By email/cookie (the SOP-08 segmentation: first-time / returning / monthly / lapsed).</p></aside>
+  </div>
+
+  <!-- GUARDIAN -->
+  <div class="sectiontitle">Monthly donor (Guardian) — inside the circle, not a prospect</div>
+  <div class="frame">
+    <div class="stage"><div class="canvas">
+      <div class="flabel">Belonging state</div>
+      <div class="greet">“You’re one of the ones who don’t walk past — every day.”</div>
+      <div class="journey">
+        <div class="step"><div class="num">·</div><div><div class="t">They hold a name that’s theirs</div><div class="d">Their sponsored animal; they receive its updates. <span class="data" style="padding:1px 5px">[NEEDS DATA]</span></div></div></div>
+        <div class="step"><div class="num">·</div><div><div class="t">Less ask, more belonging + news from the field</div><div class="d">Occasional “your impact this month” + a soft, optional “add another name.”</div></div></div>
+      </div>
+    </div></div>
+    <aside class="note"><div class="feel"><b>Felt:</b> belonging and quiet pride — the vigil continues, and they’re in it.</div></aside>
+  </div>
+
+  <footer class="doc" style="margin-top:50px;border-top:1px solid var(--boxline);padding-top:16px;color:var(--muted);font-size:12px">
+    Build order (per spec): Homepage F0→F4 → Donate → <b>Ledger destination</b> → <b>journey state-variations</b> (these) → visual design. The Ledger reaches full power only with the Founder Content Pack (real names + outcomes + photos).
+  </footer>
+</div>
+</body>
+</html>
