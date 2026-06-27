@@ -48,9 +48,6 @@ export function WhyTrust() {
             <div>
               <p className="eyebrow-index">Registered &amp; Transparent</p>
               <h3 className="display-3 mt-4">Every rupee is accounted for.</h3>
-              <p className="mt-4 max-w-md text-sm leading-relaxed text-ink/65">
-                Reg. E-30560 — every certificate is downloadable.
-              </p>
             </div>
             <div className="flex flex-wrap items-center gap-2.5 lg:justify-end">
               {CERTS.map((c) => (

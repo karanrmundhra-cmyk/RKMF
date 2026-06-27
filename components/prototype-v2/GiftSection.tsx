@@ -27,7 +27,7 @@ export function GiftSection() {
             <p className="eyebrow-index">What Your Gift Does</p>
             <h2 className="display-2 mt-5 text-balance">No vague promises.</h2>
             <p className="mt-6 max-w-md text-lg leading-relaxed text-ink/65">
-              Here&apos;s exactly what your money buys — and we&apos;ll show you the life it changed.
+              Here&apos;s exactly what your gift buys.
             </p>
             <ImpactSlider />
             <Link href="/donate-now#donation" className="link-secondary mt-6 inline-block">

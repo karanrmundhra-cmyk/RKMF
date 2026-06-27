@@ -91,14 +91,12 @@ export function HeroMotion() {
         {/* Hero content renders statically (always visible) — the only motion here is
             the subtle GSAP image parallax. A guaranteed-visible headline matters more
             than an entrance animation. */}
-        <p className="eyebrow-index !text-copper-light before:!bg-copper-light/70">Animal Welfare · India</p>
         <h1 className="display-1 mt-6 max-w-[15ch] text-balance">
           Every street has{" "}
           <span className="text-copper-light">a life worth saving.</span>
         </h1>
         <p className="mt-7 max-w-xl text-lg leading-relaxed text-white/80 sm:text-xl">
-          Every day we rescue, feed, heal, and shelter animals living on India&apos;s streets —
-          and we&apos;ll show you the exact life your kindness changed.
+          Every day we rescue, feed, heal, and shelter animals living on India&apos;s streets.
         </p>
         <div className="mt-9 flex flex-wrap gap-3">
           <HoverLift>
