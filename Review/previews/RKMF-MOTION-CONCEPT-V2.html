@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>RKM Foundation — Motion Concept v2 (Preview)</title>
+<meta name="robots" content="noindex" />
+<!--
+  RKM FOUNDATION — MOTION CONCEPT v2
+  Real photos from the live site · OGL hero shader · GSAP ScrollTrigger + Lenis.
+  NOT LIVE (outside /app). Impact numbers are placeholders pending the Content Pack;
+  all photos & the rescue arc are real assets already on rkmfoundation.com.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6EFE3; --paper-deep:#ECE0CB; --paper-warm:#F1E6D2;
+    --ink:#211B13; --ink-soft:#4E4435;
+    --copper:#B0762F; --copper-deep:#744E1A;
+    --line:rgba(33,27,19,.14);
+    --maxw:1240px; --r:16px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--paper);color:var(--ink);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;line-height:1.55;overflow-x:hidden}
+  h1,h2,h3,.display{font-family:Fraunces,Georgia,serif;font-weight:500;letter-spacing:-.015em;line-height:1.03;margin:0}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+
+  /* global film grain for a unified, premium grade */
+  body::after{content:"";position:fixed;inset:0;z-index:70;pointer-events:none;opacity:.05;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");}
+
+  .flag{position:fixed;z-index:95;top:0;left:0;right:0;background:var(--ink);color:var(--paper);font-size:12px;letter-spacing:.03em;text-align:center;padding:7px 12px}
+  .flag b{color:#F0C98A;font-weight:600}
+
+  nav.bar{position:fixed;z-index:80;top:30px;left:0;right:0;max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:16px 28px;transition:background .3s,backdrop-filter .3s,padding .3s,top .3s}
+  nav.bar.scrolled{background:rgba(246,239,227,.82);backdrop-filter:saturate(1.2) blur(12px);border-radius:0 0 16px 16px;padding:12px 28px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:Fraunces,serif;font-weight:600;font-size:20px;color:var(--paper);mix-blend-mode:difference}
+  nav.bar.scrolled .brand{color:var(--ink);mix-blend-mode:normal}
+  .brand .dot{width:11px;height:11px;border-radius:50%;background:var(--copper);box-shadow:0 0 0 4px rgba(176,118,47,.25)}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--copper-deep);color:#fff;padding:13px 24px;border-radius:999px;font-weight:600;font-size:14.5px;border:none;cursor:pointer;transition:transform .25s,background .25s;min-height:46px}
+  .btn:hover{transform:translateY(-2px);background:#5d3d12}
+  .btn.ghost{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.5);backdrop-filter:blur(4px)}
+  nav.bar.scrolled .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btn.ghost:hover{background:rgba(255,255,255,.2)}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;height:100svh;min-height:660px;overflow:hidden;background:#100c08}
+  .hero-media{position:absolute;inset:0}
+  .hero-media img{width:100%;height:100%;object-fit:cover;object-position:50% 32%}
+  #heroGL{position:absolute;inset:0;width:100%;height:100%;opacity:0;transition:opacity .8s ease}
+  #heroGL.on{opacity:1}
+  .hero-grade{position:absolute;inset:0;background:
+    linear-gradient(180deg, rgba(16,12,8,.30) 0%, rgba(16,12,8,0) 26%, rgba(16,12,8,.10) 55%, rgba(16,12,8,.72) 100%),
+    radial-gradient(120% 80% at 70% 25%, rgba(176,118,47,.22), transparent 60%);}
+  .hero-inner{position:absolute;z-index:5;left:0;right:0;bottom:0;padding-bottom:8vh}
+  .hero h1{color:var(--paper);font-size:clamp(42px,8.4vw,116px);font-weight:600;max-width:15ch;text-shadow:0 2px 40px rgba(0,0,0,.35)}
+  .hero .sub{color:rgba(246,239,227,.92);font-size:clamp(16px,2vw,21px);max-width:44ch;margin:22px 0 30px;font-weight:400}
+  .reveal-mask{display:block;overflow:hidden}
+  .reveal-mask > *{display:block;transform:translateY(110%);opacity:0}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .scrollcue{position:absolute;z-index:5;bottom:24px;left:50%;transform:translateX(-50%);color:rgba(246,239,227,.8);font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:0}
+  .scrollcue::after{content:"";display:block;width:1px;height:38px;margin:12px auto 0;background:rgba(246,239,227,.6);transform-origin:top;animation:cue 1.9s ease-in-out infinite}
+  @keyframes cue{0%,100%{transform:scaleY(.25)}50%{transform:scaleY(1)}}
+
+  /* ---------- LEDE ---------- */
+  .lede-sec{padding:clamp(80px,15vh,170px) 0}
+  .eyebrow{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--copper-deep);font-weight:600;margin-bottom:20px}
+  .lede{font-size:clamp(24px,3.7vw,46px);line-height:1.22;max-width:19ch;font-family:Fraunces,serif;font-weight:500}
+  .lede .soft{color:rgba(33,27,19,.45)}
+
+  /* ---------- JOURNEY (scroll-scrub of REAL photos) ---------- */
+  .journey{position:relative;height:560vh;background:var(--ink)}
+  .journey-sticky{position:sticky;top:0;height:100svh;overflow:hidden}
+  .panel{position:absolute;inset:0;opacity:0;will-change:opacity}
+  .panel .ph{position:absolute;inset:0;overflow:hidden}
+  .panel .ph img{width:100%;height:100%;object-fit:cover;will-change:transform;filter:saturate(1.04) contrast(1.03)}
+  /* unified warm grade over every journey photo */
+  .panel .ph::after{content:"";position:absolute;inset:0;background:
+    linear-gradient(180deg, rgba(16,12,8,.32), rgba(16,12,8,.05) 35%, rgba(16,12,8,.55) 100%),
+    radial-gradient(120% 90% at 50% 40%, rgba(176,118,47,.18), transparent 65%);
+    mix-blend-mode:multiply;}
+  .panel .cap{position:absolute;z-index:3;left:0;right:0;bottom:11vh}
+  .cap .step{font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:#F0C98A;font-weight:600;margin-bottom:14px}
+  .cap h2{color:var(--paper);font-size:clamp(30px,6vw,76px);font-weight:600;max-width:16ch}
+  .journey-hud{position:absolute;z-index:5;top:calc(30px + 7vh);left:28px;right:28px;display:flex;align-items:center;gap:16px;color:rgba(246,239,227,.7)}
+  .journey-hud .count{font-family:Fraunces,serif;font-size:14px;letter-spacing:.04em}
+  .journey-hud .track{flex:1;height:2px;background:rgba(246,239,227,.2);border-radius:2px;overflow:hidden}
+  .journey-hud .track i{display:block;height:100%;width:0;background:#F0C98A}
+
+  /* ---------- PARALLAX GALLERY ---------- */
+  .gallery{padding:clamp(90px,16vh,190px) 0;overflow:hidden}
+  .gal-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:46px}
+  .gal-head h2{font-size:clamp(28px,4.4vw,52px);max-width:16ch}
+  .gal-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:22px}
+  .gal-item{position:relative;border-radius:var(--r);overflow:hidden;background:var(--paper-deep)}
+  .gal-item img{width:100%;height:130%;object-fit:cover;position:absolute;inset:-15% 0 0 0;will-change:transform;filter:saturate(1.05) contrast(1.02)}
+  .gal-item .spacer{display:block;width:100%}
+  .gal-item .tag{position:absolute;z-index:2;left:14px;bottom:13px;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:rgba(16,12,8,.42);padding:6px 12px;border-radius:999px;backdrop-filter:blur(3px)}
+  .g-a{grid-column:span 7} .g-a .spacer{padding-top:66%}
+  .g-b{grid-column:span 5} .g-b .spacer{padding-top:66%}
+  .g-c{grid-column:span 5} .g-c .spacer{padding-top:62%}
+  .g-d{grid-column:span 7} .g-d .spacer{padding-top:62%}
+
+  /* ---------- IMPACT ---------- */
+  .impact{background:var(--paper-deep);padding:clamp(80px,14vh,160px) 0}
+  .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:38px}
+  .stat{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:30px 26px}
+  .stat .n{font-family:Fraunces,serif;font-size:clamp(36px,5vw,56px);color:var(--copper-deep);line-height:1}
+  .stat .l{margin-top:10px;color:var(--ink-soft);font-size:15px}
+  .stat .ph{display:inline-block;margin-top:14px;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--copper-deep);border:1px dashed var(--copper);border-radius:999px;padding:3px 10px}
+
+  /* ---------- CLOSER ---------- */
+  .closer{position:relative;min-height:88svh;display:flex;align-items:center;overflow:hidden}
+  .closer-bg{position:absolute;inset:0}
+  .closer-bg img{width:100%;height:120%;object-fit:cover;object-position:50% 40%;position:absolute;inset:-10% 0 0 0;will-change:transform}
+  .closer-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,12,8,.55),rgba(16,12,8,.35) 50%,rgba(16,12,8,.78));mix-blend-mode:multiply}
+  .closer-inner{position:relative;z-index:3;text-align:center;width:100%}
+  .closer h2{color:var(--paper);font-size:clamp(34px,6.4vw,84px);font-weight:600;max-width:15ch;margin:0 auto}
+  .closer p{color:rgba(246,239,227,.86);max-width:46ch;margin:20px auto 30px}
+
+  footer{padding:46px 0 72px;background:var(--ink);color:rgba(246,239,227,.65);font-size:13.5px}
+  .foot-row{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+
+  @media (max-width:820px){
+    .gal-grid{grid-template-columns:1fr} .g-a,.g-b,.g-c,.g-d{grid-column:1/-1}
+    .g-a .spacer,.g-b .spacer,.g-c .spacer,.g-d .spacer{padding-top:72%}
+    .stat-row{grid-template-columns:1fr}
+    nav.bar .links{gap:8px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .reveal-mask > *{transform:none !important;opacity:1 !important}
+    .scrollcue::after{animation:none}
+    .journey{height:auto}
+    .journey-sticky{position:static;height:auto}
+    .panel{position:relative;opacity:1 !important;height:88svh}
+    #heroGL{display:none}
+  }
+</style>
+</head>
+<body>
+  <div class="flag">CONCEPT PREVIEW v2 — not live · real photos from your site · impact numbers are <b>placeholders</b> pending the Content Pack</div>
+
+  <nav class="bar" id="nav">
+    <div class="brand"><span class="dot"></span> RKM Foundation</div>
+    <div class="links" style="display:flex;gap:10px;align-items:center">
+      <a class="btn ghost" href="#journey">A rescue</a>
+      <a class="btn" href="#give">Donate</a>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <header class="hero" id="top">
+    <div class="hero-media">
+      <img id="heroImg" src="./assets/dog.jpg" alt="Close-up of a rescued dog's eyes" crossorigin="anonymous">
+      <canvas id="heroGL"></canvas>
+    </div>
+    <div class="hero-grade"></div>
+    <div class="hero-inner">
+      <div class="wrap">
+        <h1>
+          <span class="reveal-mask"><span>Every street has</span></span>
+          <span class="reveal-mask"><span>a life worth saving.</span></span>
+        </h1>
+        <p class="sub reveal-mask"><span>Rescue, feeding, veterinary care and adoption for the street animals of Thane &amp; Mumbai.</span></p>
+        <div class="cta-row reveal-mask"><span style="display:flex;gap:14px;flex-wrap:wrap">
+          <a class="btn" href="#give">Give monthly</a>
+          <a class="btn ghost" href="#journey">Follow a rescue ↓</a>
+        </span></div>
+      </div>
+    </div>
+    <div class="scrollcue" id="cue">Scroll</div>
+  </header>
+
+  <!-- ===== LEDE ===== -->
+  <section class="lede-sec">
+    <div class="wrap">
+      <div class="eyebrow" data-fade>What we do</div>
+      <p class="lede" data-fade>We find them hurt and hungry — <span class="soft">and we don't stop until they're well.</span></p>
+    </div>
+  </section>
+
+  <!-- ===== JOURNEY: scroll-scrub of REAL photos ===== -->
+  <section class="journey" id="journey">
+    <div class="journey-sticky">
+      <div class="journey-hud">
+        <span class="count" id="jCount">01 / 05</span>
+        <span class="track"><i id="jBar"></i></span>
+        <span class="count" style="opacity:.7">The work, step by step</span>
+      </div>
+
+      <article class="panel" data-step="RESCUE">
+        <div class="ph"><img src="./assets/street.jpg" alt="A rescued street dog in RKM Foundation's care"></div>
+        <div class="cap"><div class="wrap"><div class="step">01 — Rescue</div><h2>We find them on the street.</h2></div></div>
+      </article>
+      <article class="panel" data-step="HEAL">
+        <div class="ph"><img src="./assets/run.jpg" alt="A rescued dog, healthy and happy on the grass"></div>
+        <div class="cap"><div class="wrap"><div class="step">02 — Heal</div><h2>Back on their feet.</h2></div></div>
+      </article>
+      <article class="panel" data-step="SHELTER">
+        <div class="ph"><img src="./assets/cat.jpg" alt="An orange cat resting, safe and calm"></div>
+        <div class="cap"><div class="wrap"><div class="step">03 — Shelter</div><h2>A safe place to rest.</h2></div></div>
+      </article>
+      <article class="panel" data-step="FEED">
+        <div class="ph"><img src="./assets/feed.jpg" alt="A rescued dog eating from its food bowl"></div>
+        <div class="cap"><div class="wrap"><div class="step">04 — Feed</div><h2>A full bowl, every day.</h2></div></div>
+      </article>
+      <article class="panel" data-step="TOBLER">
+        <div class="ph"><img src="./assets/care.jpg" alt="Tobler, the dog who inspired RKM Foundation"></div>
+        <div class="cap"><div class="wrap"><div class="step">Where it began</div><h2>Tobler — the dog who started it all.</h2></div></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== PARALLAX GALLERY ===== -->
+  <section class="gallery">
+    <div class="wrap">
+      <div class="gal-head">
+        <div>
+          <div class="eyebrow" data-fade>Inside the work</div>
+          <h2 data-fade>Real animals. Real care. <span style="color:rgba(33,27,19,.45)">Every day.</span></h2>
+        </div>
+        <a class="btn" href="#give">Support a rescue</a>
+      </div>
+      <div class="gal-grid">
+        <div class="gal-item g-a"><span class="spacer"></span><img data-depth="40" src="./assets/heal.jpg" alt="Volunteers caring for a dog"><span class="tag">At the shelter</span></div>
+        <div class="gal-item g-b"><span class="spacer"></span><img data-depth="60" src="./assets/street.jpg" alt="A rescued street dog"><span class="tag">Rescued</span></div>
+        <div class="gal-item g-c"><span class="spacer"></span><img data-depth="55" src="./assets/rest.jpg" alt="A dog resting at the shelter"><span class="tag">Recovering</span></div>
+        <div class="gal-item g-d"><span class="spacer"></span><img data-depth="45" src="./assets/feed.jpg" alt="A rescued dog eating from its food bowl"><span class="tag">Fed daily</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== IMPACT ===== -->
+  <section class="impact" id="give">
+    <div class="wrap">
+      <div class="eyebrow" data-fade>Where your gift goes</div>
+      <p class="lede" data-fade style="max-width:24ch">Concrete outcomes, costed honestly.</p>
+      <div class="stat-row">
+        <div class="stat" data-fade><div class="n">₹[X]</div><div class="l">one street rescue + vaccination</div><span class="ph">Placeholder figure</span></div>
+        <div class="stat" data-fade><div class="n">₹[X]/mo</div><div class="l">feeds [N] shelter animals</div><span class="ph">Placeholder figure</span></div>
+        <div class="stat" data-fade><div class="n">[X]%</div><div class="l">of funds reach the animals</div><span class="ph">Placeholder figure</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CLOSER ===== -->
+  <section class="closer">
+    <div class="closer-bg"><img data-depth="50" src="./assets/dog.jpg" alt="A rescued dog"></div>
+    <div class="closer-inner">
+      <div class="wrap">
+        <h2 data-fade>Be the reason one of them makes it.</h2>
+        <p data-fade>Monthly giving keeps the bowls full and the clinic open.</p>
+        <a class="btn" data-fade href="#top" style="font-size:16px;padding:16px 32px">Donate monthly →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot-row">
+      <div>RKM Foundation · Thane West, Mumbai · <span style="color:#F0C98A">Concept preview v2</span></div>
+      <div>Real photos · placeholder figures · not for publication</div>
+    </div>
+  </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  var REDUCED=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var hasGSAP=!!(window.gsap&&window.ScrollTrigger);
+  if(hasGSAP) gsap.registerPlugin(ScrollTrigger);
+
+  /* Lenis + GSAP sync */
+  var lenis=null;
+  if(!REDUCED && window.Lenis){
+    lenis=new Lenis({lerp:0.1, wheelMultiplier:1});
+    if(hasGSAP){ lenis.on('scroll',ScrollTrigger.update); gsap.ticker.add(function(t){lenis.raf(t*1000);}); gsap.ticker.lagSmoothing(0); }
+    else { function raf(t){lenis.raf(t);requestAnimationFrame(raf);} requestAnimationFrame(raf); }
+  }
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click',function(e){var el=document.querySelector(a.getAttribute('href'));if(!el)return;e.preventDefault();
+      if(lenis)lenis.scrollTo(el,{offset:0});else el.scrollIntoView({behavior:REDUCED?'auto':'smooth'});});
+  });
+
+  /* nav scrim */
+  var nav=document.getElementById('nav');
+  function navState(){ nav.classList.toggle('scrolled',(lenis?lenis.scroll:window.scrollY)>60); }
+  (lenis?lenis.on('scroll',navState):window.addEventListener('scroll',navState,{passive:true})); navState();
+
+  /* hero intro reveal */
+  window.addEventListener('load',function(){
+    var items=document.querySelectorAll('.hero .reveal-mask > *');
+    if(REDUCED){ items.forEach(function(s){s.style.transform='none';s.style.opacity=1;}); return; }
+    if(hasGSAP){
+      gsap.to(items,{y:0,opacity:1,duration:1.1,ease:'expo.out',stagger:0.12,delay:0.15});
+      gsap.to('#cue',{opacity:1,duration:.8,delay:1.1});
+    } else {
+      items.forEach(function(s,i){s.style.transition='transform 1s cubic-bezier(.16,1,.3,1) '+(0.15+i*0.12)+'s,opacity 1s ease '+(0.15+i*0.12)+'s';s.style.transform='translateY(0)';s.style.opacity=1;});
+      document.getElementById('cue').style.opacity=1;
+    }
+  });
+
+  if(hasGSAP && !REDUCED){
+    /* generic fade-ins */
+    gsap.utils.toArray('[data-fade]').forEach(function(el){
+      gsap.from(el,{y:34,opacity:0,duration:.9,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 86%'}});
+    });
+
+    /* ---- JOURNEY scrub: crossfade real photos + Ken Burns + captions ---- */
+    var panels=gsap.utils.toArray('.panel');
+    var n=panels.length;
+    panels.forEach(function(p,i){ gsap.set(p,{opacity:i===0?1:0}); gsap.set(p.querySelector('img'),{scale:1.18}); var c=p.querySelector('.cap'); gsap.set(c,{y:i===0?0:40,opacity:i===0?1:0}); });
+    var jBar=document.getElementById('jBar'), jCount=document.getElementById('jCount');
+    var tl=gsap.timeline({scrollTrigger:{trigger:'.journey',start:'top top',end:'bottom bottom',scrub:0.6,
+      onUpdate:function(self){ var idx=Math.min(n,Math.floor(self.progress*n)+1); jCount.textContent=('0'+idx).slice(-2)+' / 0'+n; jBar.style.width=(self.progress*100)+'%'; }}});
+    for(var i=0;i<n;i++){
+      var img=panels[i].querySelector('img'), cap=panels[i].querySelector('.cap');
+      // ken burns across this panel's window
+      tl.to(img,{scale:1.0,ease:'none',duration:1.3}, Math.max(0,i-0.3));
+      if(i>0){ tl.to(panels[i],{opacity:1,ease:'none',duration:0.55}, i-0.55); tl.to(cap,{y:0,opacity:1,ease:'power2.out',duration:0.5}, i-0.3); }
+      if(i<n-1){ tl.to(cap,{y:-30,opacity:0,ease:'power2.in',duration:0.4}, i+0.45); }
+    }
+
+    /* ---- parallax on gallery + closer ---- */
+    gsap.utils.toArray('[data-depth]').forEach(function(img){
+      var d=parseFloat(img.getAttribute('data-depth'))||40;
+      gsap.fromTo(img,{yPercent:-d/6},{yPercent:d/6,ease:'none',scrollTrigger:{trigger:img.closest('.gal-item,.closer'),start:'top bottom',end:'bottom top',scrub:true}});
+    });
+
+    /* gallery items rise in */
+    gsap.utils.toArray('.gal-item').forEach(function(it,i){
+      gsap.from(it,{y:60,opacity:0,duration:.9,ease:'power3.out',scrollTrigger:{trigger:it,start:'top 88%'},delay:(i%2)*0.08});
+    });
+  } else if(REDUCED){
+    document.querySelectorAll('[data-fade],.cap').forEach(function(e){e.style.opacity=1;e.style.transform='none';});
+  }
+})();
+</script>
+
+<!-- OGL liquid/ink hero shader over the real photo -->
+<script type="module">
+  (async function(){
+    var REDUCED=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if(REDUCED) return;
+    var canvas=document.getElementById('heroGL'), heroImg=document.getElementById('heroImg');
+    try{
+      var ogl=await import('https://cdn.jsdelivr.net/npm/ogl@1.0.11/+esm');
+      var Renderer=ogl.Renderer, Triangle=ogl.Triangle, Program=ogl.Program, Mesh=ogl.Mesh, Texture=ogl.Texture;
+      var renderer=new Renderer({canvas:canvas, alpha:true, dpr:Math.min(window.devicePixelRatio||1,1.75)});
+      var gl=renderer.gl;
+      var texture=new Texture(gl,{generateMipmaps:false});
+      var img=new Image(); img.crossOrigin='anonymous'; img.src='./assets/dog.jpg';
+      await new Promise(function(res,rej){img.onload=res;img.onerror=rej;});
+      texture.image=img;
+      var imgAspect=img.naturalWidth/img.naturalHeight;
+
+      var vert="attribute vec2 uv;attribute vec2 position;varying vec2 vUv;void main(){vUv=uv;gl_Position=vec4(position,0.,1.);}";
+      var frag=[
+        "precision highp float;",
+        "uniform sampler2D tMap;uniform float uTime;uniform vec2 uRes;uniform float uImgAspect;",
+        "varying vec2 vUv;",
+        "float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}",
+        "float noise(vec2 p){vec2 i=floor(p),f=fract(p);float a=hash(i),b=hash(i+vec2(1,0)),c=hash(i+vec2(0,1)),d=hash(i+vec2(1,1));vec2 u=f*f*(3.-2.*f);return mix(a,b,u.x)+(c-a)*u.y*(1.-u.x)+(d-b)*u.x*u.y;}",
+        "float fbm(vec2 p){float s=0.,a=.5;for(int i=0;i<4;i++){s+=a*noise(p);p*=2.03;a*=.5;}return s;}",
+        "void main(){",
+        " float t=uTime;",
+        " // cover-fit uv",
+        " float canvasAspect=uRes.x/uRes.y;",
+        " vec2 uv=vUv;",
+        " if(canvasAspect>uImgAspect){float s=uImgAspect/canvasAspect;uv.y=(uv.y-.5)*s+.5;}",
+        " else{float s=canvasAspect/uImgAspect;uv.x=(uv.x-.5)*s+.5;}",
+        " // gentle liquid displacement (breathing/heat-haze)",
+        " vec2 w=vec2(fbm(uv*3.0+vec2(t*0.04,0.)),fbm(uv*3.0+vec2(4.7,t*0.05)));",
+        " uv += (w-0.5)*0.010;",
+        " vec3 col=texture2D(tMap,uv).rgb;",
+        " // warm grade",
+        " col=mix(col,col*vec3(1.07,0.99,0.86),0.5);",
+        " col*=1.02;",
+        " // soft grain",
+        " float g=hash(vUv*uRes.xy*0.5+t)*0.05-0.025; col+=g;",
+        " // vignette",
+        " float d=distance(vUv,vec2(0.5)); col*=smoothstep(0.95,0.35,d)*0.35+0.65;",
+        " gl_FragColor=vec4(col,1.0);",
+        "}"
+      ].join("\n");
+
+      var program=new Program(gl,{vertex:vert,fragment:frag,uniforms:{
+        tMap:{value:texture}, uTime:{value:0}, uRes:{value:[1,1]}, uImgAspect:{value:imgAspect}
+      }});
+      var mesh=new Mesh(gl,{geometry:new Triangle(gl),program:program});
+      function resize(){var host=canvas.parentElement;var w=host.clientWidth||window.innerWidth,h=host.clientHeight||window.innerHeight;renderer.setSize(w,h);canvas.style.width='100%';canvas.style.height='100%';program.uniforms.uRes.value=[gl.drawingBufferWidth,gl.drawingBufferHeight];}
+      window.addEventListener('resize',resize); resize();
+      canvas.classList.add('on');               // fade shader in over the <img>
+      var hero=document.getElementById('top'), vis=true;
+      document.addEventListener('visibilitychange',function(){vis=!document.hidden;});
+      function loop(t){requestAnimationFrame(loop); if(!vis)return; if(hero.getBoundingClientRect().bottom<0)return; program.uniforms.uTime.value=t*0.001; renderer.render({scene:mesh});}
+      requestAnimationFrame(loop);
+    }catch(e){ /* WebGL/CDN failed → the real <img> stays visible. */ }
+  })();
+</script>
+</body>
+</html>

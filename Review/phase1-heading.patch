@@ -1,0 +1,11 @@
+--- a/components/prototype-v2/WhatWeDo.tsx
++++ b/components/prototype-v2/WhatWeDo.tsx
+@@ -22,7 +22,7 @@
+       <div className="container-c">
+         <Reveal>
+           <p className="eyebrow-index">What We Do</p>
+-          <h2 className="display-2 mt-5 max-w-[16ch] text-balance">Four ways we show up for animals.</h2>
++          <h2 className="display-2 mt-5 xl:whitespace-nowrap">Four ways we show up for animals.</h2>
+         </Reveal>
+ 
+         <div className="mt-10 sm:mt-14">

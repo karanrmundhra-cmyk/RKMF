@@ -22,3 +22,8 @@ untitled folder/
 /test-results/
 /playwright-report/
 /playwright/.cache/
+
+# Local working assets (not part of the website build)
+.~lock.*#
+/Images/
+/*.xlsx

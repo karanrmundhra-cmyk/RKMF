@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>RKM Foundation — Showcase Design Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1b1714;--sand:#F4EEE3;--paper:#FBF8F2;--teal:#0F766E;--gold:#A9742F;--muted:#6f655b;--line:#e4dccd}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--paper);line-height:1.62}
+h1,h2,h3,.serif{font-family:'Fraunces',Georgia,serif;font-weight:500;letter-spacing:-.01em;line-height:1.1}
+.wrap{max-width:980px;margin:0 auto;padding:0 28px}
+header.top{background:var(--ink);color:var(--paper);padding:70px 0 56px}
+header.top .k{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#d8a861;margin-bottom:18px}
+header.top h1{font-size:clamp(34px,5.5vw,62px);color:#fff;max-width:18ch}
+header.top p{color:#c9bfb0;margin-top:18px;max-width:60ch;font-size:17px}
+header.top .links{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+header.top .links a{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);color:#fff;text-decoration:none;padding:10px 16px;border-radius:30px;font-size:13.5px}
+header.top .links a:hover{background:var(--gold);border-color:var(--gold)}
+section{padding:60px 0;border-bottom:1px solid var(--line)}
+.stage{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+h2{font-size:clamp(26px,3.6vw,40px);max-width:22ch}
+.intro{font-size:18px;color:var(--muted);margin:16px 0 8px;max-width:64ch}
+table{width:100%;border-collapse:collapse;margin-top:24px;font-size:14.5px}
+th,td{border:1px solid var(--line);padding:12px 14px;text-align:left;vertical-align:top}
+th{background:var(--sand);font-weight:600;font-family:'Inter'}
+td b{color:var(--ink)}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:26px;margin-top:20px}
+.card.rec{border:2px solid var(--teal);box-shadow:0 20px 50px -38px rgba(15,118,110,.6)}
+.card h3{font-size:24px;margin-bottom:4px}
+.tagrec{display:inline-block;background:var(--teal);color:#fff;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:4px 12px;border-radius:30px;margin-bottom:12px}
+.meta{color:var(--muted);font-size:14px;margin:2px 0 14px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.three div{background:var(--sand);border-radius:10px;padding:12px;font-size:13px}
+.three b{display:block;font-family:'Fraunces',serif;font-size:15px;margin-bottom:4px}
+ul{margin:10px 0 0 18px}li{margin-bottom:6px;font-size:15px}
+.pill{display:inline-block;font-size:11px;padding:3px 9px;border-radius:20px;font-weight:600}
+.low{background:#dcfce7;color:#166534}.med{background:#fff3d6;color:#92660b}.high{background:#fce4e4;color:#9b2c2c}
+.final{background:var(--teal);color:#fff;border-radius:16px;padding:34px;margin-top:24px}
+.final h3{color:#fff;font-size:26px;margin-bottom:10px}
+.final p{opacity:.95;margin-bottom:10px}
+.note{font-size:13px;color:var(--muted);font-style:italic;margin-top:10px}
+@media(max-width:720px){.three{grid-template-columns:1fr}table{font-size:13px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+ <div class="k">RKM Foundation · Showcase-first study</div>
+ <h1>Reverse-engineering Victor Furuya — translated for an animal-welfare nonprofit.</h1>
+ <p>Study, translation, three concepts, and one recommendation. Nothing here is implemented or deployed; the built mockups are standalone showcase files. Guiding rule throughout: <b>the rescued animal is the hero — never the website.</b></p>
+ <div class="links">
+   <a href="rkm_home.html">▶ View built mockup — Homepage</a>
+   <a href="rkm_rescue_story.html">▶ Rescue Story</a>
+   <a href="rkm_donate.html">▶ Donate</a>
+ </div>
+</div></header>
+
+<section><div class="wrap">
+ <div class="stage">Stage 1</div>
+ <h2 class="serif">Victor Furuya — reverse engineering</h2>
+ <p class="intro">A scroll-driven, monochrome editorial “poster” experience. The craft lives in restraint: one face, oversized type, deep negative space, and motion that rewards scrolling. Verified in Chrome (desktop + mobile, 19 Jun 2026).</p>
+ <table>
+  <tr><th>Section</th><th>Purpose</th><th>Layout</th><th>Typography</th><th>Animation</th><th>Visual treatment</th><th>Emotional purpose</th></tr>
+  <tr><td><b>Scroll loader</b></td><td>Arrest attention; signal craft</td><td>Full-bleed B&amp;W portrait; centred black “poster card”</td><td>Oversized grotesque “100” counter</td><td>Scroll-driven count + poster assembles</td><td>Monochrome, high contrast</td><td>Intrigue — “this is considered”</td></tr>
+  <tr><td><b>Hero poster</b></td><td>Identity + positioning</td><td>Centred poster over portrait</td><td>Huge sans headline “Make It Last”; tiny labels</td><td>Letters slot into place</td><td>Black on B&amp;W photo</td><td>Confidence, restraint</td></tr>
+  <tr><td><b>Manifesto</b></td><td>Philosophy / values</td><td>Stacked full-bleed images + centred lines</td><td>Editorial statements, generous leading</td><td>Fade / parallax reveals</td><td>Monochrome imagery</td><td>“Felt, not detailed” — emotion first</td></tr>
+  <tr><td><b>Work / case studies</b></td><td>Proof of work</td><td>Large image + index nums + brand/role/year meta</td><td>Numbered indices (01)</td><td>Horizontal slide</td><td>Cinematic stills</td><td>Credibility</td></tr>
+  <tr><td><b>About</b></td><td>The person behind the work</td><td>Big statement (“Carve it Into Memory”) + bio columns</td><td>Oversized headline + small body</td><td>Reveal on scroll</td><td>Portrait + whitespace</td><td>Human, intentional</td></tr>
+  <tr><td><b>Footer / outro</b></td><td>Close + contact</td><td>Minimal credits + socials</td><td>Small caps labels</td><td>—</td><td>Quiet</td><td>Calm sign-off</td></tr>
+ </table>
+ <p class="note">System DNA: monochrome • oversized neue-grotesque type • poster/editorial compositions • deep negative space • scroll-pinned reveals • emotive one-line copy • numbered indices • ultra-minimal nav (name / Works, About, Reach out).</p>
+</div></section>
+
+<section><div class="wrap">
+ <div class="stage">Stage 2</div>
+ <h2 class="serif">RKM translation map</h2>
+ <p class="intro">Keep the editorial craft; swap ego for empathy. Every device that glorifies the designer is re-pointed at the rescued animal.</p>
+ <table>
+  <tr><th>Victor Furuya</th><th>RKM Foundation equivalent</th><th>Why it works</th></tr>
+  <tr><td>“100” ego counter</td><td><b>Impact counter</b> — animals rescued, meals served, ₹ deployed</td><td>Same arresting motion; the number is now about animals, not self</td></tr>
+  <tr><td>Designer portrait hero</td><td><b>Rescued-animal full-bleed hero</b></td><td>The animal becomes the face — the hero of the site</td></tr>
+  <tr><td>“Make It Last” poster line</td><td><b>“They can’t ask for help. You can.”</b></td><td>Same oversized confidence, redirected to a call to compassion</td></tr>
+  <tr><td>Manifesto (“felt, not detailed”)</td><td><b>“You see the exact life you changed.”</b></td><td>Emotion + proof — the trust gap the live site has</td></tr>
+  <tr><td>Case study “Triadlight 01”</td><td><b>Rescue story “Bruno №118”</b></td><td>Numbered rescues as editorial case studies</td></tr>
+  <tr><td>Personal achievement</td><td><b>Animal transformation journey</b> (before → after)</td><td>The recovery arc is the emotional payoff</td></tr>
+  <tr><td>Project showcase</td><td><b>Active rescue showcase</b> w/ funding goal</td><td>Turns admiration into a fundable action</td></tr>
+  <tr><td>About the designer</td><td><b>About the mission</b>; founder/family as a quiet trust anchor</td><td>Humans support the story; the animal stays centre</td></tr>
+  <tr><td>“Reach out” CTA</td><td><b>“Donate / Become a Guardian”</b></td><td>The whole experience resolves into giving</td></tr>
+ </table>
+</div></section>
+
+<section><div class="wrap">
+ <div class="stage">Stage 3</div>
+ <h2 class="serif">Three showcase concepts</h2>
+
+ <div class="card">
+   <h3 class="serif">Concept A — Minimal Editorial</h3>
+   <div class="meta">Monochrome-leaning, type-forward, austere. The most literal translation of the reference.</div>
+   <div class="three">
+     <div><b>Homepage</b>Sand/ink palette, B&amp;W or duotone photography, oversized type, huge whitespace, one CTA.</div>
+     <div><b>Rescue story</b>Long-form, typographic, sparse imagery, quiet pull-quotes.</div>
+     <div><b>Donate</b>Stripped, single-column, restrained — type does the persuading.</div>
+   </div>
+ </div>
+
+ <div class="card rec">
+   <span class="tagrec">Recommended · built</span>
+   <h3 class="serif">Concept B — Premium Storytelling</h3>
+   <div class="meta">Full-bleed warm animal photography + editorial type + a scroll-driven emotional arc. Craft of the reference, warmth of the cause.</div>
+   <div class="three">
+     <div><b>Homepage</b>Cinematic animal hero, impact counters, four-ways grid, a live case (Bruno), Guardian Circle, trust + testimonial.</div>
+     <div><b>Rescue story</b>Editorial feature: drop-cap, pull-quotes, before/after, an inline funded-amount stat, “fund the next” close.</div>
+     <div><b>Donate</b>Monthly-default card, Guardian framing, reframed tiers, 80G savings line, UPI + cards, trust assurances.</div>
+   </div>
+   <div style="margin-top:14px"><a href="rkm_home.html" style="color:var(--teal);font-weight:600;text-decoration:none">→ Open the built mockup</a></div>
+ </div>
+
+ <div class="card">
+   <h3 class="serif">Concept C — Impact Documentary</h3>
+   <div class="meta">Cinematic and proof-led: big counters, outcomes, before/after, documentary captions. Built for trust &amp; CSR.</div>
+   <div class="three">
+     <div><b>Homepage</b>Data-forward hero, live metrics, “where your money goes”, partner/CSR proof.</div>
+     <div><b>Rescue story</b>Documentary captions, timeline, cost-per-outcome, measured tone.</div>
+     <div><b>Donate</b>Transparency-led — allocation graphic + receipts/financials beside the form.</div>
+   </div>
+ </div>
+</div></section>
+
+<section><div class="wrap">
+ <div class="stage">Stage 4</div>
+ <h2 class="serif">Visual review</h2>
+ <table>
+  <tr><th>Concept</th><th>What changed</th><th>Why</th><th>Donor impact</th><th>Emotional impact</th><th>Complexity</th><th>Risk</th></tr>
+  <tr><td><b>A · Minimal</b></td><td>Strip to type + whitespace; muted/duotone imagery</td><td>Maximal editorial restraint</td><td>Medium — clean but cool</td><td>Lower — austerity mutes warmth</td><td><span class="pill low">Low</span></td><td>Feels cold for an animal cause</td></tr>
+  <tr><td><b>B · Storytelling</b></td><td>Full-bleed warm photography, emotional arc, monthly-default, live cases, proof counters</td><td>Animal as hero + craft + conversion</td><td><b>High</b> — emotion + proof + clear giving</td><td><b>High</b> — recovery arc lands</td><td><span class="pill med">Medium</span></td><td>Needs strong photography</td></tr>
+  <tr><td><b>C · Documentary</b></td><td>Metrics, before/after, allocation, CSR proof front-and-centre</td><td>Maximise trust &amp; transparency</td><td>High for CSR/HNI; cooler for small donors</td><td>Medium — respect over warmth</td><td><span class="pill med">Medium</span></td><td>Needs real data to shine; can read as a report</td></tr>
+ </table>
+ <p class="note">No redesign is recommended here — this only identifies what each direction achieves and what it would leave unfinished.</p>
+</div></section>
+
+<section style="border-bottom:0"><div class="wrap">
+ <div class="stage">Stage 5</div>
+ <h2 class="serif">Final recommendation</h2>
+ <div class="final">
+   <h3 class="serif">Concept B — Premium Storytelling</h3>
+   <p>It is the only direction that fully honours the brief’s first rule: <b>the rescued animal is the hero</b>. It borrows Victor Furuya’s editorial craft — oversized type, full-bleed photography, scroll-driven motion, deep negative space, emotive one-liners — but points all of it at the animal and the act of giving, so it never feels like a designer portfolio.</p>
+   <p>It also serves the actual goal best: emotion (the recovery arc) + proof (impact counters, live cases) + a clear path to <b>monthly</b> giving — the engine the live site under-uses. Concept A risks feeling cold for this cause; Concept C is excellent but depends on real data and can read as a report. Concept B can absorb C’s proof elements (counters, before/after, allocation) as RKM’s real numbers come online — so it’s the safest long-term home, not just the prettiest.</p>
+   <p style="margin-bottom:0">Recommendation: proceed with <b>Concept B</b>. The three built mockups show the direction. No code beyond these standalone showcases — awaiting your approval before anything is implemented.</p>
+ </div>
+ <p class="note">Built mockups (standalone, not connected to the live site): rkm_home.html · rkm_rescue_story.html · rkm_donate.html. Real RKM photography is referenced for realism; sample impact numbers are clearly labelled and must be replaced with verified figures.</p>
+</div></section>
+</body>
+</html>

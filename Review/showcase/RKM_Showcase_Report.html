@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>RKM Showcase — Report, Motion Inventory & Storyboards</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--black:#000;--ink:#0b0b0b;--paper:#fff;--gold:#C8A04B;--gold-2:#E4C879;--gold-deep:#9c7a31;--g50:#6f6f6f;--g15:#dcdcdc;--g08:#f1f1f1}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--paper);line-height:1.62}
+h1,h2,h3,.serif{font-family:'Fraunces',Georgia,serif;font-weight:500;letter-spacing:-.01em;line-height:1.1}
+.wrap{max-width:1040px;margin:0 auto;padding:0 30px}
+header.top{background:#000;color:#fff;padding:74px 0 58px}
+header.top .k{font-size:11.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-2);margin-bottom:16px}
+header.top h1{font-size:clamp(32px,5vw,58px);color:#fff;max-width:20ch}
+header.top p{color:#c7c7c7;margin-top:16px;max-width:64ch}
+header.top .links{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}
+header.top .links a{border:1px solid #3a3a3a;color:#fff;text-decoration:none;padding:9px 15px;border-radius:30px;font-size:13px}
+header.top .links a:hover{background:var(--gold);border-color:var(--gold);color:#161007}
+section{padding:58px 0;border-bottom:1px solid var(--g15)}
+.stage{font-size:11.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:10px}
+h2{font-size:clamp(25px,3.4vw,38px);max-width:24ch}
+.intro{font-size:17px;color:var(--g50);margin:14px 0;max-width:66ch}
+table{width:100%;border-collapse:collapse;margin-top:20px;font-size:13.5px}
+th,td{border:1px solid var(--g15);padding:10px 12px;text-align:left;vertical-align:top}
+th{background:#000;color:#fff;font-weight:600;font-family:'Inter'}
+tr:nth-child(even) td{background:#fafafa}
+.v{color:#166534;font-weight:600}.i{color:var(--gold-deep);font-weight:600}
+.card{border:1px solid var(--g15);border-radius:14px;padding:24px;margin-top:18px}
+.card.rec{border:2px solid var(--gold)}
+.tagrec{display:inline-block;background:var(--gold);color:#161007;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:30px;margin-bottom:10px}
+.card h3{font-size:22px;margin-bottom:8px}
+.sb{display:grid;grid-template-columns:130px 1fr;gap:10px 18px;margin-top:10px;font-size:14px}
+.sb b{color:var(--ink)}
+.pill{display:inline-block;font-size:11px;padding:3px 9px;border-radius:20px;font-weight:600}
+.low{background:#dcfce7;color:#166534}.med{background:#fdf0d2;color:#92660b}.high{background:#f1d6d6;color:#9b2c2c}
+.rate td:nth-child(n+2){text-align:center;font-weight:600}
+.final{background:var(--gold);color:#161007;border-radius:14px;padding:30px;margin-top:18px}
+.final h3{color:#161007;font-size:24px;margin-bottom:8px}
+.note{font-size:13px;color:var(--g50);font-style:italic;margin-top:10px}
+a.inline{color:var(--gold-deep);font-weight:600;text-decoration:none}
+@media(max-width:720px){.sb{grid-template-columns:1fr}table{font-size:12.5px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <div class="k">RKM Foundation · Visual Showcase Phase</div>
+  <h1>Reverse engineering, motion inventory, storyboards & recommendation.</h1>
+  <p>Studied as an interaction designer in Chrome (desktop + mobile, 19 Jun 2026). Strict Black / White / Gold; photography rendered grayscale to hold the palette; existing RKM copy reused. Nothing is implemented or deployed. Guiding rule: <b>the rescued animal is the hero, never the website.</b></p>
+  <div class="links">
+    <a href="index.html">Overview hub</a>
+    <a href="a_home.html">Showcase A — home</a>
+    <a href="b_home.html">Showcase B — home ★</a>
+    <a href="c_home.html">Showcase C — home</a>
+    <a href="b_story.html">B · rescue story</a>
+    <a href="b_donate.html">B · donate</a>
+  </div>
+</div></header>
+
+<section><div class="wrap">
+  <div class="stage">Part 1</div>
+  <h2 class="serif">Reverse engineering — Victor Furuya</h2>
+  <p class="intro">A scroll-driven, monochrome editorial “poster.” The craft is restraint: one face, oversized grotesque type, deep negative space, and motion that rewards scrolling. Built (inferred) on smooth-scroll + scroll-triggered timelines.</p>
+  <table>
+   <tr><th>Section</th><th>Purpose</th><th>Layout</th><th>Type</th><th>Visual</th><th>Emotional purpose</th></tr>
+   <tr><td>Scroll intro</td><td>Arrest + signal craft</td><td>Full-bleed B&amp;W portrait; centred black poster card</td><td>Oversized counter “100”</td><td>Monochrome, high contrast</td><td>Anticipation</td></tr>
+   <tr><td>Hero poster</td><td>Identity + positioning</td><td>Poster over portrait</td><td>Huge sans “Make It Last”</td><td>Black on grayscale</td><td>Confidence, restraint</td></tr>
+   <tr><td>Manifesto</td><td>Philosophy</td><td>Stacked images + centred lines</td><td>Editorial statements</td><td>Monochrome imagery</td><td>“Felt, not detailed”</td></tr>
+   <tr><td>Work / cases</td><td>Proof of work</td><td>Large stills + index nums + meta</td><td>Numbered “01”</td><td>Cinematic</td><td>Credibility</td></tr>
+   <tr><td>About</td><td>Person behind the work</td><td>Big statement + bio</td><td>Oversized headline</td><td>Portrait + whitespace</td><td>Human, intentional</td></tr>
+  </table>
+</div></section>
+
+<section><div class="wrap">
+  <div class="stage">Part 2 · the audit you asked for</div>
+  <h2 class="serif">Motion &amp; interaction inventory</h2>
+  <p class="intro"><span class="v">Observed</span> = seen directly in Chrome. <span class="i">Inferred</span> = standard for this build pattern / implied by the content, not fully observable through the scroll-pin. I won’t present inference as fact.</p>
+  <table>
+   <tr><th>#</th><th>Effect</th><th>What happens</th><th>When</th><th>Why</th><th>User emotion</th><th>Source</th></tr>
+   <tr><td>1</td><td>Scroll-progress counter</td><td>“100” scrubs with scroll over the portrait</td><td>Pinned intro</td><td>Shows progress, builds toward reveal</td><td>Anticipation</td><td class="v">Observed</td></tr>
+   <tr><td>2</td><td>Poster assembly / wipe</td><td>Black card wipes up; headline words slot in</td><td>Intro, scrubbed</td><td>Constructs identity in front of you</td><td>Reveal satisfaction</td><td class="v">Observed</td></tr>
+   <tr><td>3</td><td>Smooth inertia scroll</td><td>Eased, weighted scrolling</td><td>Whole page</td><td>Premium, deliberate pace</td><td>Calm, quality</td><td class="i">Inferred (Lenis)</td></tr>
+   <tr><td>4</td><td>Navigation fade-in</td><td>Name + menu fade in after intro</td><td>Intro completes</td><td>Don’t distract from the moment</td><td>Orientation</td><td class="v">Observed</td></tr>
+   <tr><td>5</td><td>Headline word reveal</td><td>Words rise/clip into place</td><td>On reach</td><td>Emphasis, rhythm</td><td>Focus</td><td class="v">Observed</td></tr>
+   <tr><td>6</td><td>Grayscale + still framing</td><td>B&amp;W photography, slow/no movement</td><td>Throughout</td><td>Timeless, serious</td><td>Gravity</td><td class="v">Observed</td></tr>
+   <tr><td>7</td><td>Manifesto parallax / fades</td><td>Images drift; lines fade in</td><td>Mid page</td><td>Contemplative pacing</td><td>Reflection</td><td class="i">Inferred</td></tr>
+   <tr><td>8</td><td>Work horizontal slider</td><td>Cases slide laterally, numbered</td><td>Work section</td><td>Curated browsing</td><td>Interest</td><td class="i">Inferred</td></tr>
+   <tr><td>9</td><td>Hover states</td><td>Image scale / link underline</td><td>On hover</td><td>Responsiveness</td><td>Control</td><td class="i">Inferred</td></tr>
+   <tr><td>10</td><td>Section pin / release</td><td>Sections hold, then release</td><td>Transitions</td><td>One idea at a time</td><td>Immersion</td><td class="i">Inferred (intro observed)</td></tr>
+  </table>
+  <h3 class="serif" style="font-size:20px;margin-top:30px">How we recreate the <em>feeling</em> for RKM (not the implementation)</h3>
+  <p class="intro">Counter → impact counter (animals, not ego). Poster assembly → headline word-reveal over a grayscale rescue photo. Inertia scroll → same Lenis feel. Parallax → hero image drifts behind the message. Each effect must serve emotion / trust / impact / storytelling — never decoration.</p>
+</div></section>
+
+<section><div class="wrap">
+  <div class="stage">Part 3 · tooling decision</div>
+  <h2 class="serif">Technology stack (and why)</h2>
+  <p class="intro">My standalone showcase files can match the reference’s motion quality by loading production libraries from a CDN. They’re free, MIT-licensed, client-side, and used only inside these local mockups — they never touch production, Razorpay, or the live site. All effects degrade gracefully and honour <code>prefers-reduced-motion</code>.</p>
+  <table>
+   <tr><th>Tool</th><th>Why</th><th>Alternatives</th><th>Performance</th><th>Mobile</th><th>Accessibility</th></tr>
+   <tr><td>GSAP + ScrollTrigger</td><td>Industry standard for scrubbed/pinned scroll timelines; reliable cross-browser</td><td>Motion One (lighter, less scrub power); Framer Motion (React-only); IntersectionObserver (our fallback)</td><td>GPU-friendly transforms; ~50kb gz</td><td>Solid; keep effects modest</td><td>All animations skipped on reduced-motion</td></tr>
+   <tr><td>Lenis</td><td>The smooth inertia-scroll “feel” of the reference</td><td>Locomotive Scroll (heavier); native scroll (no inertia)</td><td>Tiny, rAF-driven</td><td>Falls back to native momentum</td><td>Disabled on reduced-motion (native scroll restored)</td></tr>
+   <tr><td>SplitType</td><td>Splits headlines into words for staggered reveals</td><td>Manual span wrapping</td><td>Negligible</td><td>Fine</td><td>Text stays selectable; re-shown if motion off</td></tr>
+  </table>
+  <p class="note">Fallback proven in the build: if a library fails to load, content is fully visible (we only hide-for-animation once GSAP confirms it loaded).</p>
+</div></section>
+
+<section><div class="wrap">
+  <div class="stage">Part 4</div>
+  <h2 class="serif">RKM translation map</h2>
+  <table>
+   <tr><th>Victor Furuya</th><th>RKM equivalent</th><th>Why</th></tr>
+   <tr><td>“100” ego counter</td><td>Impact counter — animals, meals, ₹</td><td>Same device; now about animals</td></tr>
+   <tr><td>Designer portrait hero</td><td>Rescued-animal hero (grayscale)</td><td>The animal becomes the face</td></tr>
+   <tr><td>“Make It Last”</td><td>“They can’t ask for help. You can.” (existing copy)</td><td>Same oversized confidence, redirected</td></tr>
+   <tr><td>Case study “01”</td><td>Rescue story (Tobler) — existing content</td><td>Numbered rescues as editorial cases</td></tr>
+   <tr><td>Personal achievement</td><td>Animal transformation / impact achievements</td><td>Recovery is the payoff</td></tr>
+   <tr><td>“Reach out”</td><td>“Donate / Become a Guardian”</td><td>Everything resolves into giving</td></tr>
+  </table>
+</div></section>
+
+<section id="storyboards"><div class="wrap">
+  <div class="stage">Part 5</div>
+  <h2 class="serif">Three concepts — storyboards</h2>
+  <p class="intro">Each: static design, motion storyboard, interaction storyboard, mobile storyboard, tech stack, complexity, performance. Homepages are <b>built</b> for all three; Concept B’s inner pages are built too; A &amp; C inner pages are storyboarded here.</p>
+
+  <div class="card">
+    <h3 class="serif">Concept A — Minimal Editorial &nbsp;<a class="inline" href="a_home.html">▶ open home</a></h3>
+    <div class="sb">
+      <b>Static</b><span>White page, black type, gold hairlines, huge whitespace, small framed grayscale photos. Type does the work.</span>
+      <b>Motion</b><span>Restrained: word-reveal headline, soft fades, gold rules that draw in, count-ups. Inertia scroll.</span>
+      <b>Interaction</b><span>Quiet hovers (underline, subtle image zoom), anchor scrolling. Minimal.</span>
+      <b>Mobile</b><span>Single column, hairlines persist, thumbnails drop, type scales down gracefully.</span>
+      <b>Tech</b><span>GSAP + ScrollTrigger + Lenis + SplitType.</span>
+      <b>Complexity</b><span><span class="pill low">Low</span></span>
+      <b>Performance</b><span>Lightest of the three (few full-bleed images).</span>
+    </div>
+  </div>
+
+  <div class="card rec">
+    <span class="tagrec">Recommended · fully built</span>
+    <h3 class="serif">Concept B — Premium Storytelling &nbsp;<a class="inline" href="b_home.html">▶ home</a> · <a class="inline" href="b_story.html">story</a> · <a class="inline" href="b_donate.html">donate</a></h3>
+    <div class="sb">
+      <b>Static</b><span>Black-dominant, full-bleed grayscale animal photography, gold accents, oversized type, poster moments.</span>
+      <b>Motion</b><span>Hero parallax + scroll-progress “animals reached” counter, headline word-reveal, image clip-reveals, big count-ups, monthly band.</span>
+      <b>Interaction</b><span>Photo tiles scale + reveal a line on hover; monthly/one-time toggle on donate; live progress bars.</span>
+      <b>Mobile</b><span>Full-bleed hero holds; counter hides; grids collapse to 1–2 col; tap targets enlarged.</span>
+      <b>Tech</b><span>GSAP + ScrollTrigger + Lenis + SplitType.</span>
+      <b>Complexity</b><span><span class="pill med">Medium</span></span>
+      <b>Performance</b><span>Image-heavy — needs optimised grayscale assets; parallax kept to transforms.</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3 class="serif">Concept C — Impact Documentary &nbsp;<a class="inline" href="c_home.html">▶ open home</a></h3>
+    <div class="sb">
+      <b>Static</b><span>White/black documentary; big gold numbers; photo captions like field records; allocation bar; cost table.</span>
+      <b>Motion</b><span>Count-ups as the lead motif, clip-reveals on captioned images, allocation bar fill. Measured, not flashy.</span>
+      <b>Interaction</b><span>Caption reveals, hover on data rows, anchor jumps to proof. Restrained.</span>
+      <b>Mobile</b><span>Metrics stack 2-up; cost table becomes single column; captions remain legible.</span>
+      <b>Tech</b><span>GSAP + ScrollTrigger + Lenis (lighter use).</span>
+      <b>Complexity</b><span><span class="pill med">Medium</span></span>
+      <b>Performance</b><span>Light; shines once real verified numbers replace samples.</span>
+    </div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="stage">Part 6 · self review</div>
+  <h2 class="serif">Quality check vs the reference (honest)</h2>
+  <p class="intro">My self-assessment of the <b>built homepages</b>, 1–10 against victorfuruya.com. I’m not inflating — where a score is below 8 I say what would close it.</p>
+  <table class="rate">
+   <tr><th>Concept</th><th>Visual</th><th>Motion</th><th>Storytelling</th><th>Interaction</th><th>Mobile</th></tr>
+   <tr><td style="text-align:left">A · Minimal</td><td>8</td><td>7</td><td>7</td><td>7</td><td>8</td></tr>
+   <tr><td style="text-align:left">B · Storytelling ★</td><td>9</td><td>8</td><td>9</td><td>8</td><td>7</td></tr>
+   <tr><td style="text-align:left">C · Documentary</td><td>8</td><td>7</td><td>8</td><td>7</td><td>8</td></tr>
+  </table>
+  <p class="note">Below-8 items &amp; how to close them: <b>Motion (A/C 7)</b> — add the pinned scroll-counter + a signature reveal these concepts currently keep minimal. <b>Interaction (A/C 7)</b> — richer hover/transition states. <b>B Mobile (7)</b> — the full-bleed hero + parallax need device testing and tuned tap targets before it’s a true 8. <b>Storytelling (A 7)</b> — needs the Tobler narrative built out (currently linked). These are refinements, not rebuilds.</p>
+  <h3 class="serif" style="font-size:20px;margin-top:26px">Side-by-side</h3>
+  <table>
+   <tr><th>Dimension</th><th>Current RKM</th><th>Victor Furuya</th><th>A</th><th>B ★</th><th>C</th></tr>
+   <tr><td>Visual craft</td><td>Good, warm</td><td>Exceptional</td><td>High</td><td>High</td><td>High</td></tr>
+   <tr><td>Motion</td><td>Minimal</td><td>Signature</td><td>Restrained</td><td>Rich</td><td>Measured</td></tr>
+   <tr><td>Emotion</td><td>Present</td><td>Cool</td><td>Cooler</td><td><b>Highest</b></td><td>Respectful</td></tr>
+   <tr><td>Trust / proof</td><td>Claims, little proof</td><td>n/a</td><td>Medium</td><td>High</td><td><b>Highest</b></td></tr>
+   <tr><td>Mission fit (animal=hero)</td><td>Strong</td><td>—</td><td>Good</td><td><b>Strongest</b></td><td>Strong</td></tr>
+  </table>
+  <h3 class="serif" style="font-size:20px;margin-top:24px">What works / what doesn’t / risk</h3>
+  <table>
+   <tr><th>Concept</th><th>Works</th><th>Doesn’t</th><th>Risk</th></tr>
+   <tr><td>A</td><td>Timeless, calm, cheap to run</td><td>Can feel cold for an animal cause</td><td>Under-emotional</td></tr>
+   <tr><td>B ★</td><td>Animal-as-hero, emotion + motion + giving</td><td>Needs strong grayscale photography; mobile tuning</td><td>Asset quality dependent</td></tr>
+   <tr><td>C</td><td>Maximises trust/CSR via proof</td><td>Needs real numbers; can read as a report</td><td>Cooler for small donors</td></tr>
+  </table>
+</div></section>
+
+<section style="border-bottom:0"><div class="wrap">
+  <div class="stage">Part 7</div>
+  <h2 class="serif">Recommendation</h2>
+  <div class="final">
+    <h3 class="serif">Concept B — Premium Storytelling</h3>
+    <p>It is the only direction that fully honours the brief’s first rule — <b>the rescued animal is the hero</b> — while recreating the reference’s motion feeling (inertia scroll, scroll-progress counter, word-reveal headlines, parallax, clip reveals). It scores highest on emotion and mission fit, and it can absorb Concept C’s proof devices (counters, allocation, documentary captions) as RKM’s real numbers come online — so it’s the strongest long-term home, not just the prettiest.</p>
+    <p style="margin-bottom:0">Built for review: B home, B rescue story, B donate (+ A and C homepages, and A/C inner pages storyboarded above). No production code, nothing deployed — awaiting your approval of a concept before anything is implemented.</p>
+  </div>
+  <p class="note">Palette held to #000 / #FFF / Gold; all photography grayscale; impact figures labelled “Sample only — replace with verified figures”; existing RKM copy reused throughout (new copy only for genuinely new sections, kept minimal).</p>
+</div></section>
+</body>
+</html>

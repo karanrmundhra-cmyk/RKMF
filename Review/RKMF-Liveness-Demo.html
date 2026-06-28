@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKM Foundation — Liveness Preview (Before / After)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#111111; --snow:#F5F5F5; --white:#fff;
+    --copper:#B89245; --copper-dark:#8F6A2A; --copper-light:#E6D2A0;
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--white);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1000px;margin:0 auto;padding:0 28px}
+  h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;line-height:1.05}
+  .eyebrow{font-size:.7rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--copper-dark);display:inline-flex;align-items:center;gap:12px}
+  .eyebrow::before{content:"";width:30px;height:1px;background:rgba(184,146,69,.6)}
+  p{line-height:1.6}
+
+  /* ---- control bar ---- */
+  .bar{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:16px;justify-content:center;
+       background:rgba(255,255,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid rgba(17,17,17,.08);padding:12px}
+  .bar b{font-size:.82rem;font-weight:600}
+  .bar .hint{font-size:.74rem;color:rgba(17,17,17,.55)}
+  .toggle{display:inline-flex;border:1px solid rgba(17,17,17,.15);border-radius:999px;overflow:hidden;cursor:pointer;user-select:none}
+  .toggle span{padding:7px 16px;font-size:.8rem;font-weight:600;transition:.25s var(--ease)}
+  .toggle .on{background:var(--ink);color:#fff}
+  .toggle .off{color:rgba(17,17,17,.55)}
+
+  /* ---- scroll progress (after only) ---- */
+  #prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--copper-light),var(--copper-dark));z-index:60;opacity:0;transition:opacity .3s}
+  body.alive #prog{opacity:1}
+
+  /* ---- mock header ---- */
+  .mh{position:sticky;top:49px;z-index:40;display:flex;align-items:center;justify-content:space-between;
+      padding:22px 28px;transition:padding .35s var(--ease),background .35s,box-shadow .35s,border-color .35s;border-bottom:1px solid transparent}
+  .mh .logo{display:flex;align-items:center;gap:10px;font-weight:600}
+  .mh .dot{width:30px;height:30px;border-radius:50%;background:var(--copper-light);transition:transform .35s var(--ease)}
+  .mh nav{display:flex;gap:22px;align-items:center;font-size:.85rem;font-weight:500;color:rgba(17,17,17,.7)}
+  .pill{background:var(--copper-dark);color:#fff;padding:9px 18px;border-radius:999px;font-size:.82rem;font-weight:600}
+  body.alive .mh.condensed{padding:11px 28px;background:rgba(255,255,255,.82);backdrop-filter:blur(12px);
+      border-color:rgba(17,17,17,.08);box-shadow:0 6px 24px -16px rgba(17,17,17,.4)}
+  body.alive .mh.condensed .dot{transform:scale(.8)}
+
+  section{padding:64px 0}
+  .snow{background:var(--snow)}
+
+  /* ---- HERO ---- */
+  .hero{position:relative;min-height:78vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--ink);color:#fff;padding:0}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.8;will-change:transform}
+  body.alive .hero img{animation:zoom 9s var(--ease) both}
+  @keyframes zoom{from{transform:scale(1.06)}to{transform:scale(1)}}
+  .hero .scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,17,.9),rgba(17,17,17,.35) 45%,rgba(17,17,17,.05))}
+  .hero .inner{position:relative;padding:0 28px 70px;max-width:1000px;margin:0 auto;width:100%;will-change:transform}
+  .hero h1{font-size:clamp(2.4rem,1.4rem+4.4vw,4.6rem);max-width:15ch}
+  .hero .cl{color:var(--copper-light)}
+  .hero .sub{margin-top:22px;max-width:34ch;color:rgba(255,255,255,.82);font-size:1.12rem}
+  .btnrow{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap}
+  .cue{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);width:24px;height:38px;border:1px solid rgba(255,255,255,.4);border-radius:999px;display:flex;justify-content:center;padding-top:6px;transition:opacity .4s}
+  .cue i{width:4px;height:8px;border-radius:999px;background:rgba(255,255,255,.75)}
+  body.alive .cue i{animation:cue 1.8s ease-in-out infinite}
+  @keyframes cue{0%,100%{transform:translateY(0);opacity:.9}50%{transform:translateY(7px);opacity:.3}}
+
+  /* ---- buttons ---- */
+  .btn{position:relative;display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:13px 26px;font-size:.85rem;font-weight:600;
+       cursor:pointer;border:0;text-decoration:none;overflow:hidden;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+  .btn-copper{background:var(--copper-dark);color:#fff}
+  .btn-ghost{background:rgba(255,255,255,.1);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.3);backdrop-filter:blur(4px)}
+  .btn-dark{background:var(--ink);color:#fff}
+  .btn .sweep{position:absolute;inset:0;background:var(--ink);transform:translateX(-101%);z-index:0;transition:transform .4s var(--ease)}
+  .btn span,.btn .arr{position:relative;z-index:1}
+  .btn .arr{transition:transform .3s var(--ease)}
+  body.alive .btn-copper:hover{transform:translateY(-2px);box-shadow:0 12px 26px -12px rgba(143,106,42,.8)}
+  body.alive .btn-copper:hover .sweep{transform:translateX(0)}
+  body.alive .btn-dark:hover{transform:translateY(-2px);box-shadow:0 12px 26px -14px rgba(17,17,17,.6)}
+  body.alive .btn:hover .arr{transform:translateX(4px)}
+
+  /* ---- reveal ---- */
+  body.alive .rv{opacity:0;transform:translateY(22px);filter:blur(6px);transition:opacity .7s var(--ease),transform .7s var(--ease),filter .7s var(--ease)}
+  body.alive .rv.in{opacity:1;transform:none;filter:none}
+  body.alive .rv.d1{transition-delay:.08s}
+  body.alive .rv.d2{transition-delay:.16s}
+
+  /* ---- editorial row ---- */
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;border-top:1px solid rgba(17,17,17,.1);padding:52px 0;transition:transform .4s var(--ease)}
+  body.alive .row:hover{transform:translateY(-4px)}
+  .frame{position:relative;overflow:hidden;border-radius:20px;aspect-ratio:16/10;background:#efeae3}
+  .frame img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s var(--ease)}
+  body.alive .frame:hover img{transform:scale(1.06)}
+  .row .idx{font-size:.85rem;font-weight:600;color:var(--copper-dark)}
+  .row .word{font-size:clamp(2.2rem,1.2rem+4vw,3.6rem);font-weight:600;letter-spacing:-.02em;margin-top:8px}
+  .row p{margin-top:14px;max-width:34ch;color:rgba(17,17,17,.65)}
+
+  /* ---- trust cards ---- */
+  .tgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:32px}
+  .tcard{display:flex;gap:16px;padding:22px;border-radius:16px;background:#fff;border:1px solid rgba(17,17,17,.08);transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s}
+  body.alive .tcard:hover{transform:translateY(-4px);box-shadow:0 18px 40px -22px rgba(17,17,17,.35);border-color:rgba(184,146,69,.5)}
+  .tcard .n{font-size:.85rem;font-weight:600;color:var(--copper-dark);font-variant-numeric:tabular-nums}
+  .certs{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+  .cert{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid rgba(17,17,17,.1);border-radius:999px;padding:9px 16px;font-size:.82rem;font-weight:600;color:rgba(17,17,17,.75);transition:.3s var(--ease)}
+  .cert svg{transition:transform .3s var(--ease)}
+  body.alive .cert:hover{color:var(--copper-dark);border-color:rgba(184,146,69,.55);transform:translateY(-2px)}
+  body.alive .cert:hover svg{transform:translateY(3px)}
+
+  /* ---- gift tiers + slider ---- */
+  .tier{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;border-top:1px solid rgba(17,17,17,.12);padding:26px 14px;border-radius:14px;transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s}
+  body.alive .tier:hover{transform:translateY(-3px);background:#fff;box-shadow:0 16px 38px -22px rgba(17,17,17,.3)}
+  .tier .amt{font-size:clamp(1.7rem,1rem+2vw,2.4rem);font-weight:600;color:var(--copper-dark);font-variant-numeric:tabular-nums;min-width:5ch}
+  .tier p{color:rgba(17,17,17,.7);max-width:30ch}
+  .sliderbox{margin-top:26px}
+  .slabel{display:flex;justify-content:space-between;font-size:.8rem;color:rgba(17,17,17,.6)}
+  .sval{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;display:inline-block;transition:transform .2s var(--ease)}
+  body.alive .sval.pop{transform:scale(1.18)}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:999px;margin-top:12px;
+     background:linear-gradient(90deg,var(--copper-dark) var(--pct,40%),rgba(17,17,17,.12) var(--pct,40%));cursor:pointer}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--copper-dark);border:3px solid #fff;
+     box-shadow:0 1px 5px rgba(17,17,17,.25);transition:transform .2s var(--ease),box-shadow .2s}
+  body.alive input[type=range]:active::-webkit-slider-thumb{transform:scale(1.25);box-shadow:0 0 0 7px rgba(184,146,69,.25)}
+  .out{font-size:.95rem;color:rgba(17,17,17,.7);margin-top:14px}
+  .lead{font-size:1.05rem;color:rgba(17,17,17,.65);max-width:40ch;margin-top:16px}
+  .note{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(17,17,17,.45);margin-top:14px}
+  @media(max-width:760px){.row,.tgrid{grid-template-columns:1fr}.tier{grid-template-columns:1fr;gap:10px}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+
+<div class="bar">
+  <b>Liveness preview</b>
+  <span class="toggle" id="tg" role="button" tabindex="0" aria-label="Toggle before and after">
+    <span class="off" data-m="before">Before (static)</span><span class="on" data-m="after">After (alive)</span>
+  </span>
+  <span class="hint">Same look. Toggle to feel the motion. Scroll the page.</span>
+</div>
+
+<header class="mh" id="mh">
+  <div class="logo"><span class="dot"></span> RKM Foundation</div>
+  <nav>About · Donate <span class="pill">Donate Now</span></nav>
+</header>
+
+<section class="hero">
+  <img src="https://rkmfoundation.com/images/site/dog.jpg" alt="Rescued dog" onerror="this.style.background='#1a1a1a';this.style.opacity=.5" />
+  <div class="scrim"></div>
+  <div class="inner" id="heroInner">
+    <p class="eyebrow" style="color:var(--copper-light)">Animal Welfare · India</p>
+    <h1 style="margin-top:18px">They can't ask for help. <span class="cl">You can give it.</span></h1>
+    <p class="sub">Every day we rescue, feed, heal, and shelter animals living on India's streets.</p>
+    <div class="btnrow">
+      <a class="btn btn-copper"><span class="sweep"></span><span>Donate Now</span></a>
+      <a class="btn btn-ghost"><span>Start a Fundraiser</span></a>
+    </div>
+  </div>
+  <div class="cue" id="cue"><i></i></div>
+</section>
+
+<section class="snow"><div class="wrap">
+  <div class="rv"><p class="eyebrow">What We Do</p>
+  <h2 style="font-size:clamp(1.9rem,1.2rem+2.6vw,3rem);margin-top:14px;max-width:16ch">Four ways we show up for animals.</h2></div>
+  <div class="row">
+    <div class="rv frame"><img src="https://rkmfoundation.com/images/site/feed.jpg" alt="Feed" onerror="this.style.background='#e0d8c8'"/></div>
+    <div class="rv d1"><div class="idx">02 — Every single day</div><div class="word">Feed</div>
+      <p>Warm meals every day, for every animal in our care. Hover the image — it breathes.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="rv"><p class="eyebrow">Why Trust RKM Foundation</p>
+  <h2 style="font-size:clamp(1.9rem,1.2rem+2.6vw,3rem);margin-top:14px;max-width:18ch">Give with confidence. See the change you create.</h2></div>
+  <div class="tgrid">
+    <div class="rv tcard"><span class="n">01</span><div><h3 style="font-size:1.25rem">You see where it goes</h3><p style="color:rgba(17,17,17,.65);margin-top:8px">Photos and videos from the field after every campaign.</p></div></div>
+    <div class="rv d1 tcard"><span class="n">02</span><div><h3 style="font-size:1.25rem">Registered &amp; tax-deductible</h3><p style="color:rgba(17,17,17,.65);margin-top:8px">12A, 80G &amp; CSR. Every gift gets a receipt.</p></div></div>
+  </div>
+  <div class="certs rv">
+    <span class="cert">12A Registered <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 4v12m0 0 4-4m-4 4-4-4M5 20h14" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    <span class="cert">80G Tax Benefits <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 4v12m0 0 4-4m-4 4-4-4M5 20h14" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    <span class="cert">CSR Eligible <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 4v12m0 0 4-4m-4 4-4-4M5 20h14" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  </div>
+</div></section>
+
+<section class="snow"><div class="wrap">
+  <div class="rv"><p class="eyebrow">What Your Gift Does</p>
+  <h2 style="font-size:clamp(1.9rem,1.2rem+2.6vw,3rem);margin-top:14px">No vague promises.</h2>
+  <p class="lead">Here's exactly what your money buys — and we'll show you the life it changed.</p>
+  <div class="sliderbox">
+    <div class="slabel"><span>₹1,000</span><span>₹25,000+</span></div>
+    <input type="range" id="sl" min="1000" max="25000" step="500" value="5000" />
+    <div class="out">A full month of food and care for <b><span class="sval" id="anim">2–3</span></b> animals — your gift: <b class="sval" id="amt">₹5,000</b></div>
+    <div class="note">256-bit secure · Razorpay · instant 80G receipt</div>
+  </div></div>
+
+  <div style="margin-top:30px">
+    <div class="rv tier"><div class="amt" data-to="2500">₹0</div><p>Two weeks of warm meals for a rescued animal.</p><a class="btn btn-dark"><span>Give ₹2,500</span> <span class="arr">→</span></a></div>
+    <div class="rv d1 tier"><div class="amt" data-to="5000">₹0</div><p>A full month of food and care for 2–3 animals.</p><a class="btn btn-dark"><span>Give ₹5,000</span> <span class="arr">→</span></a></div>
+    <div class="rv d2 tier"><div class="amt" data-to="10000">₹0</div><p>Emergency medical treatment — the care that saves a life.</p><a class="btn btn-dark"><span>Give ₹10,000</span> <span class="arr">→</span></a></div>
+  </div>
+</div></section>
+
+<section style="text-align:center"><div class="wrap rv">
+  <h2 style="font-size:clamp(2rem,1.2rem+3vw,3.4rem);max-width:18ch;margin:0 auto">Somewhere out there, an animal is waiting.</h2>
+  <div class="btnrow" style="justify-content:center;margin-top:26px">
+    <a class="btn btn-copper"><span class="sweep"></span><span>Donate Now</span> <span class="arr">→</span></a>
+  </div>
+</div></section>
+
+<script>
+(function(){
+  var body=document.body, tg=document.getElementById('tg');
+  function setMode(m){ if(m==='after'){body.classList.add('alive');tg.querySelector('[data-m="after"]').className='on';tg.querySelector('[data-m="before"]').className='off';} else {body.classList.remove('alive');tg.querySelector('[data-m="before"]').className='on';tg.querySelector('[data-m="after"]').className='off';} reveal(); }
+  tg.addEventListener('click',function(){ setMode(body.classList.contains('alive')?'before':'after'); });
+  tg.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();tg.click();} });
+
+  // reveal on scroll
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); if(e.target.classList.contains('tier'))countUp(e.target.querySelector('.amt')); } });},{threshold:.18});
+  function reveal(){ document.querySelectorAll('.rv').forEach(function(el){ if(!body.classList.contains('alive')){el.classList.add('in');} else { var r=el.getBoundingClientRect(); if(r.top<innerHeight*0.85)el.classList.add('in'); else {el.classList.remove('in');io.observe(el);} } }); }
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+
+  // count up
+  function countUp(el){ if(!el||!body.classList.contains('alive')){if(el)el.textContent='₹'+(+el.dataset.to).toLocaleString('en-IN');return;} var to=+el.dataset.to,st=null; function f(t){st=st||t;var p=Math.min((t-st)/1100,1);el.textContent='₹'+Math.round(to*(1-Math.pow(1-p,3))).toLocaleString('en-IN');if(p<1)requestAnimationFrame(f);} requestAnimationFrame(f); }
+
+  // scroll progress + header condense
+  var prog=document.getElementById('prog'), mh=document.getElementById('mh'), cue=document.getElementById('cue'), hero=document.getElementById('heroInner');
+  addEventListener('scroll',function(){ var y=scrollY,h=document.documentElement.scrollHeight-innerHeight; prog.style.width=(100*y/h)+'%'; if(body.classList.contains('alive')){ mh.classList.toggle('condensed',y>80); cue.style.opacity=Math.max(0,1-y/220); if(hero)hero.style.transform='translateY('+Math.min(y*0.12,60)+'px)'; } else { mh.classList.remove('condensed'); cue.style.opacity=1; if(hero)hero.style.transform='none'; } },{passive:true});
+
+  // slider
+  var sl=document.getElementById('sl'),amt=document.getElementById('amt'),anim=document.getElementById('anim');
+  function upd(pop){ var v=+sl.value; sl.style.setProperty('--pct',((v-1000)/240)+'%'); amt.textContent='₹'+v.toLocaleString('en-IN'); anim.textContent=(v<2500?'1':v<6000?'2–3':v<12000?'5–6':'10+'); if(pop&&body.classList.contains('alive')){amt.classList.add('pop');anim.classList.add('pop');setTimeout(function(){amt.classList.remove('pop');anim.classList.remove('pop');},180);} }
+  sl.addEventListener('input',function(){upd(true);}); upd(false);
+
+  setMode('after'); setTimeout(reveal,60);
+})();
+</script>
+</body>
+</html>

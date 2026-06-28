@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>RKM Foundation — Rescue Story (concept)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{--ink:#111;--snow:#F5F5F5;--copper:#B89245;--copper-light:#E6D2A0;--copper-dark:#8F6A2A;--ease:cubic-bezier(.16,1,.3,1)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:#000;-webkit-font-smoothing:antialiased;
+       scroll-snap-type:y proximity;overflow-x:hidden}
+  .beat{min-height:100svh;scroll-snap-align:center;position:relative;display:flex;flex-direction:column;
+        align-items:center;justify-content:center;text-align:center;padding:40px 28px;overflow:hidden}
+  .ink{background:var(--ink);color:#fff}
+  .snow{background:var(--snow);color:var(--ink)}
+  .photo{padding:0}
+  .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .photo .veil{position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,17,.55),rgba(17,17,17,.05) 40%,rgba(17,17,17,.25))}
+  .cap{position:relative;align-self:flex-start;margin-top:auto;color:rgba(255,255,255,.85);font-size:.72rem;
+       letter-spacing:.2em;text-transform:uppercase;text-align:left}
+  .eyebrow{font-size:.7rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--copper-light)}
+  .ink .eyebrow{color:var(--copper-light)}.snow .eyebrow{color:var(--copper-dark)}
+  .word{font-weight:600;letter-spacing:-.03em;line-height:.95;font-size:clamp(4rem,2rem+13vw,11rem)}
+  .word .dot{color:var(--copper-light)}
+  .num{font-weight:600;letter-spacing:-.03em;line-height:.9;font-size:clamp(5rem,3rem+16vw,14rem)}
+  .num span{display:block;font-size:clamp(1.1rem,.8rem+1.6vw,1.8rem);letter-spacing:.02em;font-weight:500;color:rgba(255,255,255,.7);margin-top:8px}
+  .line{font-weight:500;letter-spacing:-.02em;line-height:1.08;font-size:clamp(1.8rem,1.1rem+3.6vw,3.4rem);max-width:18ch}
+  .meta{margin-top:22px;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(17,17,17,.45)}
+  .ink .meta{color:rgba(255,255,255,.5)}
+  /* reveal */
+  .rv{opacity:0;transform:translateY(26px);filter:blur(8px);transition:opacity 1s var(--ease),transform 1s var(--ease),filter 1s var(--ease)}
+  .rv.in{opacity:1;transform:none;filter:none}
+  /* final cta */
+  .cta{position:relative;max-width:30ch}
+  .cta h2{font-weight:600;letter-spacing:-.02em;line-height:1.05;font-size:clamp(2.2rem,1.4rem+4vw,4rem);color:#fff}
+  .cta p{color:rgba(255,255,255,.78);margin-top:16px;font-size:1.05rem;line-height:1.5}
+  .btn{display:inline-flex;align-items:center;gap:10px;margin-top:28px;background:var(--copper-dark);color:#fff;
+       border-radius:999px;padding:16px 34px;font-size:.95rem;font-weight:600;text-decoration:none;
+       transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px -16px rgba(143,106,42,.9)}
+  .small{margin-top:16px;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+  /* progress + dock */
+  #prog{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--copper-light),var(--copper-dark));z-index:30}
+  .brand{position:fixed;top:18px;left:24px;z-index:20;color:#fff;font-weight:600;font-size:.9rem;mix-blend-mode:difference}
+  .dock{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:20;background:rgba(17,17,17,.7);backdrop-filter:blur(10px);
+        border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:8px 8px 8px 18px;display:flex;align-items:center;gap:14px;color:#fff;font-size:.8rem}
+  .dock a{background:var(--copper-dark);color:#fff;border-radius:999px;padding:8px 16px;font-weight:600;text-decoration:none;font-size:.78rem}
+  .hint{position:fixed;bottom:64px;left:50%;transform:translateX(-50%);z-index:20;color:rgba(255,255,255,.6);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;animation:fade 2.4s ease-in-out infinite}
+  @keyframes fade{0%,100%{opacity:.35}50%{opacity:.9}}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<div class="brand">RKM Foundation</div>
+<div class="hint" id="hint">Scroll ↓</div>
+<div class="dock">Tara's rescue <a href="#give">Donate ₹500</a></div>
+
+<section class="beat ink">
+  <div class="rv">
+    <p class="eyebrow">An RKM rescue · Thane, 2025</p>
+    <h1 class="word" style="margin-top:18px">Rescued<span class="dot">.</span></h1>
+  </div>
+</section>
+
+<section class="beat photo">
+  <img src="https://rkmfoundation.com/images/site/street.jpg" alt="Tara, found on the street" onerror="this.style.background='#222'"/>
+  <div class="veil"></div>
+  <p class="cap rv">The day we found her</p>
+</section>
+
+<section class="beat snow">
+  <p class="line rv">Found injured beside a highway.</p>
+</section>
+
+<section class="beat photo">
+  <img src="https://rkmfoundation.com/images/site/heal.jpg" alt="Tara receiving veterinary care" onerror="this.style.background='#222'"/>
+  <div class="veil"></div>
+</section>
+
+<section class="beat ink">
+  <div class="rv num">4<span>surgeries</span></div>
+</section>
+
+<section class="beat photo">
+  <img src="https://rkmfoundation.com/images/site/care.jpg" alt="Tara recovering at the shelter" onerror="this.style.background='#222'"/>
+  <div class="veil"></div>
+</section>
+
+<section class="beat snow">
+  <div class="rv">
+    <p class="line">178 days of recovery.</p>
+    <p class="meta">Fed, treated, and watched over — every single day</p>
+  </div>
+</section>
+
+<section class="beat photo">
+  <img src="https://rkmfoundation.com/images/site/rest.jpg" alt="Tara resting, healed" onerror="this.style.background='#222'"/>
+  <div class="veil"></div>
+</section>
+
+<section class="beat ink">
+  <p class="line rv" style="max-width:16ch">Today, she <span style="color:var(--copper-light)">runs again.</span></p>
+</section>
+
+<section class="beat photo" id="give">
+  <img src="https://rkmfoundation.com/images/site/dog.jpg" alt="A rescued dog, healthy" onerror="this.style.background='#222'"/>
+  <div class="veil" style="background:linear-gradient(to top,rgba(17,17,17,.85),rgba(17,17,17,.3) 55%,rgba(17,17,17,.4))"></div>
+  <div class="cta rv">
+    <p class="eyebrow">Somewhere out there, the next one is waiting</p>
+    <h2 style="margin-top:14px">Help the next rescue.</h2>
+    <p>Tara's care was paid for by people who showed up. Today, that can be you.</p>
+    <a class="btn" href="#">Donate ₹500 →</a>
+    <p class="small">12A · 80G · CSR — instant receipt · secured by Razorpay</p>
+  </div>
+</section>
+
+<script>
+(function(){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('in');});},{threshold:.35});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el);});
+  var prog=document.getElementById('prog'),hint=document.getElementById('hint');
+  addEventListener('scroll',function(){var y=scrollY,h=document.documentElement.scrollHeight-innerHeight;
+    prog.style.width=(100*y/h)+'%';hint.style.opacity=y>40?0:'';},{passive:true});
+})();
+</script>
+</body>
+</html>

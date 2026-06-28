@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>RKM — Four Ways (UPDATED) preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Faithful replica of components/prototype-v2/WhatWeDo.tsx using the real class values
+   (display-2, editorial-word, container, copper/ink/snow, asymmetric grid, aspect-16/10).
+   Shows the 3 approved changes only. NOT the live site. Source is uncommitted/not deployed. */
+:root{--ink:#1F1F1F;--copper:#B89245;--copper-dark:#8F6A2A;--snow:#FAF8F3;--line:rgba(31,31,31,.07)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Inter,system-ui,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased}
+.banner{background:#111;color:#E6D2A0;font-size:12px;letter-spacing:.04em;padding:10px 16px;text-align:center}
+.banner b{color:#fff}
+.sec{background:var(--snow);padding:clamp(64px,9vh,120px) 0}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+@media(min-width:640px){.wrap{padding:0 32px}}
+.eyebrow{display:inline-flex;align-items:center;gap:11px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--copper-dark)}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--copper)}
+.display-2{font-weight:600;letter-spacing:-.02em;line-height:1.02;font-size:clamp(2.1rem,1.3rem + 3.6vw,4.25rem);margin-top:1.25rem;color:#111}
+@media(min-width:1280px){.display-2{white-space:nowrap}}            /* xl:whitespace-nowrap */
+.rows{margin-top:2.5rem}
+@media(min-width:640px){.rows{margin-top:3.5rem}}
+.row{display:grid;align-items:center;row-gap:2rem;column-gap:3.5rem;border-top:1px solid var(--line);padding:4rem 0}
+@media(min-width:640px){.row{padding:6rem 0}}
+.row:last-child{border-bottom:1px solid var(--line)}
+@media(min-width:1024px){
+  .row.imgRight{grid-template-columns:11fr 13fr}
+  .row.imgLeft{grid-template-columns:13fr 11fr}
+  .row.imgLeft .fig{order:1}.row.imgLeft .txt{order:2;padding-left:1.5rem}
+  .row.imgRight .fig{order:2}.row.imgRight .txt{order:1;padding-right:1.5rem}
+}
+.fig{position:relative;border-radius:1.25rem;overflow:hidden;aspect-ratio:16/10;background:#ece6dc}
+.fig img{width:100%;height:100%;object-fit:cover;display:block}
+.ghost{position:absolute;top:.4rem;left:.8rem;font-weight:800;font-size:5rem;line-height:1;color:rgba(255,255,255,.22);letter-spacing:-.04em;pointer-events:none}
+.meta{display:flex;align-items:baseline;gap:1rem}
+.idx{font-size:.875rem;font-weight:600;font-variant-numeric:tabular-nums;color:var(--copper-dark)}
+.lab{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.22em;color:rgba(31,31,31,.45)}
+.word{font-weight:600;letter-spacing:-.02em;line-height:.9;font-size:clamp(2.5rem,1.2rem + 6vw,6rem);margin-top:.75rem;color:var(--ink)}
+.desc{margin-top:1.25rem;max-width:28rem;font-size:1.125rem;line-height:1.6;color:rgba(31,31,31,.65)}
+.tag{position:absolute;bottom:.7rem;right:.8rem;background:#8F6A2A;color:#fff;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:999px}
+</style>
+</head>
+<body>
+<div class="banner">PREVIEW · faithful render of the <b>UPDATED “Four Ways” section</b> from modified source — <b>not committed, not live</b> · resize to ≥1280px to see the one-line heading · the “UPDATED” pills mark the 2 changed images (not part of the site)</div>
+
+<section class="sec">
+  <div class="wrap">
+    <span class="eyebrow">What We Do</span>
+    <h2 class="display-2">Four ways we show up for animals.</h2>
+
+    <div class="rows">
+      <!-- 01 Rescue (image right) — unchanged real photo -->
+      <div class="row imgRight">
+        <div class="fig"><img src="https://rkmfoundation.com/images/site/street.jpg" alt="A rescued street dog in RKM Foundation's care"><span class="ghost">01</span></div>
+        <div class="txt"><div class="meta"><span class="idx">01</span><span class="lab">On the street</span></div><h3 class="word">Rescue</h3><p class="desc">We go wherever an animal is hurt — the street, the gutter, anywhere.</p></div>
+      </div>
+      <!-- 02 Feed (image left) — unchanged real photo -->
+      <div class="row imgLeft">
+        <div class="fig"><img src="https://rkmfoundation.com/images/site/feed.jpg" alt="A happy, well-fed rescued dog"><span class="ghost">02</span></div>
+        <div class="txt"><div class="meta"><span class="idx">02</span><span class="lab">Every single day</span></div><h3 class="word">Feed</h3><p class="desc">Warm meals every day, for every animal in our care.</p></div>
+      </div>
+      <!-- 03 Heal (image right) — CHANGED -->
+      <div class="row imgRight">
+        <div class="fig"><img src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1280&h=800&q=80" alt="A golden retriever holding a flower"><span class="ghost">03</span><span class="tag">Updated</span></div>
+        <div class="txt"><div class="meta"><span class="idx">03</span><span class="lab">With trusted vets</span></div><h3 class="word">Heal</h3><p class="desc">Wounds dressed, surgeries funded — full vet care until they're whole.</p></div>
+      </div>
+      <!-- 04 Shelter (image left) — CHANGED -->
+      <div class="row imgLeft">
+        <div class="fig"><img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=1280&h=800&q=80" alt="A rescued ginger cat resting"><span class="ghost">04</span><span class="tag">Updated</span></div>
+        <div class="txt"><div class="meta"><span class="idx">04</span><span class="lab">A place to rest</span></div><h3 class="word">Shelter</h3><p class="desc">A safe, quiet place to rest and recover.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

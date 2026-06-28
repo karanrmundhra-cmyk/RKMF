@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Bruno’s Story — RKM Foundation Showcase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1b1714;--sand:#F4EEE3;--paper:#FBF8F2;--teal:#0F766E;--gold:#A9742F;--muted:#6f655b;--line:#e4dccd}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--paper);line-height:1.6}
+h1,h2,h3,.serif{font-family:'Fraunces',Georgia,serif;font-weight:500;line-height:1.05;letter-spacing:-.01em}
+.ribbon{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--ink);color:#f0e9da;font-size:11px;letter-spacing:.18em;text-transform:uppercase;text-align:center;padding:7px}
+nav{position:fixed;top:33px;left:0;right:0;z-index:150;display:flex;justify-content:space-between;align-items:center;padding:18px 32px;mix-blend-mode:difference;color:#fff}
+nav .brand{font-family:'Fraunces',serif;font-size:20px}nav a{color:#fff;text-decoration:none;font-size:14px}
+nav .give{background:#fff;color:var(--ink);padding:9px 18px;border-radius:40px;mix-blend-mode:normal;font-weight:600}
+.hero{position:relative;height:92vh;min-height:560px;display:flex;align-items:flex-end;color:#fff;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.66)}
+.hero .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,16,13,.3),rgba(20,16,13,.8))}
+.hero .inner{position:relative;z-index:2;max-width:1180px;margin:0 auto;width:100%;padding:0 32px 8vh}
+.meta{font-size:12px;letter-spacing:.28em;text-transform:uppercase;opacity:.9;margin-bottom:18px}
+.hero h1{font-size:clamp(40px,7vw,96px);font-weight:600;max-width:16ch}
+.article{max-width:720px;margin:0 auto;padding:90px 32px}
+.article .dek{font-family:'Fraunces',serif;font-size:clamp(22px,3vw,30px);line-height:1.32;color:var(--ink);margin-bottom:40px}
+.article p{font-size:18.5px;color:#36302a;margin:0 0 26px}
+.article p .drop{float:left;font-family:'Fraunces',serif;font-size:64px;line-height:.8;padding:8px 12px 0 0;color:var(--gold)}
+.pull{font-family:'Fraunces',serif;font-size:clamp(26px,3.6vw,40px);line-height:1.18;color:var(--teal);margin:50px 0;padding-left:26px;border-left:3px solid var(--gold)}
+figure{margin:48px 0}figure img{width:100%;border-radius:14px}
+figcaption{font-size:13.5px;color:var(--muted);margin-top:12px;letter-spacing:.02em}
+.beforeafter{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.beforeafter img{aspect-ratio:1;object-fit:cover}
+.statline{background:var(--sand);border-radius:16px;padding:36px;margin:54px 0;text-align:center}
+.statline b{font-family:'Fraunces',serif;font-size:clamp(34px,5vw,56px);color:var(--teal);display:block}
+.statline span{color:var(--muted);font-size:15px;letter-spacing:.04em}
+.fund{background:var(--ink);color:var(--paper);text-align:center;padding:96px 32px}
+.fund h2{font-size:clamp(30px,4.4vw,52px);max-width:18ch;margin:0 auto 14px}
+.fund p{color:#c9bfb0;max-width:48ch;margin:0 auto 30px;font-size:17px}
+.btn{display:inline-block;border-radius:40px;padding:15px 32px;font-weight:600;text-decoration:none;background:#fff;color:var(--ink);transition:.2s}.btn:hover{background:var(--gold);color:#fff}
+footer{background:var(--ink);color:#b9afa2;padding:48px 32px;font-size:14px;text-align:center;border-top:1px solid #2a241f}
+.reveal{opacity:0;transform:translateY(24px);transition:.9s cubic-bezier(.2,.7,.2,1)}.reveal.in{opacity:1;transform:none}
+@media(max-width:680px){.beforeafter{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="ribbon">Showcase · Concept B “Premium Storytelling” · Rescue Story page · visual mockup</div>
+<nav><div class="brand">RKM&nbsp;Foundation</div><div><a href="rkm_home.html" style="margin-right:22px">Home</a><a class="give" href="rkm_donate.html">Donate</a></div></nav>
+
+<header class="hero">
+ <img src="https://rkmfoundation.com/images/site/care.jpg" alt="Bruno, a rescued dog"/>
+ <div class="scrim"></div>
+ <div class="inner">
+   <div class="meta">Rescue №118 · Thane · March 2026</div>
+   <h1>The week Bruno learned to trust again.</h1>
+ </div>
+</header>
+
+<article class="article">
+ <p class="dek reveal">He was found by the side of the Ghodbunder road — a fractured leg, a wary look, and no one coming back for him. This is what happened next.</p>
+ <p class="reveal"><span class="drop">A</span> call came in just after 9pm. A young street dog, hit by a passing vehicle, dragging a back leg, refusing to let anyone near. By the time our team reached him, he had wedged himself under a parked truck — frightened, in pain, and certain that people meant harm.</p>
+ <p class="reveal">It took forty minutes and a packet of biscuits before he let a hand rest on his head. We named him Bruno on the drive to the vet.</p>
+ <div class="pull reveal">“He didn’t need much. He needed someone to not walk past.”</div>
+ <figure class="reveal"><img src="https://rkmfoundation.com/images/site/heal.jpg" alt="Bruno receiving care"/><figcaption>Day 2 — the fracture set, the wound cleaned. The hardest part was convincing him to rest.</figcaption></figure>
+ <p class="reveal">The X-ray confirmed a clean fracture. Surgery, plating, two weeks of cage rest, and a course of antibiotics. None of it cheap — but all of it possible, because donors had already given before Bruno ever existed to us.</p>
+ <div class="statline reveal"><b>₹8,240</b><span>funded Bruno’s surgery and two weeks of recovery — given by 37 people who’ll never meet him.</span></div>
+ <p class="reveal">By the end of the second week he was standing. By the third, he was leaning his whole weight against the kennel door every time a volunteer walked past — the universal dog language for <em>stay</em>.</p>
+ <div class="beforeafter reveal">
+   <figure style="margin:0"><img src="https://rkmfoundation.com/images/site/street.jpg" alt="Before"><figcaption>The night we found him.</figcaption></figure>
+   <figure style="margin:0"><img src="https://rkmfoundation.com/images/site/rest.jpg" alt="After"><figcaption>Three weeks later.</figcaption></figure>
+ </div>
+ <p class="reveal">Bruno is one animal. On any given week there are a dozen more — each one a phone call, a fracture, a packet of biscuits, a name given on a drive to the vet.</p>
+</article>
+
+<section class="fund">
+ <h2 class="serif reveal">There’s another Bruno on the road tonight.</h2>
+ <p class="reveal">Your gift funds the next rescue before the call even comes in — and we’ll show you exactly who it helped.</p>
+ <a class="btn reveal" href="rkm_donate.html">Fund the next rescue</a>
+</section>
+<footer>RKM Foundation · Be the someone who shows up · info@rkm.support · 12A · 80G · CSR</footer>
+<script>
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

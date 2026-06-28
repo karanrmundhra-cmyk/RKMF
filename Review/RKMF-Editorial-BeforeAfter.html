@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RKM Foundation — Editorial Before / After (composition only)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{--ink:#111;--snow:#F5F5F5;--white:#fff;--copper:#B89245;--copper-dark:#8F6A2A;--copper-light:#E6D2A0;--ease:cubic-bezier(.16,1,.3,1)}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--white);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 30px}
+  h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;line-height:1.06}
+  p{line-height:1.6;margin:0}
+  .eyebrow{font-size:.7rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--copper-dark);display:inline-flex;align-items:center;gap:12px}
+  .eyebrow::before{content:"";width:30px;height:1px;background:rgba(184,146,69,.6)}
+
+  /* transitions for the morph — composition props animate so you SEE the shift */
+  .frame,.frame img,.row,.tier,.tcard,.heroInner,.scrim,.hero,.cta,.gift-cta,.divwrap{transition:all .6s var(--ease)}
+
+  .bar{position:sticky;top:0;z-index:50;display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;
+       background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-bottom:1px solid rgba(17,17,17,.08);padding:12px}
+  .bar b{font-size:.82rem}
+  .bar .hint{font-size:.74rem;color:rgba(17,17,17,.55)}
+  .toggle{display:inline-flex;border:1px solid rgba(17,17,17,.15);border-radius:999px;overflow:hidden;cursor:pointer;user-select:none}
+  .toggle span{padding:7px 16px;font-size:.8rem;font-weight:600;transition:.25s}
+  .toggle .sel{background:var(--ink);color:#fff}.toggle .un{color:rgba(17,17,17,.55)}
+
+  .sec{padding:60px 0;position:relative}.snow{background:var(--snow)}
+  .anno{position:sticky;top:50px;z-index:30;float:right;margin:-44px 30px 0 0;max-width:230px;background:#fff;border:1px solid rgba(184,146,69,.4);
+        border-radius:10px;padding:10px 13px;font-size:.72rem;line-height:1.45;color:rgba(17,17,17,.7);box-shadow:0 10px 30px -18px rgba(17,17,17,.4)}
+  .anno b{color:var(--copper-dark);display:block;margin-bottom:3px;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase}
+
+  /* HERO */
+  .hero{position:relative;min-height:62vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--ink);color:#fff}
+  .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.8}
+  body.ed .hero img{opacity:.92}
+  .scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(17,17,17,.9),rgba(17,17,17,.4) 45%,rgba(17,17,17,.06))}
+  body.ed .scrim{background:linear-gradient(to top,rgba(17,17,17,.82),rgba(17,17,17,.22) 50%,rgba(17,17,17,0))}
+  .heroInner{position:relative;padding:0 30px 56px;max-width:1040px;margin:0 auto;width:100%}
+  body.ed .heroInner{padding-bottom:88px}
+  .hero h1{font-size:clamp(2.2rem,1.4rem+3.6vw,3.9rem);max-width:15ch}
+  .hero .cl{color:var(--copper-light)}
+  .hero .sub{margin-top:18px;max-width:34ch;color:rgba(255,255,255,.82);font-size:1.08rem}
+  .corner{position:absolute;top:22px;left:30px;right:30px;display:flex;justify-content:space-between;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+  body.ed .corner{color:rgba(255,255,255,.32)}
+  .btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:12px 24px;font-size:.84rem;font-weight:600;text-decoration:none;border:0}
+  .btn-copper{background:var(--copper-dark);color:#fff}.btn-ghost{background:rgba(255,255,255,.12);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.3)}
+  .btn-dark{background:var(--ink);color:#fff}
+  .btnrow{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+
+  /* editorial rows */
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:46px;align-items:center;border-top:1px solid rgba(17,17,17,.1);padding:48px 0}
+  body.ed .row{grid-template-columns:1.32fr .9fr;gap:56px;padding:72px 0;border-top-color:rgba(17,17,17,.06)}
+  body.ed .row.rev{grid-template-columns:.9fr 1.32fr}
+  .frame{position:relative;overflow:hidden;border-radius:18px;aspect-ratio:16/10;background:#efeae3}
+  body.ed .frame{aspect-ratio:3/2;border-radius:22px}
+  .frame img{width:100%;height:100%;object-fit:cover;display:block}
+  .idx{font-size:.85rem;font-weight:600;color:var(--copper-dark)}
+  .word{font-size:clamp(2rem,1.2rem+3.4vw,3.3rem);font-weight:600;letter-spacing:-.02em;margin-top:8px}
+  .row .txt p{margin-top:14px;max-width:32ch;color:rgba(17,17,17,.65)}
+
+  /* trust */
+  .tgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px}
+  body.ed .tgrid{gap:46px;margin-top:46px}
+  .tcard{display:flex;gap:16px;padding:24px;border-radius:16px;background:#fff;border:1px solid rgba(17,17,17,.1)}
+  body.ed .tcard{padding:0 0 0 2px;background:transparent;border:0;border-top:1px solid rgba(17,17,17,.12);padding-top:22px;border-radius:0}
+  .tcard .n{font-size:.85rem;font-weight:600;color:var(--copper-dark);font-variant-numeric:tabular-nums}
+  .tcard h3{font-size:1.22rem}.tcard p{color:rgba(17,17,17,.65);margin-top:8px;max-width:30ch}
+
+  /* gift tiers */
+  .tier{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center;border-top:1px solid rgba(17,17,17,.12);padding:24px 0}
+  body.ed .tier{padding:38px 0;border-top-color:rgba(17,17,17,.07)}
+  .tier .amt{font-size:clamp(1.6rem,1rem+1.8vw,2.3rem);font-weight:600;color:var(--copper-dark);font-variant-numeric:tabular-nums;min-width:5ch}
+  .tier p{color:rgba(17,17,17,.7);max-width:30ch}
+  .gift-cta{background:var(--ink);color:#fff;border-radius:999px;padding:12px 22px;font-size:.82rem;font-weight:600;white-space:nowrap}
+  body.ed .gift-cta{background:var(--copper-dark);padding:14px 28px}
+
+  /* cta */
+  .cta{text-align:center;padding:70px 0}
+  body.ed .cta{padding:110px 0}
+  .cta h2{font-size:clamp(1.9rem,1.2rem+2.8vw,3.2rem);max-width:18ch;margin:0 auto}
+  .lead{font-size:1.05rem;color:rgba(17,17,17,.65);max-width:40ch;margin-top:14px}
+  @media(max-width:760px){.row,body.ed .row,body.ed .row.rev,.tgrid,body.ed .tgrid{grid-template-columns:1fr}.anno{display:none}}
+</style>
+</head>
+<body class="ed">
+
+<div class="bar">
+  <b>Editorial composition</b>
+  <span class="toggle" id="tg" role="button" tabindex="0">
+    <span class="un" data-m="cur">Current</span><span class="sel" data-m="ed">Editorial</span>
+  </span>
+  <span class="hint">Same type, colour, copy, structure. Only image scale, breathing room, chrome &amp; CTA emphasis change.</span>
+</div>
+
+<!-- HERO -->
+<div class="sec" style="padding:0">
+  <div class="anno"><b>Hero</b>Lighter scrim → photo more dominant; corner labels quieter; content given more bottom breathing room.</div>
+  <section class="hero">
+    <img src="https://rkmfoundation.com/images/site/dog.jpg" alt="Rescued dog" onerror="this.style.opacity=.4;this.style.background='#1a1a1a'"/>
+    <div class="scrim"></div>
+    <div class="corner"><span>Registered Charitable Trust</span><span>Est. 2014 · Thane, India</span></div>
+    <div class="heroInner">
+      <p class="eyebrow" style="color:var(--copper-light)">Animal Welfare · India</p>
+      <h1 style="margin-top:16px">They can't ask for help. <span class="cl">You can give it.</span></h1>
+      <p class="sub">Every day we rescue, feed, heal, and shelter animals living on India's streets.</p>
+      <div class="btnrow"><a class="btn btn-copper">Donate Now</a><a class="btn btn-ghost">Start a Fundraiser</a></div>
+    </div>
+  </section>
+</div>
+
+<!-- WHAT WE DO -->
+<div class="sec snow">
+  <div class="anno"><b>What we do</b>Image column widened + taller crop (3:2) → photography leads; rows get more vertical air; dividers softened.</div>
+  <div class="wrap">
+    <p class="eyebrow">What We Do</p>
+    <h2 style="font-size:clamp(1.8rem,1.2rem+2.4vw,2.9rem);margin-top:12px;max-width:16ch">Four ways we show up for animals.</h2>
+    <div class="row">
+      <div class="frame"><img src="https://rkmfoundation.com/images/site/feed.jpg" alt="Feed" onerror="this.style.background='#e0d8c8'"/></div>
+      <div class="txt"><div class="idx">02 — Every single day</div><div class="word">Feed</div><p>Warm meals every day, for every animal in our care.</p></div>
+    </div>
+    <div class="row rev">
+      <div class="txt"><div class="idx">03 — With trusted vets</div><div class="word">Heal</div><p>Wounds dressed, surgeries funded — full vet care until they're whole.</p></div>
+      <div class="frame"><img src="https://rkmfoundation.com/images/site/heal.jpg" alt="Heal" onerror="this.style.background='#e0d8c8'"/></div>
+    </div>
+  </div>
+</div>
+
+<!-- STORY -->
+<div class="sec">
+  <div class="anno"><b>The story</b>Portrait image scaled up + more gap → the quote sits in calmer space. Copy &amp; structure unchanged.</div>
+  <div class="wrap">
+    <div class="row" style="border:0;padding-top:8px">
+      <div class="frame" style="aspect-ratio:4/5"><img src="https://rkmfoundation.com/images/site/care.jpg" alt="Tobler" onerror="this.style.background='#e0d8c8'"/></div>
+      <div class="txt"><p class="eyebrow">How It Started</p>
+        <h2 style="font-size:clamp(1.7rem,1.1rem+2.2vw,2.7rem);margin-top:12px">It started with our dog, Tobler.</h2>
+        <p style="margin-top:18px;font-size:1.2rem;color:rgba(17,17,17,.9);line-height:1.5">"These weren't even their animals. People just couldn't walk past one that was hurt."</p>
+        <p style="margin-top:16px;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(17,17,17,.45)">— The Mundhra family</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY TRUST -->
+<div class="sec snow">
+  <div class="anno"><b>Why trust</b>Boxed cards → open editorial list (chrome removed): no card backgrounds/borders, just a hairline + air. Feels less "dashboard".</div>
+  <div class="wrap">
+    <p class="eyebrow">Why Trust RKM Foundation</p>
+    <h2 style="font-size:clamp(1.8rem,1.2rem+2.4vw,2.9rem);margin-top:12px;max-width:18ch">Give with confidence. See the change you create.</h2>
+    <div class="tgrid">
+      <div class="tcard"><span class="n">01</span><div><h3>You see where it goes</h3><p>Photos and videos from the field after every campaign.</p></div></div>
+      <div class="tcard"><span class="n">02</span><div><h3>Registered &amp; tax-deductible</h3><p>12A, 80G &amp; CSR. Every gift gets a receipt.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- GIFT -->
+<div class="sec">
+  <div class="anno"><b>What your gift does</b>More row breathing room; dividers softened; the "Give" CTA gains emphasis (copper, larger). Numbers unchanged.</div>
+  <div class="wrap">
+    <p class="eyebrow">What Your Gift Does</p>
+    <h2 style="font-size:clamp(1.8rem,1.2rem+2.4vw,2.9rem);margin-top:12px">No vague promises.</h2>
+    <div style="margin-top:18px">
+      <div class="tier"><div class="amt">₹2,500</div><p>Two weeks of warm meals for a rescued animal.</p><span class="gift-cta">Give ₹2,500</span></div>
+      <div class="tier"><div class="amt">₹5,000</div><p>A full month of food and care for 2–3 animals.</p><span class="gift-cta">Give ₹5,000</span></div>
+      <div class="tier" style="border-bottom:1px solid rgba(17,17,17,.12)"><div class="amt">₹10,000</div><p>Emergency medical treatment — the care that saves a life.</p><span class="gift-cta">Give ₹10,000</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="sec snow">
+  <div class="anno"><b>Donate CTA</b>More breathing room around the line; single, stronger copper CTA. Nothing added or reworded.</div>
+  <div class="wrap cta">
+    <h2>Somewhere out there, an animal is waiting.</h2>
+    <p class="lead" style="margin:14px auto 0">It just needs someone to show up. Today, that can be you.</p>
+    <div class="btnrow" style="justify-content:center;margin-top:26px"><a class="btn btn-copper" style="padding:14px 30px">Donate Now</a></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var b=document.body,tg=document.getElementById('tg');
+  function set(m){ if(m==='ed'){b.classList.add('ed');sel('ed');}else{b.classList.remove('ed');sel('cur');} }
+  function sel(m){ tg.querySelectorAll('span').forEach(function(s){s.className=s.dataset.m===m?'sel':'un';}); }
+  tg.addEventListener('click',function(){set(b.classList.contains('ed')?'cur':'ed');});
+  tg.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();tg.click();}});
+})();
+</script>
+</body>
+</html>

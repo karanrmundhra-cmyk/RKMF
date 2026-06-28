@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
       signature: b.razorpay_signature,
     });
     if (!ok) return NextResponse.json({ verified: false }, { status: 400 });
-    // TODO(30-day plan): persist donation in Supabase + trigger receipt email here.
+    // Persistence is handled server-side by the Razorpay webhook (/api/razorpay-webhook): it inserts the donation, issues the numbered 80G receipt, and emails the donor idempotently. This route only confirms the payment signature to the browser.
     console.log("[donate] verified payment", b.razorpay_payment_id);
     return NextResponse.json({ verified: true });
   } catch {

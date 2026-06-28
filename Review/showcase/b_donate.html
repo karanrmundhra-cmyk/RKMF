@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>RKM — Showcase B · Donate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/base.css">
+<script>(function(){if(!(matchMedia('(prefers-reduced-motion: reduce)').matches))document.documentElement.classList.add('motion')})();</script>
+<style>
+body{background:#fff}
+.nav{color:var(--ink)}
+.shell{max-width:1180px;margin:0 auto;padding:150px 34px 80px;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.left h1{font-size:clamp(34px,4.6vw,60px);max-width:13ch}
+.left .lead{margin:20px 0 28px;max-width:44ch}
+.left figure{overflow:hidden}.left img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.proofrow{display:flex;gap:30px;margin:28px 0}
+.proofrow b{font-family:'Fraunces',serif;font-size:30px;color:var(--gold-deep);display:block}
+.proofrow span{font-size:13px;color:var(--g-50)}
+.qt{border-left:3px solid var(--gold);padding-left:18px;font-family:'Fraunces',serif;font-size:20px;margin-top:24px}
+.qt span{display:block;font-family:'Inter';font-size:13px;color:var(--g-50);margin-top:8px}
+.card{background:#fff;border:1px solid #000;padding:28px;position:sticky;top:90px}
+.toggle{display:flex;border:1px solid #000;border-radius:44px;padding:5px;margin-bottom:18px}
+.toggle button{flex:1;border:0;background:transparent;padding:12px;border-radius:44px;font-weight:600;font-size:15px;cursor:pointer;color:var(--g-50)}
+.toggle button.active{background:#000;color:#fff}
+.recline{font-size:13px;color:var(--gold-deep);font-weight:600;margin-bottom:16px;text-align:center}
+.amts{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.amt{border:1.5px solid var(--g-15);padding:14px 8px;text-align:center;cursor:pointer;position:relative;transition:.15s}
+.amt:hover{border-color:var(--gold)}
+.amt.sel{border-color:#000;background:#faf6ec}
+.amt b{font-family:'Fraunces',serif;font-size:22px;display:block}
+.amt span{font-size:11px;color:var(--g-50);display:block;margin-top:4px;line-height:1.25}
+.amt .tag{position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:var(--gold);color:#161007;font-size:9px;letter-spacing:.06em;text-transform:uppercase;padding:2px 8px;border-radius:20px;white-space:nowrap}
+.field{width:100%;margin-top:10px;padding:13px;border:1.5px solid var(--g-15);font-size:15px}
+.help{font-size:12px;color:var(--g-50);margin-top:6px}
+.optrow{display:flex;gap:8px;align-items:flex-start;margin-top:14px;font-size:13px;color:var(--g-50)}
+.save{background:#faf6ec;border:1px solid var(--gold);padding:12px 14px;margin-top:14px;font-size:13px;color:#5a4716}
+.save b{color:var(--gold-deep)}
+.donate{width:100%;margin-top:16px;background:var(--gold);color:#161007;border:0;border-radius:44px;padding:17px;font-size:17px;font-weight:700;cursor:pointer;transition:.2s}
+.donate:hover{background:var(--gold-2)}
+.pays{text-align:center;font-size:12px;color:var(--g-50);margin-top:12px}
+.assure{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+.assure span{font-size:11.5px;color:var(--g-50);display:flex;gap:5px;align-items:center}.assure span::before{content:"✓";color:var(--gold-deep);font-weight:700}
+.note{font-size:12px;color:var(--g-50);text-align:center;margin-top:14px;font-style:italic}
+.trustbar{background:#000;color:#cfcfcf;text-align:center;padding:22px;font-size:13px;letter-spacing:.05em}
+@media(max-width:860px){.shell{grid-template-columns:1fr;gap:34px;padding-top:120px}.card{position:static}}
+</style>
+</head>
+<body>
+<div class="ribbon">Showcase B · Premium Storytelling · Donate page — visual mockup (buttons inactive, no payment)</div>
+<nav class="nav"><div class="brand">RKM&nbsp;Foundation</div><div class="menu"><a href="b_home.html">Home</a><a href="b_story.html">Rescues</a></div></nav>
+
+<div class="shell">
+  <div class="left">
+    <div class="kicker reveal">Donate</div>
+    <h1 class="serif reveal" style="margin-top:14px">Your generosity turns care into action.</h1>
+    <p class="lead reveal">Every rupee goes straight to the animals — a meal, a vet’s visit, a safe place to heal. And we’ll send you photos from the field, so you see exactly what it changed.</p>
+    <figure class="clip reveal"><img class="gray" src="https://rkmfoundation.com/images/site/feed.jpg" alt="A rescued animal being fed"></figure>
+    <div class="proofrow reveal">
+      <div><b class="count" data-count="1240">0</b><span>animals helped</span></div>
+      <div><b class="count" data-count="86000">0</b><span>meals served</span></div>
+      <div><b>₹<span class="count" data-count="48">0</span>L</b><span>deployed</span></div>
+    </div>
+    <div class="help reveal" style="margin-top:-12px">Sample only — replace with verified figures</div>
+    <div class="qt reveal">“The monthly plan made it easy, and visiting the field made it feel personal.”<span>— Shweta Desai · Monthly donor · Mumbai</span></div>
+  </div>
+
+  <div class="card reveal">
+    <div class="toggle"><button id="bM" class="active" onclick="setMode('m')">Monthly</button><button id="bO" onclick="setMode('o')">One-time</button></div>
+    <div class="recline" id="rec">★ Monthly giving sustains daily feeding &amp; care. Cancel anytime.</div>
+    <div class="amts">
+      <div class="amt" onclick="pick(this,2500)"><b>₹2,500</b><span id="s1">two weeks of meals</span></div>
+      <div class="amt sel" onclick="pick(this,5000)"><div class="tag">Most chosen</div><b>₹5,000</b><span id="s2">a month for 2–3 animals</span></div>
+      <div class="amt" onclick="pick(this,10000)"><b>₹10,000</b><span id="s3">emergency treatment</span></div>
+    </div>
+    <input class="field" placeholder="Or enter a custom amount"><div class="help">Minimum donation ₹1,000</div>
+    <input class="field" placeholder="Full name"><input class="field" placeholder="Email">
+    <input class="field" placeholder="PAN"><div class="help">Needed only for your 80G tax certificate</div>
+    <label class="optrow"><input type="checkbox"> Send me impact updates on WhatsApp (photos &amp; stories of the animals you help)</label>
+    <label class="optrow"><input type="checkbox" checked> I agree to the Terms &amp; Conditions and Privacy Policy</label>
+    <div class="save">With <b>80G</b>, a ₹1,000 gift costs about <b>₹500</b> after tax. Pay by UPI Autopay, card or netbanking.</div>
+    <button class="donate" id="cta" onclick="document.getElementById('mn').style.display='block'">Become a Guardian — ₹5,000/mo</button>
+    <div class="pays">UPI · GPay · PhonePe · Cards · NetBanking — secured by Razorpay</div>
+    <div class="assure"><span>80G tax benefits</span><span>Verified payments</span><span>Instant receipt</span><span>Cancel anytime</span></div>
+    <div class="note" id="mn" style="display:none">Visual showcase — no payment is processed. Live monthly giving requires UPI Autopay enabled in Razorpay.</div>
+  </div>
+</div>
+<div class="trustbar">12A · 80G · CSR-1 · DARPAN registered · Reg. E-30560 — every certificate downloadable · every campaign reported back from the field</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+<script src="assets/motion.js"></script>
+<script>
+let mode='m',amt=5000;
+function setMode(m){mode=m;bM.classList.toggle('active',m==='m');bO.classList.toggle('active',m==='o');
+ document.getElementById('rec').style.display=(m==='m')?'block':'none';
+ const d=(m==='m')?['two weeks of meals','a month for 2–3 animals','emergency treatment']:['two weeks of meals','month of food & care','emergency medical care'];
+ s1.textContent=d[0];s2.textContent=d[1];s3.textContent=d[2];render();}
+function pick(el,v){document.querySelectorAll('.amt').forEach(a=>a.classList.remove('sel'));el.classList.add('sel');amt=v;render();}
+function render(){document.getElementById('cta').textContent=(mode==='m')?('Become a Guardian — ₹'+amt.toLocaleString('en-IN')+'/mo'):('Donate ₹'+amt.toLocaleString('en-IN'));}
+render();
+</script>
+</body>
+</html>

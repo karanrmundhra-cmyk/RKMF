@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>RKM Foundation — Showcase Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#000;color:#eee;line-height:1.55}
+h1,h2,h3,.serif{font-family:'Fraunces',serif;font-weight:500;letter-spacing:-.01em}
+.wrap{max-width:1040px;margin:0 auto;padding:0 30px}
+.gold{color:#E4C879}
+header{padding:96px 0 40px}
+.k{font-size:11.5px;letter-spacing:.32em;text-transform:uppercase;color:#E4C879;margin-bottom:16px}
+header h1{font-size:clamp(34px,6vw,72px);color:#fff;max-width:18ch}
+header p{color:#bdbdbd;margin-top:18px;max-width:60ch}
+.ribbon{background:#C8A04B;color:#161007;font-size:11px;letter-spacing:.18em;text-transform:uppercase;text-align:center;padding:8px;font-weight:600}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:30px 0 20px}
+.c{border:1px solid #262626;border-radius:14px;padding:24px;transition:.25s}
+.c:hover{border-color:#C8A04B;background:#0b0b0b}
+.c .tag{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#E4C879}
+.c h3{color:#fff;font-size:24px;margin:8px 0 6px}
+.c p{color:#9a9a9a;font-size:14px;min-height:42px}
+.c .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.c a{font-size:13px;text-decoration:none;color:#fff;border:1px solid #333;border-radius:30px;padding:7px 13px}
+.c a:hover{background:#C8A04B;border-color:#C8A04B;color:#161007}
+.c a.soon{color:#777;border-style:dashed;pointer-events:none}
+.rep{display:flex;justify-content:space-between;align-items:center;border:1px solid #C8A04B;border-radius:14px;padding:22px 26px;margin:10px 0 50px;flex-wrap:wrap;gap:14px}
+.rep a{background:#C8A04B;color:#161007;text-decoration:none;font-weight:600;padding:12px 22px;border-radius:30px}
+.note{color:#777;font-size:12.5px;padding-bottom:60px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="ribbon">Visual showcase only · nothing implemented or deployed · Black / White / Gold</div>
+<header class="wrap">
+  <div class="k">RKM Foundation · Showcase Phase</div>
+  <h1>Three ways the future site could <span class="gold">feel</span>.</h1>
+  <p>Reverse-engineered from victorfuruya.com, translated so the rescued animal is the hero. Real RKM copy, grayscale photography, production-grade motion (GSAP · Lenis · SplitType). Open any page in your browser.</p>
+</header>
+
+<div class="wrap">
+  <div class="rep">
+    <div><div class="k" style="margin-bottom:6px">Start here</div><strong style="color:#fff;font-family:Fraunces,serif;font-size:20px">Report · motion inventory · storyboards · recommendation</strong></div>
+    <a href="RKM_Showcase_Report.html">Open the report →</a>
+  </div>
+
+  <div class="grid">
+    <div class="c">
+      <div class="tag">Concept A</div><h3 class="serif">Minimal Editorial</h3>
+      <p>Type-forward, white, hairline gold, deep whitespace. Timeless and calm.</p>
+      <div class="links"><a href="a_home.html">Home</a><a class="soon">Story (storyboard)</a><a class="soon">Donate (storyboard)</a></div>
+    </div>
+    <div class="c" style="border-color:#C8A04B">
+      <div class="tag">Concept B · recommended</div><h3 class="serif">Premium Storytelling</h3>
+      <p>Full-bleed grayscale photography, oversized type, rich scroll motion. Animal as hero.</p>
+      <div class="links"><a href="b_home.html">Home</a><a href="b_story.html">Rescue story</a><a href="b_donate.html">Donate</a></div>
+    </div>
+    <div class="c">
+      <div class="tag">Concept C</div><h3 class="serif">Impact Documentary</h3>
+      <p>Proof-led: big gold numbers, field captions, allocation, cost table. Built for trust &amp; CSR.</p>
+      <div class="links"><a href="c_home.html">Home</a><a class="soon">Story (storyboard)</a><a class="soon">Donate (storyboard)</a></div>
+    </div>
+  </div>
+  <p class="note">All three homepages are built. Concept B (recommended) is built end-to-end. A &amp; C inner pages are storyboarded in the report and can be built on approval. Impact numbers are sample-only pending verified figures; existing RKM copy is reused, not rewritten.</p>
+</div>
+</body>
+</html>
