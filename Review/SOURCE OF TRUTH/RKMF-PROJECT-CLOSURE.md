@@ -58,3 +58,21 @@ Absent one of these, no planning work resumes.
 ---
 
 **RKM_FOUNDATION_MASTER_BUILD_WORKBOOK_V2.1 is the permanent source of truth. Future work will be content collection, design, build, testing, launch, and KPI reviews.**
+
+---
+
+## SECTION 7 — EXECUTION STATUS (appended during execution, 28 June 2026)
+
+### Done & LIVE on production (rkmfoundation.com)
+- §2 actions 1, 2, 3, 7, 8, 9: cleanup/commit (SOP-03); build + deploy + donate smoke-test; cookie consent (SOP-01); technical hardening — self-host fonts, next/image, per-request nonce CSP (SOP-12); donation E2E in CI (SOP-13); homepage wireframes (F0–F7 + Donate + Ledger + journeys).
+- SOP-02 analytics: consent-gated provider + funnel events live; 28-day baseline pending (needs Plausible account + time).
+- Additional shipped: hero/CTA copy edits, one-line Rescue/Feed/Heal/Shelter row, real homepage photos (Feed/Heal/Shelter/Tobler), footer cleanup (simplified subscribe, one-line hours, de-cramp), WCAG 2.2 AA (0 contrast violations, build-failing axe gate), security headers, Next 14.2.35 security patch, error boundaries, ad-blocker donate resilience, README.
+
+### Built, on branch (rkmf/safe-infra), NOT deployed
+- §2 action 10 — email-lifecycle skeleton (SOP-08 / RKMF-035): `lib/email-lifecycle.ts`. Monthly-donor welcome, monthly impact update, second-gift nudge, lapsed win-back, 80G/Form-10BE note. Every founder-content field marked `[NEEDS DATA]`; `sendLifecycleEmail` refuses to send while any placeholder remains. Typecheck clean.
+
+### Blocked / external — see BLOCKED.md
+- Founder Content Pack (SOP-09); Razorpay (LIVE OUTAGE + 80G webhook + eMandate); Plausible account; secret rotation (RKMF-030).
+
+### LIVE INCIDENT (28 Jun 2026)
+- Razorpay payments failing across all surfaces ("Terminal not found" / "Razorpay – Server Error"; dashboard attribution 100% Others-related). Evidence indicates a Razorpay-side terminal issue. Support emailed. Details in `ops/RAZORPAY-INCIDENT-2026-06-28.md`.
